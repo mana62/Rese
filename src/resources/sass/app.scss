@@ -1,0 +1,24 @@
+@import "register";
+@import "login";
+@import "thanks";
+@import "mypage";
+@import "shop_detail";
+@import "done-book";
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+
+    &__img {
+        cursor: pointer;
+    }
+
+    &__logo {
+        font-size: 24px;
+        text-decoration: none;
+        color: #333;
+    }
+}

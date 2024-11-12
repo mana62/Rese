@@ -1,0 +1,164 @@
+$blue-color: rgb(2, 153, 153);
+$hover-color: rgb(6, 75, 75);
+$text-color: #fff;
+$error-color: red;
+$background-color: #f8f9fa;
+
+.restaurant-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px;
+    margin-top: 30px;
+
+    .left,
+    .right {
+        width: 45%;
+    }
+
+    .left {
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-top: 10px;
+            position: relative;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            font-weight: bold;
+
+            .back-arrow {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 5px;
+                text-decoration: none;
+                color: #fff;
+                border: 1px solid rgb(2, 153, 153);
+                background: rgb(2, 153, 153);
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+
+                &:hover {
+                    background: rgb(6, 75, 75);
+                }
+            }
+        }
+
+        p {
+            margin: 20px 0 30px 0;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            display: inline-block;
+            font-size: 17px;
+        }
+    }
+
+    .right {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: rgb(2, 153, 153);
+        margin-top: 30px;
+
+        h2 {
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            font-size: 25px;
+            background: rgb(2, 153, 153);
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            color: #fff;
+            background: rgb(2, 153, 153);
+            border: none;
+            border-radius: 8px;
+
+            div {
+                margin: 10px;
+                border: none;
+
+                label {
+                    display: block;
+                    font-weight: bold;
+                    color: #fff;
+                    background: rgb(2, 153, 153);
+                    border: none;
+                }
+
+                input {
+                    padding: 10px;
+                    border: 1px solid #dee2e6;
+                    border-radius: 8px;
+                    color: black;
+                    background: #fff;
+                    font-family: "Zen Kaku Gothic New", sans-serif;
+
+                    &[type="date"] {
+                        width: 30%;
+                    }
+
+                    &[type="time"],
+                    &[type="number"] {
+                        width: 100%;
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: textfield;
+                    }
+                }
+            }
+
+            button {
+                padding: 10px 15px;
+                margin-top: 70px;
+                background-color: rgb(6, 75, 75);
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-family: "Zen Kaku Gothic New", sans-serif;
+                font-size: 18px;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+
+                &:hover {
+                    background-color: #016767;
+                }
+            }
+        }
+
+        .confirm {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .restaurant-details {
+        flex-direction: column;
+        padding: 10px 30px;
+        margin-top: 50px;
+
+        .left,
+        .right {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .right form button {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+}

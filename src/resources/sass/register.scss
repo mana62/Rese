@@ -1,0 +1,109 @@
+$background: #fff;
+$textColor: rgb(2, 153, 153);
+$formColor: #333;
+$fontEn: "Quicksand", sans-serif;
+$fontJa: "Zen Kaku Gothic New", sans-serif;
+
+.registration {
+    width: 100%;
+    max-width: 40%;
+    margin: 160px auto;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+
+    &__header {
+        background: rgb(2, 153, 153);
+        color: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 28px;
+        padding: 10px;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 20px;
+    }
+
+    &__field {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        margin-bottom: 15px;
+        width: 90%;
+    }
+
+    &__input {
+        flex: 1;
+        font-size: 16px;
+        padding: 10px;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #333;
+        width: 100%;
+
+        &::-moz-placeholder,
+        &::placeholder {
+            color: #aaa;
+            font-size: 20px;
+            font-family: "Quicksand", sans-serif;
+        }
+    }
+
+    &__icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 30px;
+    }
+
+    &__button {
+        text-align: right;
+        margin-top: 20px;
+
+        &-submit {
+            background: rgb(2, 153, 153);
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            color: #fff;
+            border: none;
+            margin: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+            &:hover {
+                background: #016767;
+            }
+        }
+    }
+}
+
+.register__error {
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .registration,
+    .login {
+        width: 80%;
+        max-width: none;
+        margin: 150px auto;
+
+        &__header,
+        .login__header {
+            font-size: 24px;
+        }
+
+        &__input,
+        .login__input {
+            font-size: 16px;
+        }
+
+        &__button-submit,
+        .login__button-submit {
+            font-size: 16px;
+            padding: 8px 16px;
+        }
+    }
+}

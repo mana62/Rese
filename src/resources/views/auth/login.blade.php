@@ -1,56 +1,52 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('nav-js')
+    <li><a href="/restaurants">HOME</a></li>
+    <li><a href="/register">REGISTRATION</a></li>
+    <li><a href="/login">LOGIN</a></li>
+@endsection
 
-        <form method="POST" action="{{ route('login') }}">
+@section('content')
+
+    <div class="message">
+        @if ($errors->any())
+            <div class="message-session">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+    </div>
+
+    <div class="login">
+        <div class="login__header"> Login </div>
+        <form action="{{ route('login') }}" method="POST">
             @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="login__field">
+                <img src="img/icon_email.png" alt="Email Icon" class="login__icon">
+                <input type="email" name="email" class="login__input" placeholder="Email" value="{{ old('email') }}"
+                    autocomplete="email">
             </div>
+            @error('email')
+                <div class="login__error">{{ $message }}</div>
+            @enderror
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+            <div class="login__field">
+                <img src="img/icon_password.png" alt="Password Icon" class="login__icon">
+                <input type="password" name="password" class="login__input" placeholder="Password"
+                    autocomplete="current-password">
             </div>
+            @error('password')
+                <div class="login__error">{{ $message }}</div>
+            @enderror
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
+            <div class="login__button">
+                <button type="submit" class="login__button-submit">Login</button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection

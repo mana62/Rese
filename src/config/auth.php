@@ -39,9 +39,8 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
-        ],
     ],
-
+],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,11 +63,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

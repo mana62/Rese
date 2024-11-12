@@ -1,0 +1,46 @@
+$background: #fff;
+$textColor: rgb(2, 153, 153);
+$formColor: #333;
+$fontEn: "Quicksand", sans-serif;
+$fontJa: "Zen Kaku Gothic New", sans-serif;
+
+.done {
+    width: 100%;
+    max-width: 40%;
+    margin: 200px auto;
+    padding: 40px 20px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+
+    &__message {
+        padding: 20px;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        color: #333;
+        font-size: 28px;
+    }
+}
+
+.back__link {
+    text-align: center;
+    margin-top: 20px;
+
+    a {
+        background: rgb(2, 153, 153);
+        text-decoration: none;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        color: #fff;
+        border: none;
+        margin: 20px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+            background: #016767;
+        }
+    }
+}

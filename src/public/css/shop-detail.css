@@ -1,0 +1,290 @@
+.restaurant-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px;
+    margin-top: 30px;
+}
+.restaurant-details .left,
+.restaurant-details .right {
+    width: 45%;
+}
+.restaurant-details .left img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+.restaurant-details .left h2 {
+    font-size: 30px;
+    margin-top: 10px;
+    position: relative;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: bold;
+}
+.restaurant-details .left h2 .back-arrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgb(2, 153, 153);
+    background: rgb(2, 153, 153);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+}
+.restaurant-details .left h2 .back-arrow:hover {
+    background: rgb(6, 75, 75);
+}
+.restaurant-details .left p {
+    margin: 20px 0 30px 0;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    display: inline-block;
+    font-size: 17px;
+}
+
+
+.reviews {
+    margin: 30px 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h3 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    border-bottom: 2px dotted rgb(2, 153, 153);
+    width: 200px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    font-size: 24px;
+}
+
+.reviews > div {
+    width: 70%;
+}
+
+.star-rating {
+    display: inline-flex;
+    font-size: 25px;
+    color: #ccc;
+    margin-left: 40px;
+}
+
+.star-rating .star {
+    padding: 1px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star-rating .star.filled {
+    color: gold;
+}
+
+.comment-label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    padding: 10px;
+    margin-left: 40px;
+}
+
+.comment {
+    width: 80%;
+    margin-top: 5px;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: 30px;
+    font-size: 15px;
+}
+
+.comment-submit {
+    width: 80%;
+    display: inline-block;
+    margin: 30px 30px 0px 0;
+    padding: 10px;
+    background-color: rgb(2, 153, 153);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.comment-submit:hover {
+    background-color: rgb(4, 105, 105);
+}
+
+.review-show div {
+    padding-bottom: 10px;
+}
+
+.comment-strong {
+    font-weight: bold;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin-left: 40px;
+    font-size: 18px;
+}
+
+.review-p {
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.comment-p {
+    margin-top: 5px;
+    color: #333;
+    font-family: "Quicksand", sans-serif;
+    margin-left: 50px;
+}
+
+
+.restaurant-details .right {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgb(2, 153, 153);
+    margin-top: 30px;
+}
+.restaurant-details .right h2 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 25px;
+    background: rgb(2, 153, 153);
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.restaurant-details .right form {
+    display: flex;
+    flex-direction: column;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    color: #fff;
+    background: rgb(2, 153, 153);
+    border: none;
+    border-radius: 8px;
+}
+.restaurant-details .right form div {
+    margin: 10px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    border: none;
+}
+.restaurant-details .right form div label {
+    display: block;
+    font-weight: bold;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    color: #fff;
+    background: rgb(2, 153, 153);
+    border: none;
+}
+.restaurant-details .right form div input {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: black;
+    background: #fff;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+.restaurant-details .right form div input[type="date"] {
+    width: 30%;
+}
+
+.restaurant-details .right form div input[type="time"],
+.restaurant-details .right form div input[type="number"] {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.restaurant-details .right form button {
+    padding: 10px 15px;
+    margin-top: 70px;
+    background-color: rgb(6, 75, 75);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 18px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.restaurant-details .right form button:hover {
+    background-color: #016767;
+}
+.restaurant-details .confirm {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.strong {
+    display: inline-block;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+    font-family: "Quicksand", sans-serif;
+    padding: 10px 70px 0 10px;
+}
+.confirm-p {
+    font-size: 15px;
+    color: #fff;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 5px 10px;
+    text-align: left;
+}
+.restaurant-details .book__error {
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .restaurant-details {
+        flex-direction: column;
+        padding: 10px 30px;
+        margin-top: 50px;
+    }
+    .restaurant-details .left,
+    .restaurant-details .right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .restaurant-details .right form button {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .reviews {
+        flex-direction: column;
+        padding: 15px;
+        margin: 20px 30px;
+    }
+    .reviews > div {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .comment-submit {
+        width: 80%;
+        font-size: 16px;
+    }
+}
+/*# sourceMappingURL=shop-detail.css.map */

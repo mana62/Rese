@@ -1,0 +1,55 @@
+h1 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+    margin-top: 90px;
+    font-weight: 400;
+    padding: 10px;
+    font-size: 35px;
+}
+
+p {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+    margin: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    color: red;
+}
+
+.qr-container {
+    text-align: center;
+}
+
+.qr-img {
+    margin: 0 auto;
+    padding: 50px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-link {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #029999;
+    border-radius: 5px;
+    background: #029999;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+a {
+    color: #fff;
+    padding: 5px 20px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-decoration: none;
+}
+
+.qr-link:hover {
+    background: #006868;
+}

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +14,8 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    //ログイン画面表示
     public function create()
     {
         return view('auth.login');
@@ -26,13 +27,31 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+
+    // ログイン処理
+    public function store(Request $request)
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        $request->session()->regenerate();
+            $user = Auth::user();
+            if ($user->status !== 'active') {
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['status' => 'アカウントが無効です']);
+            }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            if ($user->role === 'store-owner') {
+                return redirect()->route('store-owner');
+            } elseif ($user->role === 'user') {
+                return redirect()->route('mypage');
+            } elseif ($user->role === 'admin') {
+                return redirect()->route('admin');
+            }
+
+            return redirect('/');
+        }
+        return back();
     }
 
     /**
@@ -41,14 +60,15 @@ class AuthenticatedSessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+    //ログアウト処理
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

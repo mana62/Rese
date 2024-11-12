@@ -1,24 +1,167 @@
-@import "register";
-@import "login";
-@import "thanks";
-@import "mypage";
-@import "shop_detail";
-@import "done-book";
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 .header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #fff;
+    align-items: center;
+    padding-top: 20px;
+    margin: 0 25px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 
     &__img {
         cursor: pointer;
+        margin-left: 60px;
+    }
+
+    &__img-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
     }
 
     &__logo {
-        font-size: 24px;
+        font-size: 40px;
+        margin-left: 10px;
+        color: rgb(2, 153, 153);
+        font-weight: bold;
         text-decoration: none;
-        color: #333;
+        font-family: "Quicksand", sans-serif;
     }
 }
+
+.nav {
+    margin-right: 9%;
+
+    &__menu2 {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        background: #fff;
+        padding: 20px;
+        z-index: 1001;
+
+        .close-btn {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-size: 30px;
+            width: 45px;
+            font-weight: bold;
+            border: 1px solid rgb(2, 153, 153);
+            border-radius: 3px;
+            background: rgb(2, 153, 153);
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        ul {
+            list-style: none;
+            padding-top: 15%;
+
+            li {
+                margin: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color: rgb(2, 153, 153);
+                font-size: 28px;
+                font-family: "Quicksand", sans-serif;
+                line-height: 2;
+            }
+        }
+
+        &.active {
+            display: block;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding-top: 30px;
+        margin: 0;
+        align-items: flex-start;
+        padding: 20px;
+
+        &__img {
+            margin-left: 0;
+        }
+
+        &__img-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        &__logo {
+            font-size: 32px;
+            margin-left: 0;
+        }
+    }
+
+    .nav {
+        margin: 10px;
+
+        &__menu2 {
+            padding: 15px;
+
+            .close-btn {
+                top: 15px;
+                right: 15px;
+                font-size: 24px;
+                width: 40px;
+            }
+
+            ul {
+                padding-top: 20%;
+
+                a {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .header__logo {
+        font-size: 24px;
+    }
+
+    .header__img-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav__menu2 {
+        ul {
+            padding-top: 30%;
+
+            a {
+                font-size: 20px;
+            }
+        }
+    }
+}
+

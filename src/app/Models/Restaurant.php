@@ -15,6 +15,7 @@ class Restaurant extends Model
         'area_id',
         'genre_id',
         'description',
+        'image',
     ];
 
     public function area()
@@ -25,6 +26,27 @@ class Restaurant extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
 }

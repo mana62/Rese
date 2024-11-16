@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -17,9 +19,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $casts = ['email_verified_at' => 'datetime'];
 
-    public function favorites()
+    public function favorites(): BelongsToMany
     {
-        return $this->belongsToMany(Restaurant::class, 'favorites');
+        return $this->belongsToMany(Restaurant::class, 'favorites', 'user_id', 'restaurant_id');
     }
 
 

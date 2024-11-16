@@ -1,0 +1,180 @@
+.message {
+    text-align: center;
+    margin: 20px;
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 20px;
+}
+
+.message-session {
+    display: block;
+}
+
+.main-ttl {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px;
+    margin-top: 80px;
+}
+
+.store-owner__message {
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 20px;
+}
+
+.store-management {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 10%;
+}
+
+.store-form,
+.store-info,
+.reservations {
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #029999;
+    border-radius: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+.store-form h2,
+.store-info h2,
+.reservations h2 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px 0;
+}
+.store-form label,
+.store-info label {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.store-form input,
+.store-info input {
+    width: 100%;
+    max-width: 350px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.store-form textarea,
+.store-info textarea {
+    width: 100%;
+    height: 250px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.store-form select,
+.store-info select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.store-form option,
+.store-info option {
+    width: 100%;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 16px;
+}
+
+.store-form button,
+.store-info button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #029999;
+    background: #029999;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin: 10px;
+}
+
+.store-form button:hover,
+.store-info button:hover {
+    background: #006868;
+}
+
+.store-info p,
+.reservations p {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.reservations ul {
+    margin: 10px;
+    padding: 10px;
+}
+
+.reservations li {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+    list-style: none;
+}
+
+.store-form__error {
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+.store-info__error {
+    color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .store-management {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .store-form input,
+    .store-info input {
+        max-width: 100%;
+    }
+
+    .store-form textarea,
+    .store-info textarea {
+        max-width: 100%;
+    }
+}

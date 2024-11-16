@@ -20,12 +20,12 @@
     @endif
 
     @if (Auth::user()->role === 'store-owner')
-        <li><a href="/store-owner">OWNER</a></li>
+        <li><a href="/owner">OWNER</a></li>
     @endif
 @endsection
 
 @section('content')
-    <h1>管理者ダッシュボード</h1>
+    <h1 class="main-ttl">管理者ダッシュボード</h1>
 
     <div class="message">
         @if (session('message'))
@@ -38,7 +38,7 @@
     <!-- 店舗代表者作成フォーム -->
     <div class="store-owner">
         <div class="store-owner__container">
-            <h2>店舗代表者作成フォーム</h2>
+            <h2 class="sub-ttl">店舗代表者作成フォーム</h2>
             <form class="store-owner__form" action="{{ route('admin.createStoreOwner') }}" method="POST">
                 @csrf
                 <div>

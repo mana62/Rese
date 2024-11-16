@@ -20,7 +20,7 @@
     @endif
 
     @if (Auth::user()->role === 'store-owner')
-        <li><a href="/store-owner">OWNER</a></li>
+        <li><a href="/owner">OWNER</a></li>
     @endif
 @endsection
 
@@ -43,7 +43,7 @@
                 <div class="reservation-card" id="reservation-card-{{ $reservation->id }}">
                     <div class="reservation-header">
                         <div class="login__field">
-                            <img src="img/icon_clock.png" alt="Clock Icon" class="reservation__icon">
+                            <img src="img/icon/icon_clock.png" alt="Clock Icon" class="reservation__icon">
                             <span class="reservation-title">予約 {{ $loop->iteration }}</span>
                             <button class="reservation-cancel-btn"
                                 onclick="cancelReservation({{ $reservation->id }})">✕</button>
@@ -58,7 +58,7 @@
 
                         <!--QR-->
                         <div class="qr-link">
-                            <a href="{{ route('qr-code', $reservation->id) }}">QRコードを確認する</a>
+                            <a href="{{ route('qr', $reservation->id) }}">QRコードを確認する</a>
                         </div>
 
                         <!--予約変更-->
@@ -105,7 +105,7 @@
                         <div class="favorite-details">
                             <h3>{{ $favorite->name }}</h3>
                             <p> #{{ $favorite->area->area_name }} #{{ $favorite->genre->genre_name }}</p>
-                            <a href="{{ route('shop-detail', $favorite->id) }}" class="favorite-link">詳しくみる</a>
+                            <a href="{{ route('detail', $favorite->id) }}" class="favorite-link">詳しくみる</a>
                         </div>
                         <button class="favorite-btn {{ in_array($favorite->id, $favoriteIds) ? 'favorited' : '' }}"
                             onclick="toggleFavorite({{ $favorite->id }})">

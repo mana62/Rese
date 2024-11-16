@@ -22,7 +22,30 @@
 ・会員登録<br>
 ・ログイン<br>
 ・ログアウト<br>
-
+・ユーザー情報取得<br>
+・ユーザー飲食店お気に入り一覧取得<br>
+・ユーザー飲食店予約情報取得<br>
+・飲食店一覧取得<br>
+・飲食店詳細取得<br>
+・飲食店お気に入り追加<br>
+・飲食店お気に入り削除<br>
+・飲食店予約情報追加<br>
+・飲食店予約情報削除<br>
+・エリアで検索する<br>
+・ジャンルで検索する<br>
+・店名で検索する<br>
+・予約変更機能<br>
+・評価機能<br>
+・バリデーション<br>
+・レスポンシブデザイン<br>
+・管理画面<br>
+・ストレージ<br>
+・メール認証<br>
+・メール送信<br>
+・リマインダー<br>
+・QRコード<br>
+・決済機能(stripe)<br>
+・環境の切り分け<br>
 
 # 使用技術
 ・nginx: latest<br>
@@ -51,5 +74,44 @@
 14. php artisan migrate<br>
 15. php artisan db<br>
 
+# クローンの流れ
+1. Git リポジトリのクローン<br>
+(git clone git@github.com:mana62/Rese.git)<br>
+2. .env ファイルの作成<br>
+(cp .env.example .env)<br>
+3. .env ファイルの編集<br>
+<br>
+DB_CONNECTION=mysql<br>
+DB_HOST=mysql<br>
+DB_PORT=3306<br>
+DB_DATABASE=rese_local<br>
+DB_USERNAME=user<br>
+DB_PASSWORD=pass<br>
+<br>
+MAIL_MAILER=smtp<br>
+MAIL_HOST=mailhog<br>
+MAIL_PORT=1025<br>
+MAIL_USERNAME=null<br>
+MAIL_PASSWORD=null<br>
+MAIL_ENCRYPTION=null<br>
+MAIL_FROM_ADDRESS=test@example.com<br>
+MAIL_FROM_NAME="RESE"<br>
+<br>
+
+4. Dockerの設定<br>
+(docker compose up -d --build)<br>
+5. PHPコンテナにアクセス<br>
+(docker exec -it rese_php bash)<br>
+6. Laravelパッケージのインストール<br>
+(composer install)<br>
+7. アプリケーションキーの生成<br>
+(php artisan key:generate)<br>
+8. マイグレーション<br>
+(php artisan migrate)<br>
+9. シーディング<br>
+(php artisan db:seed)<br>
 
 # その他
+・メール認証をしていないとログインできない<br>
+・会員ユーザーでないとお店のお気に入り機能は使えない<br>
+・会員ユーザーでないとレビューの投稿はできない<br>

@@ -33,7 +33,7 @@
     margin-right: 9%;
 }
 
-.nav__menu2 {
+.nav__menu {
     display: none;
     position: fixed;
     top: 50%;
@@ -45,7 +45,7 @@
     padding: 20px;
     z-index: 1001;
 }
-.nav__menu2 .close-btn {
+.nav__menu .close-btn {
     position: absolute;
     top: 5%;
     left: 5%;
@@ -61,23 +61,28 @@
     cursor: pointer;
     font-family: "Quicksand", sans-serif;
 }
-.nav__menu2 ul {
+.nav__menu ul {
     list-style: none;
     padding-top: 15%;
 }
-.nav__menu2 ul li {
+.nav__menu ul li {
     margin: 0;
 }
-.nav__menu2 ul a {
+.nav__menu ul a {
     text-decoration: none;
     color: rgb(2, 153, 153);
     font-size: 28px;
     font-family: "Quicksand", sans-serif;
     line-height: 2;
 }
-.nav__menu2.active {
-    display: block;
+
+.nav__menu.active {
+    display: block; /* メニューを表示 */
     text-align: center;
+}
+
+.nav__menu {
+    display: none; /* デフォルトで非表示 */
 }
 /*# sourceMappingURL=app.css.map */
 
@@ -115,22 +120,22 @@
     }
 
     /* メニューのモーダルウィンドウ */
-    .nav__menu2 {
+    .nav__menu {
         padding: 15px;
     }
 
-    .nav__menu2 .close-btn {
+    .nav__menu .close-btn {
         top: 15px;
         right: 15px;
         font-size: 24px; /* ボタンを少し小さく */
         width: 40px;
     }
 
-    .nav__menu2 ul {
+    .nav__menu ul {
         padding-top: 20%; /* 上部の余白を調整 */
     }
 
-    .nav__menu2 ul a {
+    .nav__menu ul a {
         font-size: 24px; /* メニューリンクの文字サイズを調整 */
     }
 }
@@ -147,11 +152,11 @@
         height: 40px;
     }
 
-    .nav__menu2 ul a {
+    .nav__menu ul a {
         font-size: 20px; /* メニューリンクの文字サイズを小さく */
     }
 
-    .nav__menu2 ul {
+    .nav__menu ul {
         padding-top: 30%; /* 小型デバイス用の上部余白調整 */
     }
 }

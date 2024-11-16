@@ -2,42 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
+use App\Models\Restaurant;
+use App\Http\Requests\ImageRequest;
 
 class ImageController extends Controller
 {
-    public function store(Request $request)
+    public function store(ImageRequest $request, $restaurantId)
     {
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'restaurant_id' => 'required|exists:restaurants,id',
-        ], [
-            'image.required' => '画像ファイルを選択してください',
-            'image.mimes' => '画像はjpeg, png, jpg, gif形式のみ許可されています',
-            'image.max' => '画像サイズは2MB以下にしてください',
-            'restaurant_id.required' => 'お店のIDは必須です',
-        ]);
+        //Restaurantの取得
+        $restaurant = Restaurant::findOrFail($restaurantId);
 
-        //画像ファイルを取得
+        //画像ファイルの存在を確認
+        if (!$request->hasFile('image')) {
+            return redirect()->back()->withErrors('画像が選択されていません。');
+        }
+
         $image = $request->file('image');
 
-        //オリジナルのファイル名を取得
-        $originalName = $image->getClientOriginalName();
+        //ファイル名の生成と変換
+        $originalName = preg_replace('/\s+/', '_', $image->getClientOriginalName());
+        $fileName = now()->format('Ymd_His') . '_' . $originalName;
 
-        //日付を含むファイル名を生成
-        $dateFileName = date('Ymd-His') . '_' . $originalName;
+        //画像の保存
+        $path = $image->storeAs('restaurants', $fileName, 'public');
 
-        //画像を保存し、パスを取得
-        $path = $image->storeAs('storage/img', $dateFileName, 'public');
-
-        //データベースにパスを保存
-        $image = Image::create([
-            'restaurant_id' => $validatedData['restaurant_id'],
+        //DBにレコードを作成
+        Image::create([
+            'restaurant_id' => $restaurant->id,
             'path' => $path,
         ]);
-
-        return redirect()->back()->with('success', '画像をアップロードしました');
+        return redirect()->back()->with('message', '画像をアップロードしました');
     }
 }

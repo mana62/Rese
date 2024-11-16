@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Http\Requests\Auth\AdminRequest;
 
 class AdminController extends Controller
 {
@@ -18,20 +19,8 @@ class AdminController extends Controller
     }
 
     //店舗代表者を作成
-    public function createStoreOwner(Request $request)
+    public function createStoreOwner(AdminRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-        ], [
-            'name.required' => 'お名前を入力してください',
-            'email.required' => 'メールアドレスを入力してください',
-            'email.unique' => '指定のメールアドレスは既に使用されています',
-            'password.required' => 'パスワードを入力してください',
-            'password.min' => 'パスワードは8文字以上で入力してください',
-        ]);
-
         User::create([
             'name' => $request->name,
             'email' => $request->email,

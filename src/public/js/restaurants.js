@@ -1,41 +1,15 @@
-document.querySelector(".nav-search__area-select").addEventListener("change", applyFilters);
-document.querySelector(".nav-search__genre-select").addEventListener("change", applyFilters);
-document.querySelector(".search__form-input").addEventListener("input", applyFilters);
+document.addEventListener("DOMContentLoaded", () => {
+    // ローカルストレージの機能を削除し、サーバーに状態を委ねる
+});
 
-function applyFilters() {
-    const areaSelect = document.querySelector(".nav-search__area-select");
-    const genreSelect = document.querySelector(".nav-search__genre-select");
-    const inputField = document.querySelector(".search__form-input");
-
-    if (!areaSelect || !genreSelect || !inputField) {
-        console.error("Required elements are missing.");
-        return;
-    }
-
-    const areaId = areaSelect.value;
-    const genreId = genreSelect.value;
-    const input = inputField.value;
-
-    fetch(`/restaurants?area=${encodeURIComponent(areaId)}&genre=${encodeURIComponent(genreId)}&input=${encodeURIComponent(input)}`, {
-        headers: {
-            "X-Requested-With": "XMLHttpRequest",
-        },
-    })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        return response.text();
-    })
-    .then((html) => {
-        document.querySelector(".all-shop").innerHTML = html;
-    })
-    .catch((error) => console.error("Error:", error));
-}
+// お気に入りボタンのトグル関数
 function toggleFavorite(button, restaurantId) {
     const isFavorited = button.classList.contains("favorited");
+
+    // 状態をトグル
     button.classList.toggle("favorited");
 
+    // サーバーへのリクエスト
     fetch(`/restaurants/${restaurantId}/favorite`, {
         method: "POST",
         headers: {
@@ -44,13 +18,18 @@ function toggleFavorite(button, restaurantId) {
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
         },
-        body: JSON.stringify({ is_favorited: !isFavorited }),
     })
         .then((response) => response.json())
         .then((data) => {
-            if (data.status !== "success") {
-                button.classList.toggle("favorited");
+            if (data.status !== "added" && data.status !== "removed") {
+                // サーバー側の処理が失敗した場合は、元の状態に戻す
+                button.classList.toggle("favorited"); // 状態を元に戻す
                 alert("お気に入りの更新に失敗しました");
             }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            button.classList.toggle("favorited"); // エラーの場合も状態を元に戻す
+            alert("ネットワークエラーが発生しました");
         });
 }

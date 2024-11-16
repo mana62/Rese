@@ -10,8 +10,8 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'path',
-        'restaurant_id'
+        'restaurant_id',
+        'path'
     ];
 
     public function restaurant()

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class Restaurant extends Model
 {
@@ -17,6 +19,11 @@ class Restaurant extends Model
         'description',
         'image',
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 
     public function area()
     {
@@ -33,9 +40,9 @@ class Restaurant extends Model
         return $this->hasMany(Reservation::class);
     }
 
-    public function favoritedBy()
+    public function favoritedBy(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorites', 'restaurant_id', 'user_id');
     }
 
     public function owner()
@@ -47,6 +54,11 @@ class Restaurant extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 
 }

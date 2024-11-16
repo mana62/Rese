@@ -6,59 +6,67 @@
 
 @section('nav')
     <div class="nav">
-        <div class="nav-search">
+        <!-- 検索フォーム -->
+        <form action="{{ route('restaurants.index') }}" method="GET" class="nav-search">
+            <!-- エリア選択 -->
             <div class="nav-search__area">
-                <select class="nav-search__area-select" name="area">
-                    <option class="nav-search__area-option" value="" disabled {{ !$areaId ? 'selected' : '' }}>All area
-                    </option>
-                    @foreach ($areas ?? [] as $area)
+                <select class="nav-search__area-select" name="area" onchange="this.form.submit()">
+                    <option class="nav-search__area-option" value="">All area</option>
+                    @foreach ($areas as $area)
                         <option class="nav-search__area-option" value="{{ $area->id }}"
-                            {{ $areaId == $area->id ? 'selected' : '' }}>{{ $area->area_name }}</option>
+                            {{ request('area') == $area->id ? 'selected' : '' }}>
+                            {{ $area->area_name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
+            <!-- ジャンル選択 -->
             <div class="nav-search__genre">
-                <select class="nav-search__genre-select" name="genre">
-                    <option class="nav-search__genre-option" value="" disabled {{ !$genreId ? 'selected' : '' }}>All
-                        genre</option>
-                    @foreach ($genres ?? [] as $genre)
+                <select class="nav-search__genre-select" name="genre" onchange="this.form.submit()">
+                    <option class="nav-search__genre-option" value="">All genre</option>
+                    @foreach ($genres as $genre)
                         <option class="nav-search__genre-option" value="{{ $genre->id }}"
-                            {{ $genreId == $genre->id ? 'selected' : '' }}>{{ $genre->genre_name }}</option>
+                            {{ request('genre') == $genre->id ? 'selected' : '' }}>
+                            {{ $genre->genre_name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
+            <!-- キーワード検索 -->
             <div class="search">
-                <form class="search__form" action="{{ route('restaurants.index') }}" method="GET">
-                    @csrf
-                    <img src="{{ asset('img/search-icon.png') }}" alt="search icon" class="search__icon">
-                    <input class="search__form-input" type="text" name="input" placeholder="search..."
-                        value="{{ $input ?? '' }}">
-                </form>
+                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon" class="search__icon">
+                <input class="search__input" type="text" name="input" placeholder="search..."
+                    value="{{ request('input') }}">
+                    <button class="search__submit" type="submit">検索</button>
             </div>
-        </div>
+        </form>
     </div>
 @endsection
 
+
 @section('nav-js')
     <li><a href="/restaurants">HOME</a></li>
-    <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-            {{ __('LOGOUT') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
-            @csrf
-        </form>
-    </li>
-    <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/store-owner">OWNER</a></li>
-    @endif
+    <li><a href="/register">REGISTRATION</a></li>
+    <li><a href="/login">LOGIN</a></li>
+    @auth
+        <li>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                {{ __('LOGOUT') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                @csrf
+            </form>
+        </li>
+        <li><a href="/mypage">MYPAGE</a></li>
+        @if (Auth::user()->role === 'admin')
+            <li><a href="/admin">ADMIN</a></li>
+        @endif
+        @if (Auth::user()->role === 'store-owner')
+            <li><a href="/owner">OWNER</a></li>
+        @endif
+    @endauth
 @endsection
 
 @section('content')
@@ -74,26 +82,23 @@
                     <p class="area">#{{ $restaurant->area->area_name }}</p>
                     <p class="genre">#{{ $restaurant->genre->genre_name }}</p>
                     <div class="link">
-                        <a href="{{ route('shop-detail', $restaurant->id) }}">詳しくみる</a>
+                        <a href="{{ route('detail', $restaurant->id) }}">詳しくみる</a>
+
+                        @auth
+                        
                         <button class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}"
                             onclick="toggleFavorite(this, {{ $restaurant->id }})">
                             &hearts;
                         </button>
+        
+                    
+                        @endauth
                     </div>
                 </div>
             </div>
         @endforeach
+    </div>
 
-        <!--ストレージ-->
-        <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
-            <!--フォームでファイルをアップロードする時に必須の設定:enctype="multipart/form-data"-->
-            @csrf
-            <label for="image">画像をアップロード</label>
-            <input type="file" name="image" id="image" required>
-            <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-            <button type="submit">アップロード</button>
-        </form>
-
-    @section('js')
-        <script src="{{ asset('js/restaurants.js') }}"></script>
-    @endsection
+@section('js')
+    <script src="{{ asset('js/restaurants.js') }}"></script>
+@endsection

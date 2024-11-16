@@ -1,28 +1,25 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/verifys.css') }}">
+@endsection
+
+@section('nav-js')
+    <li><a href="/restaurants">HOME</a></li>
+    <li><a href="/register">REGISTRATION</a></li>
+    <li><a href="/login">LOGIN</a></li>
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
+    <div class="verify-email">
+        <h1 class="verify-email__ttl">メールアドレスの確認が必要です</h1>
+        <p class="verify-email__paragraph">登録したメールアドレスに確認メールを送信しました</p>
+        <p class="verify-email__paragraph">リンクをクリックして確認を完了してください</p>
+        <form class="verify-email__form" method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <div class="verify-email-button">
+                <button class="verify-email-button__submit" type="submit">再送信</button>
             </div>
-        </div>
+        </form>
     </div>
-</div>
 @endsection

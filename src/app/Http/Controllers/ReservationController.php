@@ -11,12 +11,14 @@ class ReservationController extends Controller
     //予約完了ページ
     public function index()
     {
-        return view('done-book');
+        return view('booked');
     }
 
     //予約情報を取得
     public function store(ReservationRequest $request)
     {
+        \Log::info($request->all());
+
         $reservation = Reservation::create([
             'restaurant_id' => $request->restaurant_id,
             'user_id' => auth()->id(),
@@ -44,17 +46,17 @@ class ReservationController extends Controller
             //QRコードのパスを保存
             $reservation->update(['qr_code' => $qrCodePath]);
         } catch (\Exception $e) {
-            return redirect()->route('done-book')->with('error', 'QRコードの生成に失敗しました');
+            return redirect()->route('booked')->with('error', 'QRコードの生成に失敗しました');
         }
 
-        return redirect()->route('done-book')->with('message', '予約が完了しました');
+        return redirect()->route('booked')->with('message', '予約が完了しました');
     }
 
     //QRコードを表示
     public function showQrCode($id)
     {
         $reservation = Reservation::findOrFail($id);
-        return view('qr-code', compact('reservation'));
+        return view('qr', compact('reservation'));
     }
 
     //予約変更

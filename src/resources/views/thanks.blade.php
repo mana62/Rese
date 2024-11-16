@@ -20,7 +20,7 @@
     @endif
 
     @if (Auth::user()->role === 'store-owner')
-        <li><a href="/store-owner">OWNER</a></li>
+        <li><a href="/owner">OWNER</a></li>
     @endif
 @endsection
 

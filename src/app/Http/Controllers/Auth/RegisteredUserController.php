@@ -63,20 +63,20 @@ class RegisteredUserController extends Controller
     }
 
     //お気に入り・削除
-    public function toggleFavorite(Request $request, $id)
+    public function toggleFavorite(Request $request, $restaurantId)
     {
         $user = auth()->user();
-        $isFavorited = $user->favorites()->where('restaurant_id', $id)->exists();
+        $isFavorited = $user->favorites()->where('restaurant_id', $restaurantId)->exists();
 
         if ($isFavorited) {
-            //お気に入りから削除
-            $user->favorites()->detach($id);
+            // 既にお気に入りなら削除
+            $user->favorites()->detach($restaurantId);
+            return response()->json(['status' => 'removed']);
         } else {
-            //お気に入りに追加
-            $user->favorites()->attach($id);
+            // 新しくお気に入りに追加
+            $user->favorites()->attach($restaurantId);
+            return response()->json(['status' => 'added']);
         }
-
-        return response()->json(['status' => 'success']);
     }
 
     //予約キャンセル

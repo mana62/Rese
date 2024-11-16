@@ -11,23 +11,12 @@
 @endsection
 
 @section('content')
-
-    <div class="message">
-        @if ($errors->any())
-            <div class="message-session">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
-    </div>
-
     <div class="login">
         <div class="login__header"> Login </div>
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="login__field">
-                <img src="img/icon_email.png" alt="Email Icon" class="login__icon">
+                <img src="img/icon/icon_email.png" alt="Email Icon" class="login__icon">
                 <input type="email" name="email" class="login__input" placeholder="Email" value="{{ old('email') }}"
                     autocomplete="email">
             </div>
@@ -36,7 +25,7 @@
             @enderror
 
             <div class="login__field">
-                <img src="img/icon_password.png" alt="Password Icon" class="login__icon">
+                <img src="img/icon/icon_password.png" alt="Password Icon" class="login__icon">
                 <input type="password" name="password" class="login__input" placeholder="Password"
                     autocomplete="current-password">
             </div>

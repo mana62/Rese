@@ -16,7 +16,7 @@
         <form action="{{ route('thanks') }}" method="POST">
             @csrf
             <div class="registration__field">
-                <img src="img/icon_user.png" alt="User Icon" class="registration__icon">
+                <img src="img/icon/icon_user.png" alt="User Icon" class="registration__icon">
                 <input type="text" name="name" class="registration__input" placeholder="Username"
                     value="{{ old('name') }}" autocomplete="name">
             </div>
@@ -25,7 +25,7 @@
             @enderror
 
             <div class="registration__field">
-                <img src="img/icon_email.png" alt="Email Icon" class="registration__icon">
+                <img src="img/icon/icon_email.png" alt="Email Icon" class="registration__icon">
                 <input type="email" name="email" class="registration__input" placeholder="Email"
                     value="{{ old('email') }}" autocomplete="email">
             </div>
@@ -34,7 +34,7 @@
             @enderror
 
             <div class="registration__field">
-                <img src="img/icon_password.png" alt="Password Icon" class="registration__icon">
+                <img src="img/icon/icon_password.png" alt="Password Icon" class="registration__icon">
                 <input type="password" name="password" class="registration__input" placeholder="Password"
                     autocomplete="new-password">
             </div>
@@ -43,7 +43,7 @@
             @enderror
 
             <div class="registration__field">
-                <img src="img/icon_password.png" alt="Confirm Password Icon" class="registration__icon">
+                <img src="img/icon/icon_password.png" alt="Confirm Password Icon" class="registration__icon">
                 <input type="password" name="password_confirmation" class="registration__input"
                     placeholder="Confirm Password" autocomplete="new-password">
             </div>

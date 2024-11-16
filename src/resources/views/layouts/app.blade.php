@@ -15,7 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Zen+Kaku+Gothic+New&display=swap"
         rel="stylesheet">
-    <link rel="icon" href="{{ asset('img/favicon.ico.jpg') }}" />
+    <link rel="icon" href="{{ asset('img/favicon.ico/favicon.ico.jpg') }}" />
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('css')
@@ -24,7 +24,7 @@
 <body>
     <header class="header">
         <div class="header__img">
-            <img class="header__img-icon" src="{{ asset('img/menu_icon.png') }}" alt="Menu Icon" id="menuIcon">
+            <img class="header__img-icon" src="{{ asset('img/icon/menu_icon.png') }}" alt="Menu Icon" id="menuIcon">
             <a class="header__logo" href="{{ route('restaurants.index') }}">
                 Rese
             </a>
@@ -32,18 +32,18 @@
         @yield('nav')
     </header>
 
-    <nav class="nav__menu2" id="menu2">
+    <nav class="nav__menu" id="menu">
         <span class="close-btn" id="closeMenu">&times;</span>
         <ul>
             @yield('nav-js')
         </ul>
     </nav>
 
-    <main>
+    <main class="main">
         @yield('content')
     </main>
 
-    <script src="{{ asset('js/menu2.js') }}"></script>
+    <script src="{{ asset('js/menu.js') }}"></script>
     @yield('js')
 </body>
 

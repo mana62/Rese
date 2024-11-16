@@ -4,14 +4,14 @@ body {
     padding: 0;
 }
 
-h1 {
+.main-ttl {
     margin-top: 90px;
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 400;
     text-align: center;
 }
 
-h2 {
+.sub-ttl {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 400;
     text-align: center;

@@ -20,38 +20,37 @@ class RestaurantController extends Controller
         //クエリ
         $query = Restaurant::query();
 
-        if ($input = $request->input('input')) {
+        if ($input) {
             $query->where('name', 'like', "%$input%");
         }
 
-        if ($areaId = $request->input('area')) {
+        if ($areaId) {
             $query->where('area_id', $areaId);
         }
 
-        if ($genreId = $request->input('genre')) {
+        if ($genreId) {
             $query->where('genre_id', $genreId);
         }
 
+        //検索結果を取得
         $restaurants = $query->with(['area', 'genre'])->get();
-
 
         //エリアとジャンルを取得（検索フォーム用）
         $areas = Area::all();
         $genres = Genre::all();
 
         //お気に入り情報
-        $restaurants = Restaurant::with(['area', 'genre'])->get();
+        $favoriteIds = auth()->user() ? auth()->user()->favorites->pluck('id')->toArray() : [];
 
-        $favoriteIds = auth()->check()
-            ? auth()->user()->favorites->pluck('restaurant_id')->toArray()
-            : []; //ログインしていない場合は空配列
-
+        //Ajax リクエストの場合は部分的なビューを返す
         if ($request->ajax()) {
             return view('partials.restaurants', compact('restaurants'))->render();
         }
 
+        //通常のリクエストの場合は全体のビューを返す
         return view('restaurants', compact('restaurants', 'input', 'areaId', 'genreId', 'areas', 'genres', 'favoriteIds'));
     }
+
 
     public function show($id)
     {

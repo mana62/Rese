@@ -5,8 +5,14 @@
 @endsection
 
 @section('nav-js')
-    <li><a href="/restaurants">HOME</a></li>
+    @guest
+        <li><a href="/restaurants">HOME</a></li>
+        <li><a href="/register">REGISTRATION</a></li>
+        <li><a href="/login">LOGIN</a></li>
+    @endguest
+
     @auth
+        <li><a href="/restaurants">HOME</a></li>
         <li>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 {{ __('LOGOUT') }}
@@ -44,9 +50,9 @@
                 {{ $restaurant->name }}
             </h2>
             <img src="{{ asset('img/' . $restaurant->image) }}" alt="{{ $restaurant->name }}">
-            <p><strong>#</strong> {{ $restaurant->area->area_name }}</p>
-            <p><strong>#</strong> {{ $restaurant->genre->genre_name }}</p>
-            <p>{{ $restaurant->description }}</p>
+            <p class="tag"><strong>#</strong> {{ $restaurant->area->area_name }}</p>
+            <p class="tag"><strong>#</strong> {{ $restaurant->genre->genre_name }}</p>
+            <p class="description">{{ $restaurant->description }}</p>
 
             <!--ストレージ-->
             <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}"
@@ -99,10 +105,16 @@
             </div>
 
             <div class="confirm">
-                <p class="confirm-p"><strong class="strong">Shop</strong> {{ $restaurant->name }}</p>
-                <p class="confirm-p" id="confirmDate"><strong class="strong">Date</strong></p>
-                <p class="confirm-p" id="confirmTime"><strong class="strong">Time</strong></p>
-                <p class="confirm-p" id="confirmGuests"><strong class="strong">Number</strong>人</p>
+                <p class="confirm-p"><strong class="strong">SHOP</strong> {{ $restaurant->name }}</p>
+                <p class="confirm-p" id="confirmDate"><strong class="strong">Date</strong>
+                    <span id="confirmDateValue" class="confirm-value">未選択</span>
+                </p>
+                <p class="confirm-p" id="confirmTime"><strong class="strong">Time</strong>
+                    <span id="confirmTimeValue" class="confirm-value">未選択</span>
+                </p>
+                <p class="confirm-p" id="confirmGuests"><strong class="strong">Number</strong>
+                    <span id="confirmGuestsValue" class="confirm-value">未選択</span>
+                </p>
             </div>
             <button type="submit">予約する</button>
         </form>
@@ -111,6 +123,21 @@
 
     <!--レビュー投稿-->
     <div class="reviews">
+        <div class="review-show">
+            <h3 class="sub-ttl">レビュー一覧</h3>
+            @foreach ($restaurant->reviews as $review)
+                <div>
+                    <div class="comment-strong">{{ $loop->iteration }} . {{ $review->user->name }}さんの投稿</div>
+                    <div class="star-rating">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <span class="star {{ $i <= $review->rating ? 'filled' : '' }}">&#9733;</span>
+                        @endfor
+                    </div>
+                    <p class="comment-p">{{ $review->comment }}</p>
+                </div>
+            @endforeach
+        </div>
+
         <div>
             @if (auth()->check())
                 <h3 class="sub-ttl">レビューを投稿</h3>
@@ -130,21 +157,6 @@
                     <button class="comment-submit" type="submit">評価を投稿</button>
                 </form>
             @endif
-        </div>
-
-        <div class="review-show">
-            <h3 class="sub-ttl">レビュー一覧</h3>
-            @foreach ($restaurant->reviews as $review)
-                <div>
-                    <div class="comment-strong">{{ $loop->iteration }} . {{ $review->user->name }}さんの投稿</div>
-                    <div class="star-rating">
-                        @for ($i = 1; $i <= 5; $i++)
-                            <span class="star {{ $i <= $review->rating ? 'filled' : '' }}">&#9733;</span>
-                        @endfor
-                    </div>
-                    <p class="comment-p">{{ $review->comment }}</p>
-                </div>
-            @endforeach
         </div>
     </div>
 @endsection

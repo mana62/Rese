@@ -15,7 +15,7 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owner_id')->nullable();
+            $table->unsignedBigInteger('owner_id')->default(0);
             $table->string('name');
             $table->string('address');
             $table->unsignedBigInteger('area_id');

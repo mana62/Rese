@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             ->orderBy('date', 'asc')
             ->get();
 
-        // ユーザーのお気に入りを取得
+        //ユーザーのお気に入りを取得
         $favorites = $user->favorites ?? collect();
 
         //お気に入りのレストランIDを取得

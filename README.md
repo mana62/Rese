@@ -1,20 +1,23 @@
 # Rese
 飲食店予約アプリ<br>
 
+file:///var/folders/m8/w68nmr853fb_z5x4wcm061l00000gn/T/TemporaryItems/NSIRD_screencaptureui_XUpvhH/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202024-11-19%2010.52.44.png
+
 # 作成した目的
 初年度でのユーザー数10,000人達成の為<br>
 
 # アプリケーションURL
 <開発環境><br>
 ・phpmyadmin：<br>
-・アプリurl：<br>
+・アプリurl：http://localhost/<br>
 <br>
 ・phpmyadmin：<br>
 ・アプリurl：<br>
 
 # 他のリポジトリ
 <開発環境><br>
-
+https://github.com/mana62/Rese<br>
+<br>
 <本番環境><br>
 
 
@@ -54,8 +57,11 @@
 ・Laravel: 8<br>
 
 # テーブル設計
+[rese-table.pdf](https://github.com/user-attachments/files/17808046/rese-table.pdf)
 
 # ER図
+[rese-ER.pdf](https://github.com/user-attachments/files/17808041/rese-ER.pdf)
+
 
 # 環境構築
 1. リモートリポジトリを作成<br>
@@ -72,7 +78,7 @@
 12. app.php の timezone を修正<br>
 13. .env ファイルの環境変数を変更<br>
 14. php artisan migrate<br>
-15. php artisan db<br>
+15. php artisan db:seed<br>
 
 # クローンの流れ
 1. Git リポジトリのクローン<br>
@@ -115,3 +121,13 @@ MAIL_FROM_NAME="RESE"<br>
 ・メール認証をしていないとログインできない<br>
 ・会員ユーザーでないとお店のお気に入り機能は使えない<br>
 ・会員ユーザーでないとレビューの投稿はできない<br>
+・adminまたはrestaurantのownerの権限があれば、それぞれのページが閲覧できる<br>
+<br>
+「役割の変え方」<br>
+
+1. docker exec -it rese_php bash<br>
+2. php artisan tinker<br>
+3. $user = \App\Models\User::find(1);<br>
+(変更したいユーザーIDを選ぶ)<br>
+4. $user->role = 'admin' または 'store-owner';<br>
+5. $user->save();<br>

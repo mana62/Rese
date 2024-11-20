@@ -18,6 +18,7 @@ class Restaurant extends Model
         'genre_id',
         'description',
         'image',
+        'owner_id',
     ];
 
     public function user()
@@ -60,5 +61,9 @@ class Restaurant extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function restaurant()
+{
+    return $this->hasOne(Restaurant::class);
+}
 
 }

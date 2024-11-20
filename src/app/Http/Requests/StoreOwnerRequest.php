@@ -43,6 +43,8 @@ class StoreOwnerRequest extends FormRequest
             'genre_id.required' => 'ジャンルを選択してください',
             'description.required' => '説明文を入力してください',
             'description.min' => '説明文は10文字以上で入力してください',
+            'image.mimes' => '画像はjpeg, png, jpg, gif形式のみ可能です',
+            'image.max' => '画像サイズは2MB以下にしてください',
         ];
     }
 }

@@ -15,67 +15,110 @@ class StoreOwnerController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $restaurant = $user->restaurant;
+        $userId = auth()->id();
+        $restaurants = Restaurant::where('owner_id', $userId)->get();
+
+        //現在の最初の店舗（1つだけ選択）
+        $restaurant = $restaurants->first();
 
         //予約情報を取得
         $reservations = $restaurant
-            ? $restaurant->reservations()->with('user')->get()
+            ? $restaurant->reservations()->with('user')->paginate(10)
             : collect();
 
         //エリア・ジャンルの取得
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('owner', compact('reservations', 'restaurant', 'areas', 'genres'));
+        return view('owner', compact('restaurant', 'reservations', 'restaurants', 'areas', 'genres'));
     }
-
 
     //店舗情報を新規作成
     public function createStore(StoreOwnerRequest $request)
     {
-        $user = auth()->user();
+        $imagePath = null;
 
-        // 画像の保存
-        $image = $request->file('image');
-        $imageName = date('Y-m-d_His') . '_' . $image->getClientOriginalName();
-        $imagePath = $image->storeAs('restaurants', $imageName, 'public');
+        //ファイルがアップロードされた場合の処理
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
 
-        // 店舗情報の作成
+            //画像ファイルの存在確認
+            if (!$image->isValid()) {
+                return redirect()->back()->withErrors(['image' => '画像が無効です']);
+            }
+
+            //ファイル名を生成
+            $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
+
+            //ファイルをpublic/img に保存
+            $image->move(public_path('img'), $imageName);
+
+            //保存パスを記録
+            $imagePath = '' . $imageName; //データベース用パス
+        }
+
+        //店舗情報を作成
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'address' => $request->address,
             'area_id' => $request->area_id,
             'genre_id' => $request->genre_id,
             'description' => $request->description,
-            'image' => $imagePath, // ここで保存
+            'image' => $imagePath,
             'owner_id' => auth()->id(),
         ]);
 
         return redirect()->route('owner')->with('message', '店舗情報が作成されました');
     }
 
-    //情報を更新
-    public function updateStore(Request $request)
+    // 情報を更新
+    public function updateStore(StoreOwnerRequest $request)
     {
         $restaurant = auth()->user()->restaurant;
 
         if (!$restaurant) {
-            return redirect()->route('owner')->withErrors(['error' => '店舗情報が見つかりません']);
+            return redirect()->route('owner')->withErrors(['message' => '店舗情報が見つかりません']);
         }
 
-        // 画像の保存
+        //画像処理
+        $validated = $request->all();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = date('Y-m-d_His') . '_' . $image->getClientOriginalName();
-            $imagePath = $image->storeAs('restaurants', $imageName, 'public');
-            $restaurant->update(['image' => $imagePath]);
+            $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+            $validated['image'] = 'img/' . $imageName;
         }
 
-        $restaurant->update($request->only(['name', 'address', 'area_id', 'genre_id', 'description']));
+        //情報を更新
+        $restaurant->update($validated);
 
         return redirect()->route('owner')->with('message', '店舗情報が更新されました');
     }
+
+    public function searchStore(Request $request)
+    {
+        $userId = auth()->id();
+
+        //検索クエリを取得
+        $searchQuery = $request->input('search');
+
+        //現在の店舗を検索
+        $restaurant = Restaurant::where('owner_id', $userId)
+            ->where('name', 'LIKE', '%' . $searchQuery . '%')
+            ->first();
+
+        //該当店舗の予約情報を取得
+        $reservations = $restaurant
+            ? $restaurant->reservations()->with('user')->paginate(10)
+            : collect();
+
+        //エリア・ジャンルを取得
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('owner', compact('restaurant', 'reservations', 'areas', 'genres'));
+    }
+
 
     //QRコード
     public function verifyQrCode(Request $request)

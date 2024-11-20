@@ -36,10 +36,11 @@
 
             <!-- キーワード検索 -->
             <div class="search">
-                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon" class="search__icon">
+                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon"
+                    class="search__icon">
                 <input class="search__input" type="text" name="input" placeholder="search..."
                     value="{{ request('input') }}">
-                    <button class="search__submit" type="submit">検索</button>
+                <button class="search__submit" type="submit">検索</button>
             </div>
         </form>
     </div>
@@ -47,10 +48,14 @@
 
 
 @section('nav-js')
-    <li><a href="/restaurants">HOME</a></li>
-    <li><a href="/register">REGISTRATION</a></li>
-    <li><a href="/login">LOGIN</a></li>
+    @guest
+        <li><a href="/restaurants">HOME</a></li>
+        <li><a href="/register">REGISTRATION</a></li>
+        <li><a href="/login">LOGIN</a></li>
+    @endguest
+
     @auth
+        <li><a href="/restaurants">HOME</a></li>
         <li>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 {{ __('LOGOUT') }}
@@ -85,13 +90,10 @@
                         <a href="{{ route('detail', $restaurant->id) }}">詳しくみる</a>
 
                         @auth
-                        
-                        <button class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}"
-                            onclick="toggleFavorite(this, {{ $restaurant->id }})">
-                            &hearts;
-                        </button>
-        
-                    
+                            <button class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}"
+                                onclick="toggleFavorite(this, {{ $restaurant->id }})">
+                                &hearts;
+                            </button>
                         @endauth
                     </div>
                 </div>

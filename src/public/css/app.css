@@ -77,21 +77,18 @@
 }
 
 .nav__menu.active {
-    display: block; /* メニューを表示 */
+    display: block;
     text-align: center;
 }
 
 .nav__menu {
-    display: none; /* デフォルトで非表示 */
+    display: none;
 }
 /*# sourceMappingURL=app.css.map */
 
-/* 768px以下のデバイス向けのスタイル調整 */
 @media (max-width: 768px) {
-
-    /* ヘッダーの調整 */
     .header {
-        flex-direction: column; /* 縦方向に配置 */
+        flex-direction: column;
         padding-top: 30px;
         margin: 0;
         align-items: flex-start;
@@ -100,26 +97,23 @@
     }
 
     .header__img {
-        margin-left: 0; /* 画像のマージンを小さく */
+        margin-left: 0;
     }
 
     .header__img-icon {
-        width: 50px; /* ロゴ画像を少し小さく */
+        width: 50px;
         height: 50px;
         margin-bottom: 5px;
     }
 
     .header__logo {
-        font-size: 32px; /* ロゴテキストを少し小さく */
+        font-size: 32px;
         margin-left: 0;
     }
 
-    /* ナビゲーションの調整 */
     .nav {
         margin: 10px;
     }
-
-    /* メニューのモーダルウィンドウ */
     .nav__menu {
         padding: 15px;
     }
@@ -127,37 +121,16 @@
     .nav__menu .close-btn {
         top: 15px;
         right: 15px;
-        font-size: 24px; /* ボタンを少し小さく */
+        font-size: 24px;
         width: 40px;
     }
 
     .nav__menu ul {
-        padding-top: 20%; /* 上部の余白を調整 */
+        padding-top: 20%;
     }
 
     .nav__menu ul a {
-        font-size: 24px; /* メニューリンクの文字サイズを調整 */
-    }
-}
-
-/* 480px以下の小型デバイス向けのスタイル調整 */
-@media (max-width: 480px) {
-
-    .header__logo {
-        font-size: 24px; /* さらに小さく */
-    }
-
-    .header__img-icon {
-        width: 40px; /* ロゴ画像をさらに小さく */
-        height: 40px;
-    }
-
-    .nav__menu ul a {
-        font-size: 20px; /* メニューリンクの文字サイズを小さく */
-    }
-
-    .nav__menu ul {
-        padding-top: 30%; /* 小型デバイス用の上部余白調整 */
+        font-size: 24px;
     }
 }
 

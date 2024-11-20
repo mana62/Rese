@@ -1,48 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const stripe = Stripe(window.stripePublicKey); // グローバル変数に変更
+document.addEventListener("DOMContentLoaded", function () {
+    if (!window.stripePublicKey) {
+        console.error("Stripe public key is not defined.");
+        return;
+    }
+
+    const stripe = Stripe(window.stripePublicKey);
     const elements = stripe.elements();
-    const card = elements.create('card');
-    card.mount('#card-element');
+    const cardElement = elements.create("card");
 
-    const paymentForm = document.getElementById('payment-form');
-    paymentForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    // カードフォームの表示
+    cardElement.mount("#card-element");
 
-        const csrfToken = document.querySelector('#csrf-token').value;
-        const amount = document.querySelector('#amount').value;
+    const form = document.getElementById("payment-form");
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-        try {
-            const { paymentMethod, error } = await stripe.createPaymentMethod({
-                type: 'card',
-                card: card,
-            });
+        document.getElementById("submit-button").disabled = true;
 
-            if (error) {
-                document.querySelector('#payment-result').innerText = error.message;
-                return;
-            }
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+            type: "card",
+            card: cardElement,
+        });
 
-            const response = await fetch('/checkout', {
-                method: 'POST',
+        if (error) {
+            document.getElementById("payment-result").textContent = error.message;
+            document.getElementById("submit-button").disabled = false;
+        } else {
+            const response = await fetch("/process-payment", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken,
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.getElementById("csrf-token").value,
                 },
                 body: JSON.stringify({
                     payment_method: paymentMethod.id,
-                    amount: amount,
+                    amount: document.getElementById("amount").value,
                 }),
             });
 
             const result = await response.json();
 
             if (result.success) {
-                document.querySelector('#payment-result').innerText = '支払いが成功しました！';
+                document.getElementById("payment-result").textContent =
+                    "支払いが完了しました!";
             } else {
-                document.querySelector('#payment-result').innerText = result.error;
+                document.getElementById("payment-result").textContent =
+                    "エラー: " + result.error;
             }
-        } catch (err) {
-            document.querySelector('#payment-result').innerText = 'エラーが発生しました。';
+
+            document.getElementById("submit-button").disabled = false;
         }
     });
 });

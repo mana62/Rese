@@ -38,13 +38,12 @@ function cancelReservation(reservationId) {
 
 
 function toggleFavorite(restaurantId) {
-    //お気に入りの状態を切り替える
     fetch(`/restaurants/${restaurantId}/favorite`, {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     })
     .then(response => {
         if (!response.ok) {
@@ -53,16 +52,19 @@ function toggleFavorite(restaurantId) {
         return response.json();
     })
     .then(data => {
-        if (data.status === 'success') {
-            //成功時には該当するレストランカードをDOMから削除
+        if (data.status === 'removed') {
+            // 成功時に該当カードを削除
             const favoriteCard = document.getElementById(`favorite-card-${restaurantId}`);
             if (favoriteCard) {
                 favoriteCard.remove();
             }
+        } else if (data.status === 'added') {
+            alert("お気に入りに追加されました");
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error("Error:", error);
         alert("エラーが発生しました");
     });
 }
+

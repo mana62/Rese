@@ -1,0 +1,35 @@
+.payment-ttl {
+    margin-top: 100px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+.payment-form {
+    text-align: center;
+}
+
+.payment-inpit {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    width: 300px;
+    font-size: 16px;
+}
+
+.payment-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #029999;
+    background: #029999;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin: 20px;
+}
+
+.payment-button:hover {
+    background: #006868;
+}

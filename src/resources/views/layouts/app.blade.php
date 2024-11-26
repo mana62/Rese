@@ -24,7 +24,12 @@
 <body>
     <header class="header">
         <div class="header__img">
-            <img class="header__img-icon" src="{{ asset('img/icon/menu_icon.png') }}" alt="Menu Icon" id="menuIcon">
+            <div id="drawer_toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <a class="header__logo" href="{{ route('restaurants.index') }}">
                 Rese
             </a>

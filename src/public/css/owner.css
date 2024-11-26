@@ -203,6 +203,10 @@
     font-size: 14px;
 }
 
+.expired {
+    background: #eeeded;
+}
+
 .store-form__error {
     color: red;
     font-family: "Zen Kaku Gothic New", sans-serif;

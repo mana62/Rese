@@ -1,3 +1,4 @@
+'use strict';
 document.addEventListener("DOMContentLoaded", () => {
     // ローカルストレージの機能を削除し、サーバーに状態を委ねる
 });

@@ -1,0 +1,32 @@
+.verify-email {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 150px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+
+    &__paragraph {
+        font-size: 18px;
+    }
+
+    &-button {
+        margin-top: 10px;
+
+        &__submit {
+            width: auto;
+            margin: 10px;
+            padding: 10px;
+            background-color: rgb(2, 153, 153);
+            border: 1px solid #fff;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+
+            &:hover {
+                background: #006868;
+            }
+        }
+    }
+}

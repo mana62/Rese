@@ -1,3 +1,4 @@
+'use strict';
 const html5QrCode = new Html5Qrcode("reader");
 html5QrCode.start({ facingMode: "environment" }, {}, (decodedText) => {
     fetch('/verify-qr-code', {

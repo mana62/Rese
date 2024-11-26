@@ -8,6 +8,12 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
+    public function __construct()
+    {
+        //予約処理にログインを必須化
+        $this->middleware('auth')->only(['store', 'update']);
+    }
+
     //予約完了ページ
     public function index()
     {

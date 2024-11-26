@@ -1,3 +1,4 @@
+'use strict';
 //ストレージ
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("image");

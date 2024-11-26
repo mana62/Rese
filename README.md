@@ -1,8 +1,6 @@
 # Rese
 飲食店予約アプリ<br>
 
-file:///var/folders/m8/w68nmr853fb_z5x4wcm061l00000gn/T/TemporaryItems/NSIRD_screencaptureui_XUpvhH/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202024-11-19%2010.52.44.png
-
 # 作成した目的
 初年度でのユーザー数10,000人達成の為<br>
 

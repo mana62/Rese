@@ -1,0 +1,142 @@
+@charset "UTF-8";
+body {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.main-ttl, .sub-ttl, .message {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  text-align: center;
+}
+
+.main-ttl {
+  margin-top: 120px;
+  font-weight: 400;
+}
+
+.sub-ttl {
+  font-weight: 400;
+  margin: 20px 0;
+}
+
+.message {
+  margin: 20px;
+  color: red;
+  font-size: 20px;
+}
+.message-session {
+  display: block;
+}
+
+.store-owner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 10%;
+}
+.store-owner__container {
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #029999;
+  border-radius: 8px;
+  text-align: center;
+}
+.store-owner__form input[type=text],
+.store-owner__form input[type=email],
+.store-owner__form input[type=password],
+.store-owner__form textarea {
+  width: 100%;
+  max-width: 350px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.store-owner__form textarea {
+  height: 250px;
+}
+.store-owner__form .submit-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+.store-owner__form .submit-container button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #029999;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.store-owner__form .submit-container button:hover {
+  background: #006868;
+}
+.store-owner .store-owner__error {
+  color: red;
+  text-align: center;
+}
+
+.owner-show {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.owner-show .name {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 18px;
+}
+.owner-show .submit {
+  border: 1px solid #029999;
+  border-radius: 5px;
+  background: #029999;
+  color: #fff;
+  padding: 5px 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.owner-show .submit:hover {
+  background: #006868;
+}
+
+.role-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #029999;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.role-select:hover {
+  border-color: #006868;
+  background-color: #eef9f9;
+}
+.role-select option {
+  font-size: 16px;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .store-owner {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .store-owner__form input[type=text], .store-owner__form input[type=email], .store-owner__form input[type=password], .store-owner__form textarea {
+    max-width: 100%;
+  }
+}
+/*# sourceMappingURL=admin.css.map */

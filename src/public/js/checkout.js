@@ -1,3 +1,4 @@
+'use strict';
 document.addEventListener("DOMContentLoaded", function () {
     if (!window.stripePublicKey) {
         console.error("Stripe public key is not defined.");

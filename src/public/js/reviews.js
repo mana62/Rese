@@ -1,3 +1,4 @@
+'use strict';
 document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelectorAll('.star-rating .star');
     stars.forEach((star, index) => {

@@ -106,6 +106,7 @@
             @if ($restaurant)
                 <form action="{{ route('owner.updateStore') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                     <label for="name">店舗名</label>
                     <input type="text" id="name" name="name" value="{{ old('name', $restaurant->name) }}">
                     <label for="address">住所</label>
@@ -144,7 +145,7 @@
                     @enderror
                     <textarea id="description" name="description">{{ old('description', $restaurant->description ?? '') }}</textarea>
                     <label for="image">画像</label>
-                    <input type="file" id="image" name="image">
+                <input type="file" id="image" name="image">
                     <button type="submit">更新</button>
                 </form>
             @else
@@ -166,7 +167,7 @@
                             <th class="reservations-th">時間</th>
                             <th class="reservations-th">人数</th>
                         </tr>
-                        <tr>
+                        <tr class="{{ $reservation->date < now() ? 'expired' : '' }}">
                             <td class="reservations-td">{{ $reservation->user->name }}様</td>
                             <td class="reservations-td">{{ $reservation->date }}</td>
                             <td class="reservations-td">{{ $reservation->time }}</td>

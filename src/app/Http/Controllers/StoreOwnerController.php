@@ -13,20 +13,29 @@ use PhpParser\Node\Stmt\ElseIf_;
 
 class StoreOwnerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $userId = auth()->id();
         $restaurants = Restaurant::where('owner_id', $userId)->get();
 
-        //現在の最初の店舗（1つだけ選択）
-        $restaurant = $restaurants->first();
+        //検索クエリがある場合は特定の店舗を取得
+        $restaurant = null;
+        if ($request->has('search')) {
+            $searchQuery = $request->input('search');
+            $restaurant = Restaurant::where('owner_id', $userId)
+                ->where('name', 'LIKE', '%' . $searchQuery . '%')
+                ->first();
+        }
 
-        //予約情報を取得
+        //初期表示時に最初の店舗を選択
+        if (!$restaurant) {
+            $restaurant = $restaurants->first();
+        }
+
         $reservations = $restaurant
             ? $restaurant->reservations()->with('user')->paginate(10)
             : collect();
 
-        //エリア・ジャンルの取得
         $areas = Area::all();
         $genres = Genre::all();
 
@@ -54,7 +63,7 @@ class StoreOwnerController extends Controller
             $image->move(public_path('img'), $imageName);
 
             //保存パスを記録
-            $imagePath = '' . $imageName; //データベース用パス
+            $imagePath = $imageName; //データベース用パス
         }
 
         //店舗情報を作成
@@ -71,29 +80,42 @@ class StoreOwnerController extends Controller
         return redirect()->route('owner')->with('message', '店舗情報が作成されました');
     }
 
-    // 情報を更新
+    //情報を更新
     public function updateStore(StoreOwnerRequest $request)
     {
-        $restaurant = auth()->user()->restaurant;
+        $restaurantId = $request->input('restaurant_id');
+
+        // 店舗を取得
+        $restaurant = Restaurant::where('id', $restaurantId)
+            ->where('owner_id', auth()->id())
+            ->first();
 
         if (!$restaurant) {
-            return redirect()->route('owner')->withErrors(['message' => '店舗情報が見つかりません']);
+            return redirect()->route('owner')->with(['message' => '店舗情報が見つかりません']);
         }
 
-        //画像処理
+        //更新データを取得
         $validated = $request->all();
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
+
+            //ファイルをpublic/imgに保存
             $image->move(public_path('img'), $imageName);
-            $validated['image'] = 'img/' . $imageName;
+
+            //データベース保存
+            $validated['image'] = $imageName;
+        } else {
+            unset($validated['image']); //画像がない場合は更新しない
         }
 
-        //情報を更新
+        //店舗情報を更新
         $restaurant->update($validated);
 
         return redirect()->route('owner')->with('message', '店舗情報が更新されました');
     }
+
 
     public function searchStore(Request $request)
     {
@@ -108,9 +130,16 @@ class StoreOwnerController extends Controller
             ->first();
 
         //該当店舗の予約情報を取得
-        $reservations = $restaurant
-            ? $restaurant->reservations()->with('user')->paginate(10)
-            : collect();
+        $reservations = collect();
+
+        if ($restaurant) {
+            $reservations = $restaurant
+                ->reservations()
+                ->with('user')
+                ->orderBy('date', 'desc')
+                ->with('time')
+                ->paginate(10);
+        }
 
         //エリア・ジャンルを取得
         $areas = Area::all();

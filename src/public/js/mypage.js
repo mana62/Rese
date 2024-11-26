@@ -1,3 +1,4 @@
+'use strict';
 function cancelReservation(reservationId) {
     fetch(`/reservations/${reservationId}/cancel`, {
         method: 'POST',

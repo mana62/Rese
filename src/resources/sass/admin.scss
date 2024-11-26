@@ -1,0 +1,161 @@
+body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main-ttl, .sub-ttl, .message {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+}
+
+.main-ttl {
+    margin-top: 120px;
+    font-weight: 400;
+}
+
+.sub-ttl {
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+.message {
+    margin: 20px;
+    color: red;
+    font-size: 20px;
+
+    &-session {
+        display: block;
+    }
+}
+
+.store-owner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 10%;
+
+    &__container {
+        width: 100%;
+        padding: 10px;
+        gap: 10px;
+        background: #fff;
+        border: 1px solid #029999;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    &__form {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            max-width: 350px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 250px;
+        }
+
+        .submit-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+                border: 1px solid #029999;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background: #006868;
+                }
+            }
+        }
+    }
+
+    .store-owner__error {
+        color: red;
+        text-align: center;
+    }
+}
+
+.owner {
+    &-show {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+
+        .name {
+            margin: 0;
+            flex-grow: 1;
+            font-size: 18px;
+        }
+
+        .submit {
+            border: 1px solid #029999;
+            border-radius: 5px;
+            background: #029999;
+            color: #fff;
+            padding: 5px 20px;
+            margin-right: 20px;
+            cursor: pointer;
+
+            &:hover {
+                background: #006868;
+            }
+        }
+    }
+}
+
+.role-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #029999;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        border-color: #006868;
+        background-color: #eef9f9;
+    }
+
+    option {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #ffffff;
+        color: #333333;
+    }
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .store-owner {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        align-items: center;
+        min-height: 100vh;
+
+        &__form input[type="text"],
+        &__form input[type="email"],
+        &__form input[type="password"],
+        &__form textarea {
+            max-width: 100%;
+        }
+    }
+}

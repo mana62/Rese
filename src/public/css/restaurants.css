@@ -21,6 +21,14 @@
     font-family: "Zen Kaku Gothic New", sans-serif;
     padding: 10px;
 }
+
+.nav-search__area select::after,
+.nav-search__genre select::after {
+    content: "\ell4";
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    float: right;
+    color: #000;
+}
 .search {
     display: flex;
     align-items: center;
@@ -80,12 +88,13 @@ background: #016767;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 30px;
+    margin-top: 90px;
     padding: 20px 50px;
-    margin-top: 110px;
 }
+
 @media (max-width: 768px) {
     .all-shop {
-        margin-top: 230px;
+        margin-top: 260px;
         flex-direction: column;
     }
 }

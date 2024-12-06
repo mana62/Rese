@@ -43,82 +43,82 @@
     </div>
 
     <div class="restaurant-details">
+
         <!--レストラン詳細-->
         <div class="left">
-            <h2>
-                <a href="{{ route('restaurants.index') }}" class="back-arrow">&lt;</a>
-                {{ $restaurant->name }}
-            </h2>
+            <div class="header-flex">
+                <h2>
+                    <a href="{{ route('restaurants.index') }}" class="back-arrow">&lt;</a>
+                    {{ $restaurant->name }}
+                </h2>
+
+                <!--ストレージ-->
+                <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="storage">
+
+                        <div class="message-img">
+                            @if (session('message'))
+                                <div class="message-img__session">{{ session('message') }}</div>
+                            @endif
+                        </div>
+
+                        <img id=imgMark src="{{ asset('img/icon/icon_download.png') }}" alt="Download Icon"
+                            class="icon_download">
+                        <input type="hidden" name="restaurantId" value="{{ $restaurant->id }}">
+                        <button type="submit" class="save-button">画像を保存</button>
+                    </div>
+            </div>
+            </form>
+
             <img src="{{ asset('img/' . $restaurant->image) }}" alt="{{ $restaurant->name }}">
             <p class="tag"><strong>#</strong> {{ $restaurant->area->area_name }}</p>
             <p class="tag"><strong>#</strong> {{ $restaurant->genre->genre_name }}</p>
             <p class="description">{{ $restaurant->description }}</p>
-
-            <!--ストレージ-->
-            <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}"
-                method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="storage">
-                    画像をアップロード
-                    <img src="{{ asset('img/icon/camera_icon.png') }}" alt="Camera Icon" class="camera__icon">
-
-                    <div>
-                        <label for="image" class="file-upload-label">ファイルを選択</label>
-                        <input type="file" id="image" name="image" class="file-upload-input" hidden>
-                        <span id="file-name" class="file-name">選択されていません</span>
-                        <button class="button-storage" type="submit">アップロード</button>
-                    </div>
-            </form>
-            <div class="message-img">
-                @if (session('message'))
-                    <div class="message-img__session">{{ session('message') }}</div>
-                @endif
-            </div>
         </div>
-    </div>
 
-    <div class="right">
-        <!--予約-->
-        <h2>予約</h2>
-        <form id="reservationForm" action="{{ route('booked.store') }}" method="POST">
-            @csrf
-            <input class="form-input" type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-            <div>
-                <input type="date" id="date" name="date" required>
-                @error('date')
-                    <div class="book__error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div>
-                <input class="form-input" type="time" id="time" name="time" required placeholder="00:00"
-                    value="10:00">
-                @error('time')
-                    <div class="book__error">{{ $message }}</div>
-                @enderror
-            </div>
-            <div>
-                <input class="form-input" type="number" id="guests" name="guests" required min="1"
-                    placeholder="1人" value="1人">
-                @error('guests')
-                    <div class="book__error">{{ $message }}</div>
-                @enderror
-            </div>
+        <div class="right">
+            <!--予約-->
+            <h2>予約</h2>
+            <form id="reservationForm" action="{{ route('booked.store') }}" method="POST">
+                @csrf
+                <input class="form-input" type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                <div>
+                    <input type="date" id="date" name="date" required>
+                    @error('date')
+                        <div class="book__error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div>
+                    <input class="form-input" type="time" id="time" name="time" required placeholder="00:00"
+                        value="10:00">
+                    @error('time')
+                        <div class="book__error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div>
+                    <input class="form-input" type="number" id="guests" name="guests" required min="1"
+                        placeholder="1人" value="1">
+                    @error('guests')
+                        <div class="book__error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="confirm">
-                <p class="confirm-p"><strong class="strong">SHOP</strong> {{ $restaurant->name }}</p>
-                <p class="confirm-p" id="confirmDate"><strong class="strong">Date</strong>
-                    <span id="confirmDateValue" class="confirm-value">未選択</span>
-                </p>
-                <p class="confirm-p" id="confirmTime"><strong class="strong">Time</strong>
-                    <span id="confirmTimeValue" class="confirm-value">未選択</span>
-                </p>
-                <p class="confirm-p" id="confirmGuests"><strong class="strong">Number</strong>
-                    <span id="confirmGuestsValue" class="confirm-value">未選択</span>
-                </p>
-            </div>
-            <button type="submit">予約する</button>
-        </form>
-    </div>
+                <div class="confirm">
+                    <p class="confirm-p"><strong class="strong">SHOP</strong> {{ $restaurant->name }}</p>
+                    <p class="confirm-p" id="confirmDate"><strong class="strong">Date</strong>
+                        <span id="confirmDateValue" class="confirm-value">未選択</span>
+                    </p>
+                    <p class="confirm-p" id="confirmTime"><strong class="strong">Time</strong>
+                        <span id="confirmTimeValue" class="confirm-value">未選択</span>
+                    </p>
+                    <p class="confirm-p" id="confirmGuests"><strong class="strong">Number</strong>
+                        <span id="confirmGuestsValue" class="confirm-value">未選択</span>
+                    </p>
+                </div>
+                <button type="submit">予約する</button>
+            </form>
+        </div>
     </div>
 
     <!--レビュー投稿-->

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Reservation extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'restaurant_id',
@@ -16,6 +19,14 @@ class Reservation extends Model
         'time',
         'guests',
         'qr_code',
+        'status',
+    ];
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_CANCELED = 'canceled';
+
+    protected $casts = [
+        'status' => 'string',
     ];
 
     public function user()

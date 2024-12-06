@@ -10,21 +10,19 @@ class ReservationController extends Controller
 {
     public function __construct()
     {
-        //予約処理にログインを必須化
+        //①予約処理にログインを必須
         $this->middleware('auth')->only(['store', 'update']);
     }
 
-    //予約完了ページ
+    //②予約完了ページ表示
     public function index()
     {
         return view('booked');
     }
 
-    //予約情報を取得
+    //③予約情報を取得
     public function store(ReservationRequest $request)
     {
-        \Log::info($request->all());
-
         $reservation = Reservation::create([
             'restaurant_id' => $request->restaurant_id,
             'user_id' => auth()->id(),
@@ -58,14 +56,14 @@ class ReservationController extends Controller
         return redirect()->route('booked')->with('message', '予約が完了しました');
     }
 
-    //QRコードを表示
+    //④QRコードを表示
     public function showQrCode($id)
     {
         $reservation = Reservation::findOrFail($id);
         return view('qr', compact('reservation'));
     }
 
-    //予約変更
+    //⑤予約変更
     public function update(ReservationRequest $request, $reservationId)
     {
         $reservation = Reservation::findOrFail($reservationId);

@@ -61,6 +61,11 @@
                             <a href="{{ route('qr', $reservation->id) }}">QRコードを確認する</a>
                         </div>
 
+                        <!--stripe-->
+                        <div class="stripe-link">
+                            <a href="{{ route('checkout', ['reservation_id' => $reservation->id]) }}">お支払いへ進む</a>
+                        </div>
+
                         <!--予約変更-->
                         <div class="button">
                             <button class="change-book__button"

@@ -10,6 +10,9 @@ class Checkout extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'restaurant_id',
+        'reservation_id',
         'payment_intent_id',
         'amount',
         'status',

@@ -21,6 +21,8 @@ class CreateReservationsTable extends Migration
             $table->time('time');
             $table->integer('guests');
             $table->string('qr_code')->nullable();
+            $table->string('status')->default('active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

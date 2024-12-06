@@ -15,10 +15,11 @@ class StoreOwnerController extends Controller
 {
     public function index(Request $request)
     {
+        //①ユーザーとレストランからowner_idを取得
         $userId = auth()->id();
         $restaurants = Restaurant::where('owner_id', $userId)->get();
 
-        //検索クエリがある場合は特定の店舗を取得
+        //②検索クエリがある場合は特定の店舗を取得
         $restaurant = null;
         if ($request->has('search')) {
             $searchQuery = $request->input('search');
@@ -27,15 +28,17 @@ class StoreOwnerController extends Controller
                 ->first();
         }
 
-        //初期表示時に最初の店舗を選択
+        //③初期表示時に最初の店舗を選択
         if (!$restaurant) {
             $restaurant = $restaurants->first();
         }
 
+        //④ページネーションを設定
         $reservations = $restaurant
             ? $restaurant->reservations()->with('user')->paginate(10)
             : collect();
 
+        //⑤エリアとジャンルを取得
         $areas = Area::all();
         $genres = Genre::all();
 
@@ -45,28 +48,30 @@ class StoreOwnerController extends Controller
     //店舗情報を新規作成
     public function createStore(StoreOwnerRequest $request)
     {
+
+        //①$imagePathをnullに
         $imagePath = null;
 
-        //ファイルがアップロードされた場合の処理
+        //②ファイルがアップロードされた場合の処理
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            //画像ファイルの存在確認
+            //③画像ファイルの存在確認
             if (!$image->isValid()) {
                 return redirect()->back()->withErrors(['image' => '画像が無効です']);
             }
 
-            //ファイル名を生成
+            //④ファイル名を生成
             $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
 
-            //ファイルをpublic/img に保存
+            //⑤ファイルをpublic/img に保存
             $image->move(public_path('img'), $imageName);
 
-            //保存パスを記録
-            $imagePath = $imageName; //データベース用パス
+            //⑥データベース用のパス
+            $imagePath = $imageName;
         }
 
-        //店舗情報を作成
+        //⑦情報をデータベースに保存
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -83,34 +88,37 @@ class StoreOwnerController extends Controller
     //情報を更新
     public function updateStore(StoreOwnerRequest $request)
     {
+        //①restaurant_idを取得して$restaurantIdに代入
         $restaurantId = $request->input('restaurant_id');
 
-        // 店舗を取得
+        //②店舗を取得
         $restaurant = Restaurant::where('id', $restaurantId)
             ->where('owner_id', auth()->id())
             ->first();
 
+        //③owner_idが見つからなければエラー
         if (!$restaurant) {
             return redirect()->route('owner')->with(['message' => '店舗情報が見つかりません']);
         }
 
-        //更新データを取得
+        //④更新データを取得
         $validated = $request->all();
 
+        //⑤画像があれば名前をつける
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
 
-            //ファイルをpublic/imgに保存
+            //⑥ファイルをpublic/imgに保存
             $image->move(public_path('img'), $imageName);
 
-            //データベース保存
+            //⑦データベース保存
             $validated['image'] = $imageName;
         } else {
             unset($validated['image']); //画像がない場合は更新しない
         }
 
-        //店舗情報を更新
+        //⑧店舗情報を更新
         $restaurant->update($validated);
 
         return redirect()->route('owner')->with('message', '店舗情報が更新されました');

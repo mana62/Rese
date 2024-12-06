@@ -15,9 +15,12 @@ class CreateCheckoutsTable extends Migration
     {
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
+            $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
             $table->string('payment_intent_id')->unique();
             $table->integer('amount');
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->string('currency')->default('jpy');
             $table->timestamps();
         });

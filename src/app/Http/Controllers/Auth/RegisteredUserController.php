@@ -83,6 +83,12 @@ class RegisteredUserController extends Controller
     public function cancelReservation($id)
     {
         $reservation = Reservation::findOrFail($id);
+
+        //予約のステータスをcancelに変更
+        $reservation->status = Reservation::STATUS_CANCELED;
+        $reservation->save();
+
+        //ソフトデリート
         $reservation->delete();
 
         return response()->json(['message' => '予約をキャンセルしました']);

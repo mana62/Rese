@@ -119,6 +119,8 @@ MAIL_FROM_NAME="RESE"<br>
 ・メール認証をしていないとログインできない<br>
 ・会員ユーザーでないとお店のお気に入り機能は使えない<br>
 ・会員ユーザーでないとレビューの投稿はできない<br>
+・レストランの画像を保存するには、detailページの画像を保存を押すと、storage/app/public/restaurantsに保存される<br>
+・予約をキャンセルするとrestaurantテーブルのstatusカラムがcancelに変わる<br>
 ・adminまたはrestaurantのownerの権限があれば、それぞれのページが閲覧できる<br>
 <br>
 「役割の変え方」<br>

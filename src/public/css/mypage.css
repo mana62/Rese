@@ -134,7 +134,7 @@
 .qr-link a {
     cursor: pointer;
     color: #fff;
-    font-size: 20px;
+    font-size: 17px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
@@ -150,12 +150,17 @@
 .stripe-link a {
     cursor: pointer;
     color: #fff;
-    font-size: 20px;
+    font-size: 17px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
 .stripe-link:hover {
     color: antiquewhite;
+}
+
+.payment-completed {
+    font-size: 17px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
 .change-book {

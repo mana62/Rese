@@ -6,6 +6,8 @@ document.getElementById("reservationForm").addEventListener("input", function ()
     const time = document.getElementById("time").value;
     const guests = document.getElementById("guests").value;
 
+
+    //未選択の場合、未選択を表示
     document.getElementById("confirmDateValue").textContent = date || "未選択";
     document.getElementById("confirmTimeValue").textContent = time || "未選択";
     document.getElementById("confirmGuestsValue").textContent = guests ? `${guests}人` : "未選択";

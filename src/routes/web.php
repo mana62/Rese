@@ -24,7 +24,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 //メール認証
-Auth::routes(['verify' => true]); // Laravelが提供するメール認証関連のルート
+Auth::routes(['verify' => true]);
 
 //認証済み
 Route::middleware(['auth', 'verified'])->group(function () {

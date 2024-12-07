@@ -25,18 +25,24 @@ class CheckoutController extends Controller
         return view('checkout', compact('reservation'));
     }
 
+
+    //支払い処理を実行
     public function processPayment(CheckoutRequest $request)
     {
         Log::info('Received payment request:', $request->all());
 
         try {
-            //バリデーションを取得
+            //リクエスト取得
             $validated = $request->all();
 
-            //予約があるか探す
-            $reservation = Reservation::find($validated['reservation_id']);
-            if (!$reservation) {
-                return response()->json(['success' => false, 'error' => '予約が見つかりません'], 404);
+            //予約情報を取得し、キャンセル済みでないか確認
+            $reservation = Reservation::findOrFail($validated['reservation_id']);
+            if ($reservation->status === Reservation::STATUS_CANCELED) {
+                return response()->json([
+                    'success' => false,
+                    'status' => 'canceled',
+                    'message' => '予約がキャンセルされているため、お支払いできません',
+                ], 400);
             }
 
             //キャンセルされた予約の場合
@@ -44,7 +50,7 @@ class CheckoutController extends Controller
                 return response()->json(['success' => false, 'error' => '予約がキャンセルされているためお支払いできません'], 400);
             }
 
-            //stripeを初期化
+            //Stripeの初期化
             Stripe::setApiKey(env('STRIPE_SECRET'));
 
             //決済情報（PaymentIntent）の作成
@@ -62,40 +68,65 @@ class CheckoutController extends Controller
                 ],
             ]);
 
-            //情報をデータベースに保存 (DB::transaction = 操作の途中でエラーが起きても変更が中途半端に適用されないようにする仕組み)
-            DB::transaction(function () use ($paymentIntent, $reservation, $validated) {
-                Checkout::create([
-                    'user_id' => $reservation->user_id,
-                    'restaurant_id' => $reservation->restaurant_id,
-                    'reservation_id' => $reservation->id,
-                    'payment_intent_id' => $paymentIntent->id,
-                    'amount' => $validated['amount'],
-                    'status' => $paymentIntent->status === 'succeeded' ? 'success' : 'pending',
-                    'currency' => $validated['currency'],
-                ]);
-            });
-
-            //支払い後のメッセージ表示
+            //支払い成功時の処理
             if ($paymentIntent->status === 'succeeded') {
-                return response()->json(['success' => true, 'message' => '支払いが完了しました']);
-            } else {
-                return response()->json(['success' => false, 'message' => '支払いが未完了です']);
+
+                //データベースに保存(DB::transaction = 操作の途中でエラーが起きても変更が中途半端に適用されないようにする仕組み)
+                DB::transaction(function () use ($reservation, $paymentIntent) {
+                    //Checkout テーブルのステータス更新または作成
+                    $checkout = Checkout::updateOrCreate(
+                        ['reservation_id' => $reservation->id],
+                        [
+                            'user_id' => $reservation->user_id,
+                            'restaurant_id' => $reservation->restaurant_id,
+                            'payment_intent_id' => $paymentIntent->id,
+                            'amount' => $paymentIntent->amount / 100, //金額を元の単位に戻す
+                            'status' => 'success',
+                            'currency' => $paymentIntent->currency,
+                        ]
+                    );
+                });
+
+                return response()->json([
+                    'success' => true,
+                    'status' => 'success',
+                    'message' => 'お支払いが完了しました',
+                ]);
             }
+
+            //支払いが未完了の場合の処理
+            return response()->json([
+                'success' => false,
+                'status' => 'pending',
+                'message' => '支払いが未完了です',
+            ]);
 
             //エラー (Exception) が発生したときの内容を変数$eに入れる ($e->getMessage() = エラーの内容を$eに代入)
         } catch (\Stripe\Exception\CardException $e) {
+
+            //カードエラーの処理
             Log::error('Card error during payment', [
                 'stripe_code' => $e->getStripeCode(),
                 'error_message' => $e->getMessage(),
-                'error_param' => $e->getError()->param ?? null,
             ]);
-            return response()->json(['success' => false, 'error' => 'カードエラー: ' . $e->getMessage()], 400);
+            return response()->json([
+                'success' => false,
+                'status' => 'error',
+                'message' => 'カードエラーが発生しました：' . $e->getMessage(),
+            ], 400);
+
         } catch (\Exception $e) {
+            //その他のエラー
             Log::error('Payment processing error', [
                 'message' => $e->getMessage(),
                 'stack' => $e->getTraceAsString(),
             ]);
-            return response()->json(['success' => false, 'error' => 'エラー: ' . $e->getMessage()], 500);
+            return response()->json([
+                'success' => false,
+                'status' => 'error',
+                'message' => 'エラーが発生しました',
+            ], 500);
         }
     }
 }
+

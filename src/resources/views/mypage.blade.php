@@ -62,8 +62,21 @@
                         </div>
 
                         <!--stripe-->
+                        @php
+                            //該当するCheckoutの情報を取得（存在しない場合は null）
+                            $checkout = $checkouts[$reservation->id] ?? null;
+                        @endphp
+
                         <div class="stripe-link">
-                            <a href="{{ route('checkout', ['reservation_id' => $reservation->id]) }}">お支払いへ進む</a>
+                            @if ($checkout && $checkout->status === 'success')
+                                <span class="payment-completed">支払い済み</span>
+                            @else
+                                <a id="stripePayment-{{ $reservation->id }}"
+                                    href="{{ route('checkout', ['reservation_id' => $reservation->id]) }}"
+                                    data-status="{{ $checkout->status ?? 'pending' }}">
+                                    カードでお支払い
+                                </a>
+                            @endif
                         </div>
 
                         <!--予約変更-->

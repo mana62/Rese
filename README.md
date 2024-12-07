@@ -121,6 +121,7 @@ MAIL_FROM_NAME="RESE"<br>
 ・会員ユーザーでないとレビューの投稿はできない<br>
 ・レストランの画像を保存するには、detailページの画像を保存を押すと、storage/app/public/restaurantsに保存される<br>
 ・予約をキャンセルするとrestaurantテーブルのstatusカラムがcancelに変わる<br>
+・マイページのお支払い部分はお支払い（任意）すると支払い済みに変わる<br>
 ・adminまたはrestaurantのownerの権限があれば、それぞれのページが閲覧できる<br>
 <br>
 「役割の変え方」<br>
@@ -131,3 +132,4 @@ MAIL_FROM_NAME="RESE"<br>
 (変更したいユーザーIDを選ぶ)<br>
 4. $user->role = 'admin' または 'store-owner';<br>
 5. $user->save();<br>
+6. データベースのrole部分が設定した役割に変わる（デフォルトはuser）

@@ -1,5 +1,8 @@
+"use strict";
+
+//DOMContentLoaded = HTMLが読み込まれたときに実行
 document.addEventListener("DOMContentLoaded", function () {
-    //DOMContentLoaded = HTMLが読み込まれたときに実行
+    //Stripeの公開キーを取得
     const stripePublicKey = window.stripePublicKey;
 
     //stripeの公開キーがないときのエラー
@@ -12,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     //stripeを初期化
     const stripe = Stripe(stripePublicKey);
 
-    //stripe用の要素
+    //支払い用の入力フィールドを作る準備
     const elements = stripe.elements();
 
-    //カード情報を入力する欄
+    //カード情報を入力する欄を作成
     const cardElement = elements.create("card");
 
     //HTMLのcard-elementにカード入力欄を表示
@@ -56,16 +59,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 }),
             });
 
-            // HTTPエラーハンドリング
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "エラーが発生しました");
+            //サーバーの返事をJSON形式で受け取る
+            const data = await response.json();
+
+            //成功の場合
+            if (data.success) {
+                resultElement.textContent = data.message;
+                const paymentLink = document.querySelector(
+                    `#stripePayment-${data.reservation_id}`
+                );
+                if (paymentLink) {
+                    paymentLink.innerText = "支払い済み";
+                    paymentLink.dataset.status = "success";
+                    paymentLink.style.pointerEvents = "none";
+                    paymentLink.style.cursor = "not-allowed";
+                }
+
+                //失敗の場合
+            } else {
+                resultElement.textContent =
+                    data.message || "エラーが発生しました。";
             }
 
-            const data = await response.json();
-            resultElement.textContent = data.success
-                ? data.message
-                : data.error || data.message;
+            //ネットワークなどのエラーの場合
         } catch (error) {
             resultElement.textContent = `エラー: ${error.message}`;
         }

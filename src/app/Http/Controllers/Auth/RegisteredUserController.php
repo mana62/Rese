@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
+use App\Models\Checkout;
 
 class RegisteredUserController extends Controller
 {
@@ -52,6 +53,12 @@ class RegisteredUserController extends Controller
             ->orderBy('date', 'asc')
             ->get();
 
+        //Checkoutの情報を取得
+        $checkouts = Checkout::whereIn('reservation_id', $reservations->pluck('id'))
+            ->get()
+            ->keyBy('reservation_id'); //reservation_id をキーにした配列を作成
+
+
         //ユーザーのお気に入りを取得
         $favorites = $user->favorites ?? collect();
 
@@ -59,7 +66,7 @@ class RegisteredUserController extends Controller
         $favoriteIds = $favorites->pluck('restaurant_id')->toArray();
         $favorites = $user->favorites()->with('area', 'genre')->get();
 
-        return view('mypage', compact('user', 'reservations', 'favorites', 'favoriteIds'));
+        return view('mypage', compact('user', 'reservations', 'favorites', 'favoriteIds', 'checkouts'));
     }
 
     //お気に入り・削除
@@ -69,11 +76,11 @@ class RegisteredUserController extends Controller
         $isFavorited = $user->favorites()->where('restaurant_id', $restaurantId)->exists();
 
         if ($isFavorited) {
-            // 既にお気に入りなら削除
+            //既にお気に入りなら削除
             $user->favorites()->detach($restaurantId);
             return response()->json(['status' => 'removed']);
         } else {
-            // 新しくお気に入りに追加
+            //新しくお気に入りに追加
             $user->favorites()->attach($restaurantId);
             return response()->json(['status' => 'added']);
         }

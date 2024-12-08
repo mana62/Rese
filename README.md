@@ -85,12 +85,21 @@ https://github.com/mana62/Rese<br>
 (cp .env.example .env)<br>
 3. .env ファイルの編集<br>
 <br>
+SERVER_NAME=localhost<br>
+<br>
 DB_CONNECTION=mysql<br>
 DB_HOST=mysql<br>
 DB_PORT=3306<br>
 DB_DATABASE=rese_local<br>
 DB_USERNAME=user<br>
 DB_PASSWORD=pass<br>
+<br>
+MYSQL_ROOT_PASSWORD=root<br>
+MYSQL_DATABASE=rese_local<br>
+MYSQL_USER=user<br>
+MYSQL_PASSWORD=pass<br>
+<br>
+PHP_DISPLAY_ERRORS=On<br>
 <br>
 MAIL_MAILER=smtp<br>
 MAIL_HOST=mailhog<br>
@@ -100,6 +109,10 @@ MAIL_PASSWORD=null<br>
 MAIL_ENCRYPTION=null<br>
 MAIL_FROM_ADDRESS=test@example.com<br>
 MAIL_FROM_NAME="RESE"<br>
+<br>
+STRIPE_KEY=pk_test_51QL1HQP6vhR18R0Qov3GuXbuoeGRm0Zd0IYuwgCjjWg44xtgaw797DG6oOubHaDEHvmMMmFa6qRQcMeSHqvgOBL900AcnURSH7<br>
+<br>
+STRIPE_SECRET=sk_test_51QL1HQP6vhR18R0Q48Wf9g24z9MwM107D1wPfFXi0J8uWlyF2xY4vZxMBLyq6lgE7VPQzMdj46oiV8vmRRvUkS3X00OVvjw1zF<br>
 <br>
 
 4. Dockerの設定<br>

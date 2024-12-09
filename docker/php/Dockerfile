@@ -23,6 +23,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # キャッシュをクリアして不要ファイルを削除（軽量化）
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Nginx のインストール
+RUN apt-get update && apt-get install -y nginx
+
+# Nginxの設定ファイルをコピー
+COPY ./docker/nginx/default.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# Nginx を Supervisor 経由で起動するよう設定
+COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 # Composer（PHP依存関係管理ツール）のインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -53,7 +63,7 @@ RUN chmod 0644 /etc/cron.d/laravel-cron && crontab /etc/cron.d/laravel-cron
 # Supervisorの設定ファイルを配置
 COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 80
+EXPOSE 10000
 
 # Supervisorを使ってPHP-FPMとCronを同時に管理
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

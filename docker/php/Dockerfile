@@ -56,4 +56,4 @@ COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 10000
 
 # Supervisorを使ってPHP-FPMとCronを同時に管理
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["php-fpm"]

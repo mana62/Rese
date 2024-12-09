@@ -6,7 +6,7 @@
 
 @section('nav-js')
     <li><a href="/restaurants">HOME</a></li>
-    <li><a href="/register">REGISTRATION</a></li>
+    <li><a href="/">REGISTRATION</a></li>
     <li><a href="/login">LOGIN</a></li>
 @endsection
 

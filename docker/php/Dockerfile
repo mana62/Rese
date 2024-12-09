@@ -44,7 +44,7 @@ RUN mkdir -p /var/www/storage/app/public/qrcodes && \
     chown -R www-data:www-data /var/www/storage
 
 # Laravelの依存関係をComposerでインストール
-RUN composer install --no-dev --optimize-autoloader || true
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Cronジョブの設定をコンテナ内に配置
 COPY ./docker/php/cronjob /etc/cron.d/laravel-cron
@@ -53,9 +53,7 @@ RUN chmod 0644 /etc/cron.d/laravel-cron && crontab /etc/cron.d/laravel-cron
 # Supervisorの設定ファイルを配置
 COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Renderのポート設定
-EXPOSE 10000
-CMD ["php-fpm", "-F"]
+EXPOSE 80
 
 # Supervisorを使ってPHP-FPMとCronを同時に管理
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

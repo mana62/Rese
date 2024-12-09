@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 //ログインしていないユーザー（会員登録、ログイン）
 Route::middleware(['guest'])->group(function () {
     //会員登録
-    Route::get('/', [RegisteredUserController::class, 'create'])->name('auth.register');
-    Route::post('/', [RegisteredUserController::class, 'store'])->name('register.store');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('auth.register');
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
     //ログイン
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

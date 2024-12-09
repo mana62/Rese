@@ -35,6 +35,8 @@ services:
       - PHP_DISPLAY_ERRORS=${PHP_DISPLAY_ERRORS}
     depends_on:
       - mysql
+    ports:
+      - "9000:9000"
     restart: always
     networks:
       - rese_network

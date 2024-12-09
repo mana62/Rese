@@ -53,7 +53,7 @@ RUN chmod 0644 /etc/cron.d/laravel-cron && crontab /etc/cron.d/laravel-cron
 # Supervisorの設定ファイルを配置
 COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 80
+EXPOSE 10000
 
 # Supervisorを使ってPHP-FPMとCronを同時に管理
-CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["nginx", "-g", "daemon off;"]

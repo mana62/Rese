@@ -6,7 +6,7 @@
 
 # アプリケーションURL
 <開発環境><br>
-・phpmyadmin：<br>
+・phpmyadmin：http://localhost:8080<br>
 ・アプリurl：http://localhost/<br>
 <br>
 ・phpmyadmin：<br>

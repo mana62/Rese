@@ -1,6 +1,8 @@
 *
 !public/
 !public/qrcodes/
+!public/qrcodes/.gitkeep
 !public/restaurants/
+!public/restaurants/.gitkeep
 
 !.gitignore

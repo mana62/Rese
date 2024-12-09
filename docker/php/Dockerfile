@@ -56,4 +56,4 @@ COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 80
 
 # Supervisorを使ってPHP-FPMとCronを同時に管理
-CMD ["php-fpm"]
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

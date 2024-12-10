@@ -12,7 +12,6 @@ RUN apt-get update && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install pdo_mysql zip bcmath gd && \
     pecl install imagick && \
-    docker-php-ext-enable imagick && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Nginx設定ファイルのコピーとリンク作成
@@ -27,17 +26,17 @@ COPY ./docker/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /var/www
 
 # アプリケーションコードのコピー
-COPY . /var/www
+COPY ./src /var/www
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
+
+# Composerのインストール
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
 
 # Laravelのキャッシュクリアとキー生成
 RUN php artisan config:clear && \
     php artisan cache:clear && \
     php artisan key:generate
-
-# Composerのインストール
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader
 
 # 必要なディレクトリの作成
 RUN mkdir -p /var/www/storage/app/public/qrcodes && \

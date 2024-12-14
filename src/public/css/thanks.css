@@ -35,4 +35,10 @@
 .login__link a:hover {
     background: #016767;
 }
+
+@media (max-width: 768px) {
+    .thanks {
+        max-width: 80%;
+    }
+}
 /*# sourceMappingURL=thanks.css.map */

@@ -21,11 +21,6 @@ class Restaurant extends Model
         'owner_id',
     ];
 
-    public function user()
-    {
-        return $this->hasMany(User::class);
-    }
-
     public function area()
     {
         return $this->belongsTo(Area::class);
@@ -61,9 +56,4 @@ class Restaurant extends Model
     {
         return $this->hasMany(Image::class);
     }
-    public function restaurant()
-{
-    return $this->hasOne(Restaurant::class);
-}
-
 }

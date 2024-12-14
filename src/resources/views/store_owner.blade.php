@@ -14,13 +14,6 @@
             @csrf
         </form>
     </li>
-    <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 @section('content')

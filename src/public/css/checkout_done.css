@@ -1,4 +1,4 @@
-.done {
+.checkout-done {
     width: 100%;
     max-width: 40%;
     margin: 200px auto;
@@ -8,18 +8,19 @@
     border-radius: 5px;
     text-align: center;
 }
-.done__message {
+.checkout-done__message {
     padding: 20px;
     font-family: "Zen Kaku Gothic New", sans-serif;
     color: #333;
     font-size: 28px;
 }
 
-.back__link {
+.mypage__link {
     text-align: center;
     margin-top: 20px;
 }
-.back__link a {
+
+.mypage__link a {
     background: rgb(2, 153, 153);
     text-decoration: none;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -32,13 +33,13 @@
     cursor: pointer;
     transition: background 0.3s;
 }
-.back__link a:hover {
+.mypage__link a:hover {
     background: #016767;
 }
 
 @media (max-width: 768px) {
-    .done {
+    .checkout-done {
         max-width: 80%;
     }
 }
-/*# sourceMappingURL=done-book.css.map */
+/*# sourceMappingURL=thanks.css.map */

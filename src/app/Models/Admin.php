@@ -17,9 +17,4 @@ class Admin extends Authenticatable
     {
         return $query->where('status', 'active');
     }
-
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
 }

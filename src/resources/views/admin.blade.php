@@ -7,21 +7,14 @@
 @section('nav-js')
     <li><a href="/restaurants">HOME</a></li>
     <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <a href="{{ route('admin_logout') }}"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             {{ __('LOGOUT') }}
         </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+        <form id="logout-form" action="{{ route('admin_logout') }}" method="post" style="display: none;">
             @csrf
         </form>
     </li>
-    <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 @section('content')

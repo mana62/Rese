@@ -42,7 +42,7 @@ class StoreOwnerController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('owner', compact('restaurant', 'reservations', 'restaurants', 'areas', 'genres'));
+        return view('store_owner', compact('restaurant', 'reservations', 'restaurants', 'areas', 'genres'));
     }
 
     //店舗情報を新規作成
@@ -82,7 +82,7 @@ class StoreOwnerController extends Controller
             'owner_id' => auth()->id(),
         ]);
 
-        return redirect()->route('owner')->with('message', '店舗情報が作成されました');
+        return redirect()->route('store_owner')->with('message', '店舗情報が作成されました');
     }
 
     //情報を更新
@@ -98,7 +98,8 @@ class StoreOwnerController extends Controller
 
         //③owner_idが見つからなければエラー
         if (!$restaurant) {
-            return redirect()->route('owner')->with(['message' => '店舗情報が見つかりません']);
+            return redirect()->route('store_owner'
+            )->with(['message' => '店舗情報が見つかりません']);
         }
 
         //④更新データを取得
@@ -121,7 +122,7 @@ class StoreOwnerController extends Controller
         //⑧店舗情報を更新
         $restaurant->update($validated);
 
-        return redirect()->route('owner')->with('message', '店舗情報が更新されました');
+        return redirect()->route('store_owner')->with('message', '店舗情報が更新されました');
     }
 
 
@@ -153,7 +154,8 @@ class StoreOwnerController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('owner', compact('restaurant', 'reservations', 'areas', 'genres'));
+        return view('store_
+        owner', compact('restaurant', 'reservations', 'areas', 'genres'));
     }
 
 

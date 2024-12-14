@@ -15,13 +15,6 @@
         </form>
     </li>
     <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 
@@ -37,7 +30,7 @@
     </div>
     <div class="mypage">
         <!--予約状況-->
-        <div class="left">
+        <div class="reservation-info">
             <h2>予約状況</h2>
             @foreach ($reservations as $reservation)
                 <div class="reservation-card" id="reservation-card-{{ $reservation->id }}">
@@ -114,7 +107,7 @@
         </div>
 
         <!--お気に入り店舗一覧-->
-        <div class="right">
+        <div class="favorite-info">
             <h2>お気に入り店舗</h2>
             <div class="favorite-shops">
                 @foreach ($favorites as $favorite)

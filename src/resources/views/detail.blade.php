@@ -22,13 +22,6 @@
             </form>
         </li>
         <li><a href="/mypage">MYPAGE</a></li>
-        @if (Auth::user()->role === 'admin')
-            <li><a href="/admin">ADMIN</a></li>
-        @endif
-
-        @if (Auth::user()->role === 'store-owner')
-            <li><a href="/owner">OWNER</a></li>
-        @endif
     @endauth
 @endsection
 
@@ -53,7 +46,8 @@
                 </h2>
 
                 <!--ストレージ-->
-                <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
+                <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="storage">
 
@@ -105,7 +99,8 @@
                 </div>
 
                 <div class="confirm">
-                    <p class="confirm-p"><strong class="strong">SHOP</strong> {{ $restaurant->name }}</p>
+                    <p class="confirm-p"><strong class="strong">SHOP</strong> <span
+                            class="restaurant-name">{{ $restaurant->name }}</span></p>
                     <p class="confirm-p" id="confirmDate"><strong class="strong">Date</strong>
                         <span id="confirmDateValue" class="confirm-value">未選択</span>
                     </p>

@@ -19,20 +19,20 @@
     justify-content: space-between;
     padding: 0 70px;
 }
-.mypage .left,
-.mypage .right {
+.reservation-info,
+.favorite-info {
     width: 48%;
     background-color: #fff;
     padding: 10px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
-.mypage .left h2,
-.mypage .right h2 {
+.mypage .reservation-info h2,
+.mypage .favorite-info h2 {
     font-size: 25px;
     margin-bottom: 20px;
 }
-.mypage .left p,
-.mypage .right p {
+.mypage .reservation-info p,
+.mypage .favorite-info p {
     margin: 10px;
 }
 
@@ -82,7 +82,7 @@
 
 .strong {
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
     color: #fff;
     font-family: "Quicksand", sans-serif;
     font-weight: 400;
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     margin: 5px;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     font-family: "Quicksand", sans-serif;
 }
@@ -134,7 +134,7 @@
 .qr-link a {
     cursor: pointer;
     color: #fff;
-    font-size: 17px;
+    font-size: 16px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
@@ -150,7 +150,7 @@
 .stripe-link a {
     cursor: pointer;
     color: #fff;
-    font-size: 17px;
+    font-size: 16px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
 
@@ -175,14 +175,17 @@
 .change-book__div {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
+    gap: 10px;
 }
 
 .change-book_label {
     color: #fff;
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 400;
-    width: 30%;
+    flex-basis: 40%;
+    max-width: 40%;
     text-align: left;
     padding-left: 10px;
     font-size: 17px;
@@ -199,6 +202,8 @@
     cursor: pointer;
     border: 1px solid #ddd;
     color: #000;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .change-book__submit {
@@ -278,29 +283,46 @@
         flex-direction: column;
         padding: 20px;
     }
-    .mypage .left,
-    .mypage .right {
+    .mypage .reservation-info,
+    .mypage .favorite-info {
         width: 100%;
         margin-bottom: 20px;
     }
     .change-book__button,
     .change-book__submit {
         display: block;
-        width: 20%; /* フル幅に */
-        margin: 10px 0; /* 間隔調整 */
+        width: 20%;
+        margin: 10px 0;
         font-size: 16px;
         align-items: end;
-
     }
     .change-book {
         align-items: flex-end;
     }
+
+    .change-book__div {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .change-book_label,
+    .change-book_input {
+        flex-basis: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .change-book_label:last-child {
+        padding-left: 30px;
+    }
+
     .change-book__button,
     .change-book__submit {
         width: auto;
         font-size: 16px;
     }
-    .change-book__button{
+    .change-book__button {
         margin: 10px;
     }
     .reservation-card .reservation-header {

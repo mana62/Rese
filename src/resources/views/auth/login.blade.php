@@ -37,5 +37,9 @@
                 <button type="submit" class="login__button-submit">Login</button>
             </div>
         </form>
+
+        <div class="admin">
+            <a class="admin-link" href="{{ route('admin_login_form') }}">※管理者の方はこちら</a>
+        </div>
     </div>
 @endsection

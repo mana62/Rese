@@ -42,11 +42,9 @@ class AuthenticatedSessionController extends Controller
             }
 
             if ($user->role === 'store-owner') {
-                return redirect()->route('store-owner');
+                return redirect()->route('store_owner');
             } elseif ($user->role === 'user') {
                 return redirect()->route('mypage');
-            } elseif ($user->role === 'admin') {
-                return redirect()->route('admin');
             }
 
             return redirect('/');

@@ -255,7 +255,7 @@
 }
 
 .restaurant-details .right form div input[type="date"] {
-    width: 30%;
+    width: 40%;
 }
 
 .restaurant-details .right form div input[type="time"],
@@ -290,13 +290,21 @@
 }
 
 .strong {
+    display: inline-block;
+    width: 150px; 
     font-weight: 400;
-    margin-right: 80px;
 }
 
 .confirm-p {
     padding: 5px;
     font-size: 18px;
+}
+
+.restaurant-name {
+    font-size: 18px;
+    display: inline-block;
+    width: 100px; 
+    text-align: left;
 }
 
 #confirmDate,
@@ -309,7 +317,11 @@
 
 .confirm-value {
     font-size: 18px;
+    display: inline-block;
+    width: 100px; 
+    text-align: left;
 }
+
 
 .restaurant-details .book__error {
     color: red;

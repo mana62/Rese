@@ -64,24 +64,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //成功の場合
             if (data.success) {
-                resultElement.textContent = data.message;
-                const paymentLink = document.querySelector(
-                    `#stripePayment-${data.reservation_id}`
-                );
-                if (paymentLink) {
-                    paymentLink.innerText = "支払い済み";
-                    paymentLink.dataset.status = "success";
-                    paymentLink.style.pointerEvents = "none";
-                    paymentLink.style.cursor = "not-allowed";
+                //リダイレクトURLが返された場合はそのページに移動
+                if (data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    resultElement.textContent = "お支払いが完了しましたが、リダイレクト先が見つかりません";
                 }
-
-                //失敗の場合
             } else {
-                resultElement.textContent =
-                    data.message || "エラーが発生しました。";
+                resultElement.textContent = data.message || "エラーが発生しました";
             }
-
-            //ネットワークなどのエラーの場合
+        //ネットワークなどのエラーの場合
         } catch (error) {
             resultElement.textContent = `エラー: ${error.message}`;
         }

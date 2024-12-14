@@ -6,10 +6,42 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AdminRequest;
+use App\Http\Requests\Auth\AdminLoginRequest;
+
 
 class AdminController extends Controller
 {
-    //管理者ページの表示
+    //①管理者ログイン画面を表示
+    public function showLoginForm()
+    {
+        return view('admin_login');
+    }
+
+    //②管理者ログイン処理
+    public function login(AdminLoginRequest $request)
+    {
+        //パスワードを検証
+        if ($request->password === 'admin_pass') {
+
+            //管理者ログイン状態をセッションに保存
+            $request->session()->put('is_admin', true);
+            return redirect()->route('admin');
+        }
+
+        //パスワードが間違っている場合
+        return back()->withErrors(['message' => 'パスワードが違います']);
+    }
+
+    //③ログアウト処理
+    public function logout(Request $request)
+    {
+        //セッションから管理者フラグを削除
+        $request->session()->forget('is_admin');
+
+        return redirect()->route('admin_login_form')->with('message', 'ログアウトしました');
+    }
+
+    //④管理者ページの表示
     public function index()
     {
         //店舗代表者と一般ユーザーを取得
@@ -19,7 +51,7 @@ class AdminController extends Controller
         return view('admin', compact('storeOwners', 'users'));
     }
 
-    //店舗代表者を作成
+    //⑤店舗代表者を作成
     public function createStoreOwner(AdminRequest $request)
     {
 
@@ -35,7 +67,7 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('message', '店舗代表者を作成しました');
     }
 
-    //店舗代表者を削除し、一般ユーザーに戻す
+    //⑥店舗代表者を削除し、一般ユーザーに戻す
     public function deleteStoreOwner(Request $request, $id)
     {
         //userテーブルからidを見つけてロールをユーザーに変更
@@ -48,7 +80,7 @@ class AdminController extends Controller
     }
 
 
-    //お知らせメール
+    //⑦お知らせメール
     public function sendNotification(Request $request)
     {
         $request->validate([

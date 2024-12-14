@@ -19,8 +19,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'exists:users,email'],
-            'password' => ['required', 'string', 'min:8'],
+            'email' => ['required', 'string', 'email', 'exists:users,email',],
+            'password' => ['required', 'string', 'min:8',],
         ];
     }
 
@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
-            'email.exists' => 'メールアドレスが登録されていません',
+            'email.exists' => 'このメールアドレスは登録されていません',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
             'login.failed' => 'メールアドレスまたはパスワードが一致しません',
@@ -40,11 +40,19 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        //メールアドレスが存在するか確認
+        if (!Auth::validate(['email' => $this->input('email')])) {
+            throw ValidationException::withMessages([
+                'email' => 'メールアドレスが違います',
+            ]);
+        }
+
+        //パスワードが正しいか確認
         if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'password' => 'パスワードが正しくありません',
             ]);
         }
 

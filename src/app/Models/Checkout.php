@@ -11,12 +11,21 @@ class Checkout extends Model
 
     protected $fillable = [
         'user_id',
-        'restaurant_id',
         'reservation_id',
         'payment_intent_id',
         'amount',
         'status',
         'currency',
     ];
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 

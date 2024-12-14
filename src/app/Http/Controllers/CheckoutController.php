@@ -63,7 +63,6 @@ class CheckoutController extends Controller
                 'return_url' => route('checkout.return'), //支払いが完了した後にユーザーが戻るページ
                 'metadata' => [
                     'user_id' => $reservation->user_id,
-                    'restaurant_id' => $reservation->restaurant_id,
                     'reservation_id' => $reservation->id,
                 ],
             ]);
@@ -78,7 +77,6 @@ class CheckoutController extends Controller
                         ['reservation_id' => $reservation->id],
                         [
                             'user_id' => $reservation->user_id,
-                            'restaurant_id' => $reservation->restaurant_id,
                             'payment_intent_id' => $paymentIntent->id,
                             'amount' => $paymentIntent->amount / 100, //金額を元の単位に戻す
                             'status' => 'success',
@@ -87,11 +85,12 @@ class CheckoutController extends Controller
                     );
                 });
 
+                //成功の場合checkout_doneに飛ぶ
                 return response()->json([
                     'success' => true,
-                    'status' => 'success',
-                    'message' => 'お支払いが完了しました',
+                    'redirect_url' => route('checkout_done'),
                 ]);
+
             }
 
             //支払いが未完了の場合の処理

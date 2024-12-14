@@ -36,8 +36,7 @@
 
             <!-- キーワード検索 -->
             <div class="search">
-                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon"
-                    class="search__icon">
+                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon">
                 <input class="search__input" type="text" name="input" placeholder="search..."
                     value="{{ request('input') }}">
                 <button class="search__submit" type="submit">検索</button>
@@ -65,12 +64,6 @@
             </form>
         </li>
         <li><a href="/mypage">MYPAGE</a></li>
-        @if (Auth::user()->role === 'admin')
-            <li><a href="/admin">ADMIN</a></li>
-        @endif
-        @if (Auth::user()->role === 'store-owner')
-            <li><a href="/owner">OWNER</a></li>
-        @endif
     @endauth
 @endsection
 
@@ -90,10 +83,11 @@
                         <a href="{{ route('detail', $restaurant->id) }}">詳しくみる</a>
 
                         @auth
-                            <button class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}"
-                                onclick="toggleFavorite(this, {{ $restaurant->id }})">
-                                &hearts;
-                            </button>
+                        <button id="favorite-btn-{{ $restaurant->id }}" 
+                            class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}" 
+                            onclick="toggleFavorite(this, {{ $restaurant->id }})">
+                            &hearts;
+                        </button>
                         @endauth
                     </div>
                 </div>

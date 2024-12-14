@@ -15,17 +15,10 @@
         </form>
     </li>
     <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 @section('content')
-    <div class="thanks">
+    <div id="thanks-message" class="thanks">
         <p class="thanks__message">
             会員登録ありがとうございます
         </p>

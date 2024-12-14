@@ -15,13 +15,6 @@
         </form>
     </li>
     <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 
@@ -29,7 +22,7 @@
     <h1 class="qr-ttl">QRコード</h1>
     <p class="qr-message">以下のQRコードを店舗で提示してください</p>
 
-    <div class="qr-container">
+    <div id="qr-code-section" class="qr-img">
         @if ($reservation->qr_code)
             <div class="qr-img">
                 <img src="{{ asset('storage/' . $reservation->qr_code) }}" alt="QR Code">

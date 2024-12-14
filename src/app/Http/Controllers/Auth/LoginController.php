@@ -42,23 +42,23 @@ class LoginController extends Controller
     }
 
     public function login(LoginRequest $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended('mypage');
+            return redirect()->intended('mypage');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
-
-    return back()->withErrors([
-        'email' => 'The provided credentials do not match our records.',
-    ]);
-}
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role === 'admin') {
+        if ($request->password === 'admin_pass') {
             return redirect()->route('admin');
         }
 

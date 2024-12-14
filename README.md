@@ -1,23 +1,24 @@
 # Rese
 飲食店予約アプリ<br>
+<br>
 
 # 作成した目的
-初年度でのユーザー数10,000人達成の為<br>
+外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたいため<br>
+<br>
 
 # アプリケーションURL
 <開発環境><br>
 ・phpmyadmin：http://localhost:8080<br>
 ・アプリurl：http://localhost/<br>
 <br>
-・phpmyadmin：<br>
-・アプリurl：<br>
+<本番環境><br>
+・InfinityFree<br>
+・アプリurl：https://rese-rflm.onrender.com<br>
 
 # 他のリポジトリ
 <開発環境><br>
 https://github.com/mana62/Rese<br>
 <br>
-<本番環境><br>
-
 
 # 機能一覧
 ・会員登録<br>
@@ -47,19 +48,22 @@ https://github.com/mana62/Rese<br>
 ・QRコード<br>
 ・決済機能(stripe)<br>
 ・環境の切り分け<br>
+<br>
 
 # 使用技術
 ・nginx: latest<br>
 ・php: 8.1-fpm<br>
 ・mysql: 8.0.26<br>
 ・Laravel: 8<br>
+<br>
 
 # テーブル設計
-[rese-table.pdf](https://github.com/user-attachments/files/17808046/rese-table.pdf)
+<img width="820" alt="rese-table" src="https://github.com/user-attachments/assets/0f6eaf22-c8bb-49e1-ab09-c0c63880f7fd" />
+<br>
 
 # ER図
-[rese-ER.pdf](https://github.com/user-attachments/files/17808041/rese-ER.pdf)
-
+<img width="899" alt="rese-er" src="https://github.com/user-attachments/assets/4dd206af-3b61-41e0-81d6-6eda679cf852" />
+<br>
 
 # 環境構築
 1. リモートリポジトリを作成<br>
@@ -77,6 +81,7 @@ https://github.com/mana62/Rese<br>
 13. .env ファイルの環境変数を変更<br>
 14. php artisan migrate<br>
 15. php artisan db:seed<br>
+<br>
 
 # クローンの流れ
 1. Git リポジトリのクローン<br>
@@ -85,21 +90,12 @@ https://github.com/mana62/Rese<br>
 (cp .env.example .env)<br>
 3. .env ファイルの編集<br>
 <br>
-SERVER_NAME=localhost<br>
-<br>
 DB_CONNECTION=mysql<br>
 DB_HOST=mysql<br>
 DB_PORT=3306<br>
 DB_DATABASE=rese_local<br>
 DB_USERNAME=user<br>
 DB_PASSWORD=pass<br>
-<br>
-MYSQL_ROOT_PASSWORD=root<br>
-MYSQL_DATABASE=rese_local<br>
-MYSQL_USER=user<br>
-MYSQL_PASSWORD=pass<br>
-<br>
-PHP_DISPLAY_ERRORS=On<br>
 <br>
 MAIL_MAILER=smtp<br>
 MAIL_HOST=mailhog<br>
@@ -127,22 +123,40 @@ STRIPE_SECRET=sk_test_51QL1HQP6vhR18R0Q48Wf9g24z9MwM107D1wPfFXi0J8uWlyF2xY4vZxMB
 (php artisan migrate)<br>
 9. シーディング<br>
 (php artisan db:seed)<br>
+<br>
 
-# その他
+# 補足
+[メール認証]<br>
 ・メール認証をしていないとログインできない<br>
+
+[非会員ユーザー]<br>
 ・会員ユーザーでないとお店のお気に入り機能は使えない<br>
 ・会員ユーザーでないとレビューの投稿はできない<br>
-・レストランの画像を保存するには、detailページの画像を保存を押すと、storage/app/public/restaurantsに保存される<br>
-・予約をキャンセルするとrestaurantテーブルのstatusカラムがcancelに変わる<br>
-・マイページのお支払い部分はお支払い（任意）すると支払い済みに変わる<br>
-・adminまたはrestaurantのownerの権限があれば、それぞれのページが閲覧できる<br>
-<br>
-「役割の変え方」<br>
+（レビューを一覧することは可能）<br>
 
-1. docker exec -it rese_php bash<br>
-2. php artisan tinker<br>
-3. $user = \App\Models\User::find(1);<br>
-(変更したいユーザーIDを選ぶ)<br>
-4. $user->role = 'admin' または 'store-owner';<br>
-5. $user->save();<br>
-6. データベースのrole部分が設定した役割に変わる（デフォルトはuser）
+[レストランの画像をストレージに保存]<br>
+・レストランの画像を保存するには、detailページの画像を保存を押すと、storage/app/public/restaurantsに保存される<br>
+
+[予約キャンセル]<br>
+・予約をキャンセルするとrestaurantテーブルのstatusカラムがcancelに変わり、画面からは無くなる<br>
+
+[お支払い]<br>
+・マイページのお支払い部分はお支払い（任意）するとマイページの支払いへ進むの部分が支払い済みに変わる<br>
+
+[管理者]<br>
+・adminは、通常のログイン部分の管理者の方はこちらから、特定のパスワードを入力すると、管理者画面へとべる<br>
+（adminのパスワード：admin_pass）<br>
+・管理者はお知らせメールを管理者画面から送ることができる<br>
+・管理者は店舗オーナーを作成することができ、店舗者一覧から管理者を削除した場合は画面から居なくなり、statusカラムがstore-ownerからuserに変わる<br>
+<br>
+
+[店舗オーナー]<br>
+・店舗オーナーは、管理者が作ることができ、作成後通常のログイン画面から、管理者が作った際の、メールアドレス、パスワードを入れればログイン画面に入れれば閲覧が可能<br>
+・一人のオーナーが複数のレストラを作成した場合は、店舗検索部分から特定のレストランを検索し、更新と予約一覧を見ることができる<br>
+（デフォルトの更新部分には一番はじめに作成したレストランが表示されている）<br>
+
+[リマインダー]<br>
+・予約当日の朝7:00に設定<br>
+
+
+

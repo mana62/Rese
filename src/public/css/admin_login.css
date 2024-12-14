@@ -1,15 +1,4 @@
-.message {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 0;
-    color: red;
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    font-size: 20px;
-}
-.message-session {
-    display: block;
-}
-.login {
+.admin {
     width: 100%;
     max-width: 40%;
     margin: 160px auto;
@@ -18,6 +7,7 @@
     border-radius: 5px;
     text-align: center;
 }
+
 .login__header {
     background: rgb(2, 153, 153);
     color: #fff;
@@ -27,6 +17,7 @@
     border-radius: 8px 8px 0 0;
     margin-bottom: 20px;
 }
+
 .login__field {
     display: flex;
     align-items: center;
@@ -34,6 +25,7 @@
     margin-bottom: 15px;
     width: 90%;
 }
+
 .login__input {
     flex: 1;
     font-size: 16px;
@@ -44,17 +36,20 @@
     width: 100%;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
+
 .login__input::-moz-placeholder {
     color: #aaa;
     font-size: 20px;
     font-family: "Quicksand", sans-serif;
 }
+
 .login__input::placeholder {
     color: #aaa;
     font-size: 20px;
     font-family: "Quicksand", sans-serif;
 }
-.login .login__error {
+
+.login__error {
     color: red;
     font-family: "Zen Kaku Gothic New", sans-serif;
     text-align: center;
@@ -69,42 +64,26 @@
     text-align: right;
     margin-top: 20px;
 }
+
 .login__button-submit {
     background: rgb(2, 153, 153);
     font-family: "Zen Kaku Gothic New", sans-serif;
     color: #fff;
     border: none;
-    margin: 10px 30px 0 20px;
+    margin: 10px 30px 20px 20px;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .login__button-submit:hover {
     background: #016767;
 }
 
-.admin {
-    text-align: left;
-}
-
-.admin-link {
-    display: inline-block;
-    margin: 0 0 10px 20px;
-    font-size: 17px;
-    list-style: none;
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    color: rgb(2, 153, 153);
-    text-decoration: none;
-}
-
-.admin-link:hover {
-    color: #016767;
-}
-
 @media (max-width: 768px) {
-    .login {
+    .admin {
         width: 90%;
         max-width: none;
         margin: 150px auto;

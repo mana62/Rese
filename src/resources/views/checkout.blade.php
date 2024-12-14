@@ -15,13 +15,6 @@
         </form>
     </li>
     <li><a href="/mypage">MYPAGE</a></li>
-    @if (Auth::user()->role === 'admin')
-        <li><a href="/admin">ADMIN</a></li>
-    @endif
-
-    @if (Auth::user()->role === 'store-owner')
-        <li><a href="/owner">OWNER</a></li>
-    @endif
 @endsection
 
 
@@ -30,7 +23,6 @@
     <h1 class="ttl">Checkout</h1>
     <div class="message" id="payment-result"></div>
     <input type="hidden" id="reservation-id" value="{{ $reservation->id }}">
-    <input type="hidden" id="restaurant-id" value="{{ $reservation->restaurant_id }}">
     <form class="payment-form-content" id="payment-form">
         @csrf
         <input type="hidden" id="reservation-id" value="{{ $reservation->id }}">

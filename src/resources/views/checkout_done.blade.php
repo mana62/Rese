@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/booked.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/checkout_done.css') }}">
 @endsection
 
 @section('nav-js')
@@ -17,14 +17,11 @@
     <li><a href="/mypage">MYPAGE</a></li>
 @endsection
 
-
 @section('content')
-    <div class="done">
-        <p class="done__message">
-            ご予約ありがとうございます
-        </p>
-        <div class="back__link">
-            <a href="{{ route('restaurants.index') }}">戻る</a>
+    <div class="checkout-done">
+        <p class="checkout-done__message">お支払いありがとうございます</p>
+        <div class="mypage__link">
+            <a href="{{ route('mypage') }}">マイページへ戻る</a>
         </div>
     </div>
 @endsection

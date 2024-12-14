@@ -29,3 +29,9 @@
 .verify-email-button__submit:hover {
     background: #006868;
 }
+
+@media (max-width: 768px) {
+    .verify-email {
+        padding: 30px;
+    }
+}

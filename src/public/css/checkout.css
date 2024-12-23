@@ -8,8 +8,8 @@
     padding-right: 2px;
     text-decoration: none;
     color: #fff;
-    border: 1px solid rgb(2, 153, 153);
-    background: rgb(2, 153, 153);
+    border: 1px solid #1758f0;
+    background: #1758f0;
     border-radius: 5px;
     width: 45px;
     height: 45px;
@@ -19,7 +19,7 @@
 }
 
 .back-arrow:hover {
-    background: rgb(6, 75, 75);
+    background: #6565eb;
 }
 
 @media (max-width: 768px) {
@@ -36,7 +36,6 @@
     .payment-input {
         width: 90%;
     }
-
 }
 
 .ttl {
@@ -73,7 +72,7 @@
     margin-top: 30px;
     text-align: center;
     width: 100%;
-    max-width: 500px; 
+    max-width: 500px;
 }
 
 .card-element {
@@ -91,8 +90,8 @@
     margin: 0 auto;
     margin-top: 30px;
     text-align: center;
-    width: 100%; 
-    max-width: 500px; 
+    width: 100%;
+    max-width: 500px;
 }
 
 .payment-button {
@@ -102,8 +101,8 @@
 .payment-button-submit {
     padding: 10px 20px;
     font-size: 14px;
-    border: 1px solid #029999;
-    background: #029999;
+    border: 1px solid #1758f0;
+    background: #1758f0;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -113,5 +112,5 @@
 }
 
 .payment-button-submit:hover {
-    background: #006868;
+    background: #6565eb;
 }

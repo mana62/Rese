@@ -20,7 +20,7 @@
     margin-top: 20px;
 }
 .login__link a {
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     text-decoration: none;
     font-family: "Zen Kaku Gothic New", sans-serif;
     color: #fff;
@@ -33,7 +33,7 @@
     transition: background 0.3s;
 }
 .login__link a:hover {
-    background: #016767;
+    background: #6565eb;
 }
 
 @media (max-width: 768px) {

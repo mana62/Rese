@@ -8,12 +8,13 @@
 
 # アプリケーションURL
 <開発環境><br>
-・phpmyadmin：http://localhost:8080<br>
-・アプリurl：http://localhost/<br>
+- phpmyadmin: [http://localhost:8080](http://localhost:8080)<br>
+- アプリURL: [http://localhost/](http://localhost/)
 <br>
+
 <本番環境><br>
-・InfinityFree<br>
-・アプリurl：https://rese-rflm.onrender.com<br>
+- サービス: InfinityFree<br>
+- アプリURL: [https://rese-rflm.onrender.com](https://rese-rflm.onrender.com)<br>
 
 # 他のリポジトリ
 <開発環境><br>
@@ -21,7 +22,7 @@ https://github.com/mana62/Rese<br>
 <br>
 
 # 機能一覧
-・会員登録<br>
+- 会員登録<br>
 ・ログイン<br>
 ・ログアウト<br>
 ・ユーザー情報取得<br>
@@ -157,6 +158,6 @@ STRIPE_SECRET=sk_test_51QL1HQP6vhR18R0Q48Wf9g24z9MwM107D1wPfFXi0J8uWlyF2xY4vZxMB
 
 [リマインダー]<br>
 ・予約当日の朝7:00に設定<br>
-
+(店舗オーナーとユーザーに送られますが、店舗オーナーはadminで作成したオーナーにのみ送られます)<br>
 
 

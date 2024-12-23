@@ -31,22 +31,21 @@
     <div class="mypage">
         <!--予約状況-->
         <div class="reservation-info">
-            <h2>予約状況</h2>
+            <h1>予約状況</h1>
             @foreach ($reservations as $reservation)
                 <div class="reservation-card" id="reservation-card-{{ $reservation->id }}">
-                    <div class="reservation-header">
+                    <header class="reservation-header">
                         <div class="login__field">
                             <img src="img/icon/icon_clock.png" alt="Clock Icon" class="reservation__icon">
                             <span class="reservation-title">予約 {{ $loop->iteration }}</span>
                             <button class="reservation-cancel-btn"
                                 onclick="cancelReservation({{ $reservation->id }})">✕</button>
                         </div>
-                    </div>
+                    </header>
                     <div class="reservation-details">
                         <p><strong class="strong">Shop</strong> {{ $reservation->restaurant->name }}</p>
                         <p><strong class="strong">Date</strong> {{ $reservation->date }}</p>
-                        <p><strong class="strong">Time</strong>
-                            {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</p>
+                        <p><strong class="strong">Time</strong>{{ $reservation->formatted_time }}</p>
                         <p><strong class="strong">Number</strong> {{ $reservation->guests }}人</p>
 
                         <!--QR-->
@@ -56,7 +55,6 @@
 
                         <!--stripe-->
                         @php
-                            //該当するCheckoutの情報を取得（存在しない場合は null）
                             $checkout = $checkouts[$reservation->id] ?? null;
                         @endphp
 
@@ -82,6 +80,7 @@
                         <form class="change-book" id="editReservationForm-{{ $reservation->id }}" style="display:none"
                             action="{{ route('reservations.update', $reservation->id) }}" method="POST">
                             @csrf
+                            @method('PATCH')
                             <div class="change-book__div">
                                 <label class="change-book_label">新しい日付</label>
                                 <input class="change-book_input" type="date" name="date"
@@ -116,7 +115,7 @@
                         <div class="favorite-details">
                             <h3>{{ $favorite->name }}</h3>
                             <p> #{{ $favorite->area->area_name }} #{{ $favorite->genre->genre_name }}</p>
-                            <a href="{{ route('detail', $favorite->id) }}" class="favorite-link">詳しくみる</a>
+                            <a href="{{ route('restaurants.show', $favorite->id) }}" class="favorite-link">詳しくみる</a>
                         </div>
                         <button class="favorite-btn {{ in_array($favorite->id, $favoriteIds) ? 'favorited' : '' }}"
                             onclick="toggleFavorite({{ $favorite->id }})">

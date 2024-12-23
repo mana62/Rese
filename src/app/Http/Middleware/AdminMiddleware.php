@@ -16,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // 管理者セッションがない場合、アクセスを拒否
+
         if (!$request->session()->get('is_admin')) {
-            return redirect()->route('admin_login_form')->withErrors(['message' => '管理者としてログインしてください']);
+            return redirect()->route('admin.login')->withErrors(['message' => '管理者としてログインしてください']);
         }
 
         return $next($request);

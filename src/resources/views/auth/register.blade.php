@@ -12,8 +12,8 @@
 
 @section('content')
     <div class="registration">
-        <div class="registration__header"> Register </div>
-        <form action="{{ route('thanks') }}" method="POST">
+        <h1 class="registration__header"> Registration </h1>
+        <form action="{{ route('register.store') }}" method="POST">
             @csrf
             <div class="registration__field">
                 <img src="img/icon/icon_user.png" alt="User Icon" class="registration__icon">
@@ -52,7 +52,7 @@
             @enderror
 
             <div class="registration__button">
-                <button type="submit" class="registration__button-submit">Register</button>
+                <button type="submit" class="registration__button-submit">登録</button>
             </div>
         </form>
     </div>

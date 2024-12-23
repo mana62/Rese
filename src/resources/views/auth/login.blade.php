@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="login">
-        <div class="login__header"> Login </div>
+        <h1 class="login__header"> Login </h1>
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="login__field">
@@ -34,12 +34,15 @@
             @enderror
 
             <div class="login__button">
-                <button type="submit" class="login__button-submit">Login</button>
+                <button type="submit" class="login__button-submit">ログイン</button>
             </div>
         </form>
 
         <div class="admin">
-            <a class="admin-link" href="{{ route('admin_login_form') }}">※管理者の方はこちら</a>
+            <a class="admin-link" href="{{ route('admin.login') }}">※管理者の方はこちら</a>
+        </div>
+        <div class="owner">
+            <a class="owner-link" href="{{ route('owner.login') }}">※店舗オーナーの方はこちら</a>
         </div>
     </div>
 @endsection

@@ -1,26 +1,27 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/owner.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owner_dashboard.css') }}">
 @endsection
 
 @section('nav-js')
     <li><a href="/restaurants">HOME</a></li>
     <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <a href="{{ route('owner.logout') }}"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             {{ __('LOGOUT') }}
         </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+        <form id="logout-form" action="{{ route('owner.logout') }}" method="post" style="display: none;">
             @csrf
         </form>
     </li>
 @endsection
 
 @section('content')
-<div class="header-container">
-<h1 class="main-ttl">店舗管理ダッシュボード</h1>
+    <div class="header-container">
+        <h1 class="main-ttl">店舗オーナーダッシュボード</h1>
         <div class="search-bar">
-            <form class="search-bar__form" action="{{ route('owner.searchStore') }}" method="GET">
+            <form class="search-bar__form" action="{{ route('owner.search') }}" method="GET">
                 <input class="search-bar__input" type="text" name="search" placeholder="店舗名で検索"
                     value="{{ request('search') }}">
                 <button class="search-bar__button" type="submit">検索</button>
@@ -40,7 +41,7 @@
         <!-- 店舗情報作成 -->
         <div class="store-form">
             <h2>店舗情報を作成</h2>
-            <form action="{{ route('owner.createStore') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('owner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="name">店舗名</label>
                 @error('name')
@@ -97,7 +98,7 @@
         <div class="store-info">
             <h2>店舗情報の更新</h2>
             @if ($restaurant)
-                <form action="{{ route('owner.updateStore') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('owner.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                     <label for="name">店舗名</label>
@@ -138,7 +139,7 @@
                     @enderror
                     <textarea id="description" name="description">{{ old('description', $restaurant->description ?? '') }}</textarea>
                     <label for="image">画像</label>
-                <input type="file" id="image" name="image">
+                    <input type="file" id="image" name="image">
                     <button type="submit">更新</button>
                 </form>
             @else

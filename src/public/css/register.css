@@ -5,14 +5,15 @@
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
 }
 .registration__header {
-    background: rgb(2, 153, 153);
+    font-weight: 400;
+    background: #1758f0;
     color: #fff;
     font-family: "Quicksand", sans-serif;
     font-size: 28px;
-    padding: 10px;
+    padding: 10px 10px 10px 30px;
     border-radius: 8px 8px 0 0;
     margin-bottom: 20px;
 }
@@ -59,7 +60,7 @@
     margin-top: 20px;
 }
 .registration__button-submit {
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     font-family: "Zen Kaku Gothic New", sans-serif;
     color: #fff;
     border: none;
@@ -71,7 +72,7 @@
     transition: background 0.3s;
 }
 .registration__button-submit:hover {
-    background: #016767;
+    background: #6565eb;
 }
 @media (max-width: 768px) {
     .registration {

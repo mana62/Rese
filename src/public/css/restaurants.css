@@ -24,14 +24,6 @@
     padding: 10px;
 }
 
-.nav-search__area select::after,
-.nav-search__genre select::after {
-    content: "\ell4";
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    float: right;
-    color: #000;
-}
-
 .search {
     display: flex;
     align-items: center;
@@ -56,8 +48,8 @@
     display: inline-block;
     color: #fff;
     text-decoration: none;
-    border: 1px solid rgb(2, 153, 153);
-    background: rgb(2, 153, 153);
+    border: 1px solid #1758f0;
+    background: #1758f0;
     border-radius: 4px;
     font-size: 14px;
     padding: 5px 10px;
@@ -69,7 +61,7 @@
 }
 
 .search__submit:hover {
-background: #016767;
+    background: #6565eb;
 }
 
 @media (max-width: 768px) {
@@ -82,9 +74,6 @@ background: #016767;
     .nav-search__area,
     .nav-search__genre {
         border: none;
-    }
-    .search__form-input {
-        width: 100%;
     }
 }
 
@@ -129,7 +118,9 @@ background: #016767;
 .all-shop .card .text-box {
     padding: 10px;
 }
-.all-shop .card .text-box h2 {
+
+.all-shop .card .text-box h1 {
+    font-weight: 400;
     font-size: 24px;
     margin-bottom: 5px;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -152,8 +143,8 @@ background: #016767;
 .all-shop .card .text-box .link a {
     color: #fff;
     text-decoration: none;
-    border: 1px solid rgb(2, 153, 153);
-    background: rgb(2, 153, 153);
+    border: 1px solid #1758f0;
+    background: #1758f0;
     border-radius: 4px;
     font-size: 14px;
     padding: 5px 10px;
@@ -162,7 +153,7 @@ background: #016767;
     transition: background 0.2s ease;
 }
 .all-shop .card .text-box .link a:hover {
-    background: #016767;
+    background: #6565eb;
 }
 .all-shop .card .text-box .link .favorite-btn {
     background: none;

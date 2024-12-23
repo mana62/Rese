@@ -13,6 +13,7 @@
     font-size: 35px;
     font-weight: bold;
     color: black;
+    
 }
 .mypage {
     display: flex;
@@ -27,7 +28,8 @@
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
 .mypage .reservation-info h2,
-.mypage .favorite-info h2 {
+.mypage .favorite-info h2,
+.mypage .reservation-info h1 {
     font-size: 25px;
     margin-bottom: 20px;
 }
@@ -37,7 +39,7 @@
 }
 
 .reservation-card {
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     color: #fff;
     padding: 20px;
     margin-bottom: 10px;
@@ -63,7 +65,7 @@
     margin: 5px;
 }
 .reservation-card .reservation-cancel-btn {
-    background-color: rgb(2, 153, 153);
+    background-color: #1758f0;
     border: 2px solid #fff;
     color: #fff;
     font-size: 16px;
@@ -91,13 +93,11 @@
     padding-left: 10px;
 }
 
-.reservation-card .reservation-details {
-    .reservation-details {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
+.reservation-details {
+    display: flex;
+    flex-direction: column;
 }
+
 .reservation-card .reservation-details p {
     display: flex;
     align-items: center;
@@ -116,7 +116,7 @@
     width: auto;
     margin: 10px;
     padding: 10px;
-    background-color: rgb(2, 153, 153);
+    background-color: #1758f0;
     border: 1px solid #fff;
     border-radius: 5px;
     color: #fff;
@@ -209,7 +209,7 @@
 .change-book__submit {
     width: auto;
     padding: 10px;
-    background-color: rgb(2, 153, 153);
+    background-color: #1758f0;
     border: 1px solid #fff;
     border-radius: 5px;
     color: #fff;
@@ -251,8 +251,8 @@
 .favorite-shops .favorite-card .favorite-link {
     color: #fff;
     text-decoration: none;
-    border: 1px solid rgb(2, 153, 153);
-    background: rgb(2, 153, 153);
+    border: 1px solid #1758f0;
+    background: #1758f0;
     border-radius: 5px;
     font-size: 13px;
     padding: 5px;
@@ -272,7 +272,7 @@
     cursor: pointer;
 }
 .favorite-shops .favorite-card .favorite-link:hover {
-    background-color: #006868;
+    background-color: #6565eb;
     color: #fff;
 }
 .favorite-shops .favorite-card .favorite-btn:hover {
@@ -339,7 +339,7 @@
     }
 
     .favorite-shops .favorite-card {
-        width: calc(50% - 10px);
+        grid-template-columns: 1fr;
     }
 }
 /*# sourceMappingURL=mypage.css.map */

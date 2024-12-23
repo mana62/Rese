@@ -9,17 +9,49 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\StoreOwnerRequest;
-use PhpParser\Node\Stmt\ElseIf_;
+use Illuminate\Support\Facades\Auth;
+
 
 class StoreOwnerController extends Controller
 {
+    public function showLoginForm()
+    {
+        return view('owner.login');
+    }
+
+    //ログイン処理
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        //ログイン認証
+        if (Auth::attempt(array_merge($credentials, ['role' => 'store-owner']))) {
+            return redirect()->route('owner.dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'メールアドレスまたはパスワードが間違っています',
+        ]);
+    }
+
+    //ログアウト処理
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('owner.login');
+    }
+
     public function index(Request $request)
     {
-        //①ユーザーとレストランからowner_idを取得
+
+        //ユーザーとレストランからowner_idを取得
         $userId = auth()->id();
         $restaurants = Restaurant::where('owner_id', $userId)->get();
 
-        //②検索クエリがある場合は特定の店舗を取得
+        //検索クエリがある場合は特定の店舗を取得
         $restaurant = null;
         if ($request->has('search')) {
             $searchQuery = $request->input('search');
@@ -28,50 +60,50 @@ class StoreOwnerController extends Controller
                 ->first();
         }
 
-        //③初期表示時に最初の店舗を選択
+        //初期表示時に最初の店舗を選択
         if (!$restaurant) {
             $restaurant = $restaurants->first();
         }
 
-        //④ページネーションを設定
+        //ページネーションを設定
         $reservations = $restaurant
             ? $restaurant->reservations()->with('user')->paginate(10)
             : collect();
 
-        //⑤エリアとジャンルを取得
+        //エリアとジャンルを取得
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('store_owner', compact('restaurant', 'reservations', 'restaurants', 'areas', 'genres'));
+        return view('owner.dashboard', compact('restaurant', 'reservations', 'restaurants', 'areas', 'genres'));
     }
 
     //店舗情報を新規作成
     public function createStore(StoreOwnerRequest $request)
     {
 
-        //①$imagePathをnullに
+        //$imagePathをnullに
         $imagePath = null;
 
-        //②ファイルがアップロードされた場合の処理
+        //ファイルがアップロードされた場合の処理
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            //③画像ファイルの存在確認
+            //画像ファイルの存在確認
             if (!$image->isValid()) {
                 return redirect()->back()->withErrors(['image' => '画像が無効です']);
             }
 
-            //④ファイル名を生成
+            //ファイル名を生成
             $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
 
-            //⑤ファイルをpublic/img に保存
+            //ファイルをpublic/img に保存
             $image->move(public_path('img'), $imageName);
 
-            //⑥データベース用のパス
+            //データベース用のパス
             $imagePath = $imageName;
         }
 
-        //⑦情報をデータベースに保存
+        //情報をデータベースに保存
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -82,47 +114,48 @@ class StoreOwnerController extends Controller
             'owner_id' => auth()->id(),
         ]);
 
-        return redirect()->route('store_owner')->with('message', '店舗情報が作成されました');
+        return redirect()->route('owner.dashboard')->with('message', '店舗情報が作成されました');
     }
 
     //情報を更新
     public function updateStore(StoreOwnerRequest $request)
     {
-        //①restaurant_idを取得して$restaurantIdに代入
+        //restaurant_idを取得して$restaurantIdに代入
         $restaurantId = $request->input('restaurant_id');
 
-        //②店舗を取得
+        //店舗を取得
         $restaurant = Restaurant::where('id', $restaurantId)
             ->where('owner_id', auth()->id())
             ->first();
 
-        //③owner_idが見つからなければエラー
+        //owner_idが見つからなければエラー
         if (!$restaurant) {
-            return redirect()->route('store_owner'
+            return redirect()->route(
+                'store_owner'
             )->with(['message' => '店舗情報が見つかりません']);
         }
 
-        //④更新データを取得
+        //更新データを取得
         $validated = $request->all();
 
-        //⑤画像があれば名前をつける
+        //画像があれば名前をつける
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = date('Ymd_His') . '_' . $image->getClientOriginalName();
 
-            //⑥ファイルをpublic/imgに保存
+            //ファイルをpublic/imgに保存
             $image->move(public_path('img'), $imageName);
 
-            //⑦データベース保存
+            //データベース保存
             $validated['image'] = $imageName;
         } else {
             unset($validated['image']); //画像がない場合は更新しない
         }
 
-        //⑧店舗情報を更新
+        //店舗情報を更新
         $restaurant->update($validated);
 
-        return redirect()->route('store_owner')->with('message', '店舗情報が更新されました');
+        return redirect()->route('owner.dashboard')->with('message', '店舗情報が更新されました');
     }
 
 
@@ -154,8 +187,7 @@ class StoreOwnerController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
-        return view('store_
-        owner', compact('restaurant', 'reservations', 'areas', 'genres'));
+        return view('owner.dashboard', compact('restaurant', 'reservations', 'areas', 'genres'));
     }
 
 
@@ -186,4 +218,3 @@ class StoreOwnerController extends Controller
         ]);
     }
 }
-

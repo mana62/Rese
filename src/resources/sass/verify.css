@@ -14,7 +14,7 @@
   width: auto;
   margin: 10px;
   padding: 10px;
-  background-color: rgb(2, 153, 153);
+  background-color: #1758f0;
   border: 1px solid #fff;
   border-radius: 5px;
   color: #fff;
@@ -24,6 +24,12 @@
   font-family: "Zen Kaku Gothic New", sans-serif;
 }
 .verify-email-button__submit:hover {
-  background: #006868;
+  background: #6565eb;
 }
-/*# sourceMappingURL=verify-email.css.map */
+
+@media (max-width: 768px) {
+  .verify-email {
+    padding: 30px;
+  }
+}
+/*# sourceMappingURL=verify.css.map */

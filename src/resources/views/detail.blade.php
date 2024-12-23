@@ -40,10 +40,10 @@
         <!--レストラン詳細-->
         <div class="left">
             <div class="header-flex">
-                <h2>
+                <h1>
                     <a href="{{ route('restaurants.index') }}" class="back-arrow">&lt;</a>
                     {{ $restaurant->name }}
-                </h2>
+                </h1>
 
                 <!--ストレージ-->
                 <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}"
@@ -92,7 +92,7 @@
                 </div>
                 <div>
                     <input class="form-input" type="number" id="guests" name="guests" required min="1"
-                        placeholder="1人" value="1">
+                        placeholder="1人">
                     @error('guests')
                         <div class="book__error">{{ $message }}</div>
                     @enderror

@@ -1,12 +1,3 @@
-.alert-danger {
-    color: red;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
 .restaurant-details {
     display: flex;
     justify-content: space-between;
@@ -26,7 +17,6 @@
 
         h2 {
             font-size: 30px;
-            margin-top: 10px;
             position: relative;
             font-family: "Zen Kaku Gothic New", sans-serif;
             font-weight: bold;
@@ -40,14 +30,14 @@
                 padding-right: 2px;
                 text-decoration: none;
                 color: #fff;
-                border: 1px solid rgb(2, 153, 153);
-                background: rgb(2, 153, 153);
+                border: 1px solid #1758f0;
+                background: #1758f0;
                 border-radius: 5px;
                 width: 40px;
                 height: 40px;
 
                 &:hover {
-                    background: rgb(6, 75, 75);
+                    background: #6565eb;
                 }
             }
         }
@@ -59,12 +49,13 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        background: rgb(2, 153, 153);
+        background: #1758f0;
         margin-top: 30px;
 
         h2 {
             font-family: "Zen Kaku Gothic New", sans-serif;
             font-size: 25px;
+            background: #1758f0;
             color: #fff;
             padding: 20px;
             margin-bottom: 10px;
@@ -75,15 +66,22 @@
             flex-direction: column;
             font-family: "Zen Kaku Gothic New", sans-serif;
             color: #fff;
+            background: #1758f0;
+            border: none;
             border-radius: 8px;
 
             div {
                 margin: 10px;
+                font-family: "Zen Kaku Gothic New", sans-serif;
+                border: none;
 
                 label {
                     display: block;
                     font-weight: bold;
+                    font-family: "Zen Kaku Gothic New", sans-serif;
                     color: #fff;
+                    background: #1758f0;
+                    border: none;
                 }
 
                 input {
@@ -92,15 +90,18 @@
                     border-radius: 8px;
                     color: black;
                     background: #fff;
+                    font-family: "Zen Kaku Gothic New", sans-serif;
 
                     &[type="date"] {
-                        width: 30%;
+                        width: 40%;
                     }
 
                     &[type="time"],
                     &[type="number"] {
                         width: 100%;
                         appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: textfield;
                     }
                 }
             }
@@ -108,41 +109,26 @@
             button {
                 padding: 10px 15px;
                 margin-top: 70px;
-                background-color: rgb(6, 75, 75);
+                background-color: #0541b8b1;
                 color: white;
-                border-radius: 8px;
+                border: none;
                 cursor: pointer;
+                font-family: "Zen Kaku Gothic New", sans-serif;
                 font-size: 18px;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
 
                 &:hover {
-                    background-color: #016767;
+                    background-color: #114ae7;
                 }
             }
         }
+    }
 
-        .confirm {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            font-weight: bold;
-            padding-left: 20px;
-
-            .confirm-p {
-                padding: 5px;
-                font-size: 18px;
-            }
-
-            #confirmDate,
-            #confirmTime,
-            #confirmGuests {
-                font-size: 20px;
-                font-weight: 400;
-                font-family: "Quicksand", sans-serif;
-            }
-
-            .confirm-value {
-                font-size: 18px;
-            }
-        }
+    .book__error {
+        color: red;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        text-align: center;
     }
 }
 
@@ -150,7 +136,7 @@
     .restaurant-details {
         flex-direction: column;
         padding: 10px 30px;
-        margin-top: 70px;
+        margin-top: 80px;
 
         .left,
         .right {
@@ -158,13 +144,9 @@
             margin-bottom: 20px;
         }
 
-        .right {
-            form {
-                button {
-                    margin-top: 20px;
-                    width: 100%;
-                }
-            }
+        .right form button {
+            margin-top: 20px;
+            width: 100%;
         }
     }
 }

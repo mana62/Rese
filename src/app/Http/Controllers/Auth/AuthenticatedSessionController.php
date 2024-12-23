@@ -42,12 +42,12 @@ class AuthenticatedSessionController extends Controller
             }
 
             if ($user->role === 'store-owner') {
-                return redirect()->route('store_owner');
+                return redirect()->route('owner.dashboard');
             } elseif ($user->role === 'user') {
                 return redirect()->route('mypage');
             }
 
-            return redirect('/');
+            return redirect('login');
         }
         return back();
     }
@@ -67,6 +67,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('status', 'Logged out successfully');
     }
 }

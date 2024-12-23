@@ -68,12 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.redirect_url) {
                     window.location.href = data.redirect_url;
                 } else {
-                    resultElement.textContent = "お支払いが完了しましたが、リダイレクト先が見つかりません";
+                    resultElement.textContent =
+                        "お支払いが完了しましたが、リダイレクト先が見つかりません";
                 }
             } else {
-                resultElement.textContent = data.message || "エラーが発生しました";
+                resultElement.textContent =
+                    data.message || "エラーが発生しました";
             }
-        //ネットワークなどのエラーの場合
+            //ネットワークなどのエラーの場合
         } catch (error) {
             resultElement.textContent = `エラー: ${error.message}`;
         }

@@ -60,11 +60,8 @@ class RegisteredUserController extends Controller
 
 
         //ユーザーのお気に入りを取得
-        $favorites = $user->favorites ?? collect();
-
-        //お気に入りのレストランIDを取得
-        $favoriteIds = $favorites->pluck('restaurant_id')->toArray();
         $favorites = $user->favorites()->with('area', 'genre')->get();
+        $favoriteIds = $favorites->pluck('restaurant_id')->toArray();
 
         return view('mypage', compact('user', 'reservations', 'favorites', 'favoriteIds', 'checkouts'));
     }
@@ -73,17 +70,10 @@ class RegisteredUserController extends Controller
     public function toggleFavorite(Request $request, $restaurantId)
     {
         $user = auth()->user();
-        $isFavorited = $user->favorites()->where('restaurant_id', $restaurantId)->exists();
+        $user->favorites()->toggle($restaurantId);
 
-        if ($isFavorited) {
-            //既にお気に入りなら削除
-            $user->favorites()->detach($restaurantId);
-            return response()->json(['status' => 'removed']);
-        } else {
-            //新しくお気に入りに追加
-            $user->favorites()->attach($restaurantId);
-            return response()->json(['status' => 'added']);
-        }
+        $status = $user->favorites()->where('restaurant_id', $restaurantId)->exists() ? 'added' : 'removed';
+        return response()->json(['status' => $status]);
     }
 
     //予約キャンセル
@@ -92,10 +82,7 @@ class RegisteredUserController extends Controller
         $reservation = Reservation::findOrFail($id);
 
         //予約のステータスをcancelに変更
-        $reservation->status = Reservation::STATUS_CANCELED;
-        $reservation->save();
-
-        //ソフトデリート
+        $reservation->update(['status' => Reservation::STATUS_CANCELED]);
         $reservation->delete();
 
         return response()->json(['message' => '予約をキャンセルしました']);

@@ -1,9 +1,3 @@
-$background: #fff;
-$textColor: rgb(2, 153, 153);
-$formColor: #333;
-$fontEn: "Quicksand", sans-serif;
-$fontJa: "Zen Kaku Gothic New", sans-serif;
-
 .nav-search {
     margin: 0 auto;
     display: flex;
@@ -16,152 +10,76 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
     &__area,
     &__genre {
         margin-right: 10px;
-        font-family: "Quicksand", sans-serif;
+        font-family: "Zen Kaku Gothic New", sans-serif;
         border-right: 1px solid #ddd;
         padding-right: 10px;
 
         select {
             border: none;
             background-color: transparent;
-            font-family: "Quicksand", sans-serif;
+            font-family: "Zen Kaku Gothic New", sans-serif;
             padding: 10px;
+
+            &::after {
+                content: "\ell4";
+                font-family: "Zen Kaku Gothic New", sans-serif;
+                float: right;
+                color: #000;
+            }
         }
     }
+}
 
-    .search__form {
-        display: flex;
-        align-items: center;
-        margin-right: 60px;
+.search {
+    display: flex;
+    align-items: center;
+    padding: 10px;
 
-        .search__icon {
-            margin-right: 5px;
-            width: 30px;
-            height: 30px;
-            margin-top: 15px;
-        }
+    &__icon {
+        margin-right: 5px;
+        width: 30px;
+        height: 30px;
+    }
 
-        .search__form-input {
-            border: none;
-            border-radius: 4px;
-            background: #fff;
-            font-family: "Quicksand", sans-serif;
-            font-size: 14px;
-            margin-top: 15px;
+    &__input {
+        border: none;
+        border-radius: 4px;
+        background: #fff;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        font-size: 14px;
+    }
+
+    &__submit {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid #1758f0;
+        background: #1758f0;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 5px 10px;
+        text-align: center;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        transition: background 0.2s ease;
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background: #6565eb;
         }
     }
 }
 
 @media (max-width: 768px) {
     .nav-search {
-        text-align: center;
+        flex-direction: column;
+        margin: 10px;
+        margin-left: 20px;
+        align-items: center;
 
         &__area,
         &__genre {
             border: none;
         }
-
-        .search__form-input {
-            width: 100%;
-        }
-    }
-}
-
-.all-shop {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 10px 50px;
-    margin-top: 130px;
-
-    .card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 300px;
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 7px;
-        text-align: left;
-
-        &:hover {
-            transform: translateY(-5px);
-        }
-
-        .content-img img {
-            width: 100%;
-            height: auto;
-            border-top-left-radius: 7px;
-            border-top-right-radius: 7px;
-        }
-
-        .text-box {
-            padding: 10px;
-
-            h2 {
-                font-size: 24px;
-                margin-bottom: 5px;
-                font-family: "Zen Kaku Gothic New", sans-serif;
-            }
-
-            .area,
-            .genre {
-                font-size: 14px;
-                color: #6c757d;
-                margin-bottom: 5px;
-                font-family: "Zen Kaku Gothic New", sans-serif;
-                display: inline-block;
-            }
-
-            .link {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-top: 5px;
-
-                a {
-                    color: #fff;
-                    text-decoration: none;
-                    border: 1px solid rgb(2, 153, 153);
-                    background: rgb(2, 153, 153);
-                    border-radius: 4px;
-                    font-size: 14px;
-                    padding: 5px 10px;
-                    text-align: center;
-                    font-family: "Zen Kaku Gothic New", sans-serif;
-                    transition: background 0.2s ease;
-
-                    &:hover {
-                        background: #016767;
-                    }
-                }
-
-                .favorite-btn {
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    font-size: 3rem;
-                    color: #ccc;
-                    padding: 5px;
-
-                    &.favorited {
-                        color: #e3342f;
-                    }
-
-                    &:hover {
-                        color: #e388b6;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .all-shop {
-        margin-top: 170px;
-        text-align: center;
     }
 }

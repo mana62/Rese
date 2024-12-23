@@ -19,7 +19,7 @@
 .header__logo {
     font-size: 40px;
     font-weight: bold;
-    color: rgb(2, 153, 153);
+    color: #1758f0;
     text-decoration: none;
     font-family: "Quicksand", sans-serif;
     margin-left: 20px;
@@ -31,7 +31,7 @@
     width: 45px;
     height: 45px;
     cursor: pointer;
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     border-radius: 5px;
     display: flex;
     justify-content: left;
@@ -46,7 +46,7 @@
     width: 25px;
     height: 2px;
     margin-top: 22px;
-    margin-left:8px;
+    margin-left: 8px;
     background: #fff;
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
@@ -107,7 +107,7 @@
     top: 40px;
     left: 60px;
     font-size: 40px;
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -126,7 +126,7 @@
 }
 .nav__menu ul a {
     text-decoration: none;
-    color: rgb(2, 153, 153);
+    color: #1758f0;
     font-size: 28px;
     font-family: "Quicksand", sans-serif;
     line-height: 2;

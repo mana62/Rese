@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
 @endsection
 
 @section('nav-js')
     <li><a href="/restaurants">HOME</a></li>
-    <li>
-        <a href="{{ route('admin_logout') }}"
-            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-            {{ __('LOGOUT') }}
-        </a>
-        <form id="logout-form" action="{{ route('admin_logout') }}" method="post" style="display: none;">
-            @csrf
-        </form>
-    </li>
+    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        {{ __('LOGOUT') }}
+    </a>
+    <form id="logout-form" action="{{ route('admin.logout') }}" method="post" style="display: none;">
+        @csrf
+    </form>
 @endsection
 
 @section('content')
@@ -32,7 +29,7 @@
     <div class="store-owner">
         <div class="store-owner__container">
             <h2 class="sub-ttl">店舗代表者作成フォーム</h2>
-            <form class="store-owner__form" action="{{ route('admin.createStoreOwner') }}" method="POST">
+            <form class="store-owner__form" action="{{ route('admin.store_owner.create') }}" method="POST">
                 @csrf
                 <div>
                     <label for="name">名前</label>
@@ -65,17 +62,19 @@
         <!-- 店舗代表者一覧と削除 -->
         <div class="store-owner__container">
             <h2>店舗代表者一覧</h2>
-            @foreach ($storeOwners as $storeOwner)
-                @if ($storeOwner->status === 'active')
+            @foreach ($storeOwners as $owner)
+                @if ($owner->status === 'active')
                     <div class="owner-show">
                         <p class="owner-name">
-                            {{ $loop->iteration }} .{{ $storeOwner->name }} ({{ $storeOwner->email }})
-                        <form action="{{ route('admin.deleteStoreOwner', $storeOwner->id) }}" method="POST"
+                            {{ $loop->iteration }} .{{ $owner->name }}<br> ({{ $owner->email }})
+                        </p>
+                        <form action="{{ route('admin.store_owner.delete', $owner->id) }}" method="POST"
                             style="display: inline;">
                             @csrf
+                            @method('DELETE')
                             <button class="owner-submit" type="submit">削除</button>
                         </form>
-                        </p>
+
                     </div>
                 @endif
             @endforeach
@@ -84,7 +83,7 @@
         <!-- お知らせメール送信 -->
         <div class="store-owner__container">
             <h2>お知らせメール</h2>
-            <form class="store-owner__form" action="{{ route('mail.notice') }}" method="POST">
+            <form class="store-owner__form" action="{{ route('admin.notification.send') }}" method="POST">
                 @csrf
                 <label for="message">お知らせ内容</label>
                 @error('message')

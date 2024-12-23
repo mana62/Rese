@@ -1,0 +1,155 @@
+.message {
+  text-align: center;
+  margin: 20px;
+  color: red;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 20px;
+}
+.message-session {
+  display: block;
+}
+
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 110px;
+}
+.header-container .search-bar {
+  position: absolute;
+  right: 150px;
+}
+.header-container .search-bar__form {
+  gap: 10px;
+}
+.header-container .search-bar__input {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  width: 200px;
+}
+.header-container .search-bar__button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #1758f0;
+  background: #1758f0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 10px;
+}
+.header-container .search-bar__button:hover {
+  background: #6565eb;
+}
+
+.store-management {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 10%;
+}
+.store-management .store-form,
+.store-management .store-info,
+.store-management .reservations {
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #1758f0;
+  border-radius: 8px;
+  text-align: center;
+}
+.store-management .store-form h2,
+.store-management .store-info h2,
+.store-management .reservations h2 {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 20px 0;
+}
+.store-management .store-form p,
+.store-management .store-info p,
+.store-management .reservations p {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 10px;
+  font-size: 16px;
+}
+.store-management .store-form input,
+.store-management .store-form textarea,
+.store-management .store-form select,
+.store-management .store-info input,
+.store-management .store-info textarea,
+.store-management .store-info select,
+.store-management .reservations input,
+.store-management .reservations textarea,
+.store-management .reservations select {
+  width: 100%;
+  max-width: 350px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.store-management .store-form input::-moz-placeholder, .store-management .store-form textarea::-moz-placeholder, .store-management .store-form select::-moz-placeholder, .store-management .store-info input::-moz-placeholder, .store-management .store-info textarea::-moz-placeholder, .store-management .store-info select::-moz-placeholder, .store-management .reservations input::-moz-placeholder, .store-management .reservations textarea::-moz-placeholder, .store-management .reservations select::-moz-placeholder {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+.store-management .store-form input::placeholder,
+.store-management .store-form textarea::placeholder,
+.store-management .store-form select::placeholder,
+.store-management .store-info input::placeholder,
+.store-management .store-info textarea::placeholder,
+.store-management .store-info select::placeholder,
+.store-management .reservations input::placeholder,
+.store-management .reservations textarea::placeholder,
+.store-management .reservations select::placeholder {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+.store-management .store-form button,
+.store-management .store-info button,
+.store-management .reservations button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #1758f0;
+  background: #1758f0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 10px;
+}
+.store-management .store-form button:hover,
+.store-management .store-info button:hover,
+.store-management .reservations button:hover {
+  background: #6565eb;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .header-container .search-bar {
+    position: static;
+    margin-top: 10px;
+  }
+  .store-management {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+  .store-management .store-form input,
+.store-management .store-info input,
+.store-management .store-form textarea,
+.store-management .store-info textarea {
+    max-width: 100%;
+  }
+}
+/*# sourceMappingURL=owner_dashboard.css.map */

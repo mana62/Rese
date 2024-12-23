@@ -1,27 +1,20 @@
-body {
+.main-ttl {
+    margin-top: 120px;
     font-family: "Zen Kaku Gothic New", sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-.main-ttl, .sub-ttl, .message {
-    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
     text-align: center;
 }
 
-.main-ttl {
-    margin-top: 120px;
-    font-weight: 400;
-}
-
 .sub-ttl {
-    font-weight: 400;
+    @extend .main-ttl;
     margin: 20px 0;
 }
 
 .message {
+    text-align: center;
     margin: 20px;
     color: red;
+    font-family: "Zen Kaku Gothic New", sans-serif;
     font-size: 20px;
 
     &-session {
@@ -40,9 +33,10 @@ body {
         padding: 10px;
         gap: 10px;
         background: #fff;
-        border: 1px solid #029999;
+        border: 1px solid #1758f0;
         border-radius: 8px;
         text-align: center;
+        font-family: "Zen Kaku Gothic New", sans-serif;
     }
 
     &__form {
@@ -52,6 +46,7 @@ body {
         textarea {
             width: 100%;
             max-width: 350px;
+            font-family: "Zen Kaku Gothic New", sans-serif;
             padding: 10px;
             margin-bottom: 20px;
             font-size: 16px;
@@ -68,52 +63,54 @@ body {
             display: flex;
             justify-content: flex-end;
             margin-top: 30px;
+        }
 
-            button {
-                padding: 10px 20px;
-                font-size: 14px;
-                border: 1px solid #029999;
-                border-radius: 5px;
-                cursor: pointer;
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: 1px solid #1758f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "Zen Kaku Gothic New", sans-serif;
 
-                &:hover {
-                    background: #006868;
-                }
+            &:hover {
+                background: #6565eb;
             }
         }
     }
 
-    .store-owner__error {
+    &__error {
         color: red;
+        font-family: "Zen Kaku Gothic New", sans-serif;
         text-align: center;
     }
 }
 
-.owner {
-    &-show {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        padding: 10px;
+.owner-show {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
 
-        .name {
-            margin: 0;
-            flex-grow: 1;
-            font-size: 18px;
-        }
+    .owner-name {
+        margin: 0;
+        flex-grow: 1;
+        font-size: 18px;
+    }
 
-        .submit {
-            border: 1px solid #029999;
-            border-radius: 5px;
-            background: #029999;
-            color: #fff;
-            padding: 5px 20px;
-            margin-right: 20px;
-            cursor: pointer;
+    .owner-submit {
+        border: 1px solid #1758f0;
+        border-radius: 5px;
+        background: #1758f0;
+        color: #fff;
+        padding: 5px 20px;
+        margin-right: 20px;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        cursor: pointer;
 
-            &:hover {
-                background: #006868;
-            }
+        &:hover {
+            background: #6565eb;
         }
     }
 }
@@ -122,40 +119,43 @@ body {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #029999;
+    border: 1px solid #1758f0;
     border-radius: 4px;
     font-size: 16px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
     background-color: #f9f9f9;
     cursor: pointer;
     transition: border-color 0.3s ease, background-color 0.3s ease;
 
     &:hover {
-        border-color: #006868;
+        border-color: #6565eb;
         background-color: #eef9f9;
     }
 
     option {
         font-size: 16px;
         padding: 10px;
+        font-family: "Zen Kaku Gothic New", sans-serif;
         background-color: #ffffff;
         color: #333333;
     }
 }
 
-/* レスポンシブ */
 @media (max-width: 768px) {
     .store-owner {
         flex-direction: column;
         text-align: center;
         padding: 30px;
+        display: flex;
+        justify-content: center;
         align-items: center;
         min-height: 100vh;
+    }
 
-        &__form input[type="text"],
-        &__form input[type="email"],
-        &__form input[type="password"],
-        &__form textarea {
-            max-width: 100%;
-        }
+    .store-owner__form input[type="text"],
+    .store-owner__form input[type="email"],
+    .store-owner__form input[type="password"],
+    .store-owner__form textarea {
+        max-width: 100%;
     }
 }

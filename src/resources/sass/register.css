@@ -5,14 +5,14 @@
   background: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
 }
 .registration__header {
-  background: rgb(2, 153, 153);
+  background: #1758f0;
   color: #fff;
   font-family: "Quicksand", sans-serif;
   font-size: 28px;
-  padding: 10px;
+  padding: 10px 10px 10px 30px;
   border-radius: 8px 8px 0 0;
   margin-bottom: 20px;
 }
@@ -31,6 +31,7 @@
   border: none;
   border-bottom: 1px solid #333;
   width: 100%;
+  font-family: "Quicksand", sans-serif;
 }
 .registration__input::-moz-placeholder {
   color: #aaa;
@@ -42,6 +43,11 @@
   font-size: 20px;
   font-family: "Quicksand", sans-serif;
 }
+.registration .register__error {
+  color: red;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  text-align: center;
+}
 .registration__icon {
   width: 60px;
   height: 60px;
@@ -52,7 +58,7 @@
   margin-top: 20px;
 }
 .registration__button-submit {
-  background: rgb(2, 153, 153);
+  background: #1758f0;
   font-family: "Zen Kaku Gothic New", sans-serif;
   color: #fff;
   border: none;
@@ -64,38 +70,22 @@
   transition: background 0.3s;
 }
 .registration__button-submit:hover {
-  background: #016767;
-}
-
-.register__error {
-  color: red;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  text-align: center;
+  background: #6565eb;
 }
 
 @media (max-width: 768px) {
-  .registration,
-.login {
-    width: 80%;
+  .registration {
+    width: 90%;
     max-width: none;
     margin: 150px auto;
   }
-  .registration__header,
-.registration .login__header,
-.login__header,
-.login .login__header {
+  .registration__header {
     font-size: 24px;
   }
-  .registration__input,
-.registration .login__input,
-.login__input,
-.login .login__input {
+  .registration__input {
     font-size: 16px;
   }
-  .registration__button-submit,
-.registration .login__button-submit,
-.login__button-submit,
-.login .login__button-submit {
+  .registration__button-submit {
     font-size: 16px;
     padding: 8px 16px;
   }

@@ -22,7 +22,7 @@
     <h1 class="qr-ttl">QRコード</h1>
     <p class="qr-message">以下のQRコードを店舗で提示してください</p>
 
-    <div id="qr-code-section" class="qr-img">
+    <section id="qr-code-section" class="qr-img">
         @if ($reservation->qr_code)
             <div class="qr-img">
                 <img src="{{ asset('storage/' . $reservation->qr_code) }}" alt="QR Code">
@@ -30,7 +30,7 @@
         @else
             <p>QRコードが生成されていません</p>
         @endif
-    </div>
+    </section>
 
     <div class="qr-link">
         <a class="qr-link-root" href="{{ route('mypage') }}" class="btn btn-secondary">マイページに戻る</a>

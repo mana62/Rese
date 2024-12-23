@@ -1,9 +1,3 @@
-$background: #fff;
-$textColor: rgb(2, 153, 153);
-$formColor: #333;
-$fontEn: "Quicksand", sans-serif;
-$fontJa: "Zen Kaku Gothic New", sans-serif;
-
 .registration {
     width: 100%;
     max-width: 40%;
@@ -11,14 +5,14 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
 
     &__header {
-        background: rgb(2, 153, 153);
+        background: #1758f0;
         color: #fff;
         font-family: "Quicksand", sans-serif;
         font-size: 28px;
-        padding: 10px;
+        padding: 10px 10px 10px 30px;
         border-radius: 8px 8px 0 0;
         margin-bottom: 20px;
     }
@@ -39,6 +33,7 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
         border: none;
         border-bottom: 1px solid #333;
         width: 100%;
+        font-family: "Quicksand", sans-serif;
 
         &::-moz-placeholder,
         &::placeholder {
@@ -46,6 +41,12 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
             font-size: 20px;
             font-family: "Quicksand", sans-serif;
         }
+    }
+
+    .register__error {
+        color: red;
+        font-family: "Zen Kaku Gothic New", sans-serif;
+        text-align: center;
     }
 
     &__icon {
@@ -59,7 +60,7 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
         margin-top: 20px;
 
         &-submit {
-            background: rgb(2, 153, 153);
+            background: #1758f0;
             font-family: "Zen Kaku Gothic New", sans-serif;
             color: #fff;
             border: none;
@@ -71,37 +72,27 @@ $fontJa: "Zen Kaku Gothic New", sans-serif;
             transition: background 0.3s;
 
             &:hover {
-                background: #016767;
+                background: #6565eb;
             }
         }
     }
 }
 
-.register__error {
-    color: red;
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    text-align: center;
-}
-
 @media (max-width: 768px) {
-    .registration,
-    .login {
-        width: 80%;
+    .registration {
+        width: 90%;
         max-width: none;
         margin: 150px auto;
 
-        &__header,
-        .login__header {
+        &__header {
             font-size: 24px;
         }
 
-        &__input,
-        .login__input {
+        &__input {
             font-size: 16px;
         }
 
-        &__button-submit,
-        .login__button-submit {
+        &__button-submit {
             font-size: 16px;
             padding: 8px 16px;
         }

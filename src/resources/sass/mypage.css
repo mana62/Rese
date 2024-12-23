@@ -20,25 +20,25 @@
   justify-content: space-between;
   padding: 0 70px;
 }
-.mypage .left,
-.mypage .right {
+.mypage .reservation-info,
+.mypage .favorite-info {
   width: 48%;
   background-color: #fff;
   padding: 10px;
   font-family: "Zen Kaku Gothic New", sans-serif;
 }
-.mypage .left h2,
-.mypage .right h2 {
+.mypage .reservation-info h2,
+.mypage .favorite-info h2 {
   font-size: 25px;
   margin-bottom: 20px;
 }
-.mypage .left p,
-.mypage .right p {
+.mypage .reservation-info p,
+.mypage .favorite-info p {
   margin: 10px;
 }
 
 .reservation-card {
-  background: rgb(2, 153, 153);
+  background: #1758f0;
   color: #fff;
   padding: 20px;
   margin-bottom: 10px;
@@ -49,6 +49,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+  font-family: "Quicksand", sans-serif;
 }
 .reservation-card .reservation-header .reservation-title {
   font-size: 25px;
@@ -57,7 +59,7 @@
   margin: 5px;
 }
 .reservation-card .reservation-cancel-btn {
-  background-color: rgb(2, 153, 153);
+  background-color: #1758f0;
   border: 2px solid #fff;
   color: #fff;
   font-size: 16px;
@@ -73,11 +75,6 @@
   right: 10px;
   margin: 10px;
 }
-.reservation-card .reservation__icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
-}
 .reservation-card .reservation-details {
   display: flex;
   flex-direction: column;
@@ -87,86 +84,9 @@
   display: flex;
   align-items: center;
   margin: 5px;
-  font-size: 18px;
-  color: #fff;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-}
-
-.strong {
-  display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
   font-family: "Quicksand", sans-serif;
-  font-weight: 400;
-  width: 200px;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.button {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-.change-book {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  align-items: flex-end;
-}
-.change-book__button {
-  width: auto;
-  margin: 10px;
-  padding: 10px;
-  background-color: rgb(2, 153, 153);
-  border: 1px solid #fff;
-  border-radius: 5px;
-  color: #fff;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center;
-}
-.change-book__div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.change-book_label {
-  color: #fff;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  font-weight: 400;
-  width: 30%;
-  text-align: left;
-  padding-left: 10px;
-  font-size: 17px;
-  margin-right: 23px;
-}
-.change-book_input {
-  flex: 1;
-  color: #fff;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  color: #000;
-}
-.change-book_submit {
-  width: auto;
-  padding: 10px;
-  background-color: rgb(2, 153, 153);
-  border: 1px solid #fff;
-  border-radius: 5px;
-  color: #fff;
-  font-family: "Zen Kaku Gothic New", sans-serif;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center;
 }
 
 .favorite-shops {
@@ -201,8 +121,8 @@
 .favorite-shops .favorite-card .favorite-link {
   color: #fff;
   text-decoration: none;
-  border: 1px solid rgb(2, 153, 153);
-  background: rgb(2, 153, 153);
+  border: 1px solid #1758f0;
+  background: #1758f0;
   border-radius: 5px;
   font-size: 13px;
   padding: 5px;
@@ -210,7 +130,7 @@
   display: inline-block;
 }
 .favorite-shops .favorite-card .favorite-link:hover {
-  background-color: #006868;
+  background-color: #6565eb;
   color: #fff;
 }
 .favorite-shops .favorite-card .favorite-btn {
@@ -234,10 +154,13 @@
     flex-direction: column;
     padding: 20px;
   }
-  .mypage .left,
-.mypage .right {
+  .mypage .reservation-info,
+.mypage .favorite-info {
     width: 100%;
     margin-bottom: 20px;
+  }
+  .favorite-shops .favorite-card {
+    width: calc(100% - 20px);
   }
 }
 /*# sourceMappingURL=mypage.css.map */

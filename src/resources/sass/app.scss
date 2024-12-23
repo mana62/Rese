@@ -18,7 +18,7 @@
     &__logo {
         font-size: 40px;
         font-weight: bold;
-        color: rgb(2, 153, 153);
+        color: #1758f0;
         text-decoration: none;
         font-family: "Quicksand", sans-serif;
         margin-left: 20px;
@@ -31,7 +31,7 @@
     width: 45px;
     height: 45px;
     cursor: pointer;
-    background: rgb(2, 153, 153);
+    background: #1758f0;
     border-radius: 5px;
     display: flex;
     justify-content: left;
@@ -62,19 +62,15 @@
             top: 8px;
             width: 8px;
         }
-    }
 
-    &.open {
-        span {
-            &:nth-child(1) {
+        &.open {
+            &::nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
-
-            &:nth-child(2) {
+            &::nth-child(2) {
                 opacity: 0;
             }
-
-            &:nth-child(3) {
+            &::nth-child(3) {
                 transform: rotate(-45deg) translate(5px, -5px);
             }
         }
@@ -109,7 +105,7 @@
             top: 40px;
             left: 60px;
             font-size: 40px;
-            background: rgb(2, 153, 153);
+            background: #1758f0;
             border-radius: 5px;
             cursor: pointer;
             display: flex;
@@ -125,20 +121,19 @@
 
             li {
                 margin: 0;
+            }
 
-                a {
-                    text-decoration: none;
-                    color: rgb(2, 153, 153);
-                    font-size: 28px;
-                    font-family: "Quicksand", sans-serif;
-                    line-height: 2;
-                }
+            a {
+                text-decoration: none;
+                color: #1758f0;
+                font-size: 28px;
+                font-family: "Quicksand", sans-serif;
+                line-height: 2;
             }
         }
     }
 }
 
-/* レスポンシブ */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -180,7 +175,7 @@
             ul {
                 padding-top: 20%;
 
-                li a {
+                a {
                     font-size: 24px;
                 }
             }

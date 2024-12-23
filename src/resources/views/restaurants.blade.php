@@ -36,7 +36,7 @@
 
             <!-- キーワード検索 -->
             <div class="search">
-                <img class="search__icon" src="{{ asset('img/icon/search-icon.png') }}" alt="search icon">
+                <img class="search__icon" src="{{ asset('img/icon/search_icon.png') }}" alt="search icon">
                 <input class="search__input" type="text" name="input" placeholder="search..."
                     value="{{ request('input') }}">
                 <button class="search__submit" type="submit">検索</button>
@@ -71,16 +71,16 @@
     <!--レストラン一覧-->
     <div class="all-shop">
         @foreach ($restaurants ?? [] as $restaurant)
-            <div class="card">
+            <article class="card">
                 <div class="content-img">
                     <img src="{{ asset('img/' . $restaurant->image) }}" alt="{{ $restaurant->name }}" />
                 </div>
                 <div class="text-box">
-                    <h2>{{ $restaurant->name }}</h2>
+                    <h1>{{ $restaurant->name }}</h1>
                     <p class="area">#{{ $restaurant->area->area_name }}</p>
                     <p class="genre">#{{ $restaurant->genre->genre_name }}</p>
                     <div class="link">
-                        <a href="{{ route('detail', $restaurant->id) }}">詳しくみる</a>
+                        <a href="{{ route('restaurants.show', $restaurant->id) }}">詳しくみる</a>
 
                         @auth
                         <button id="favorite-btn-{{ $restaurant->id }}" 
@@ -91,7 +91,7 @@
                         @endauth
                     </div>
                 </div>
-            </div>
+            </article>
         @endforeach
     </div>
 

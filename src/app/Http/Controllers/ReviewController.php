@@ -12,7 +12,7 @@ class ReviewController extends Controller
     public function storeReview(ReviewRequest $request, $restaurantId)
     {
         if (!Auth::check()) {
-            return redirect()->route('detail', $restaurantId)
+            return redirect()->route('restaurants.show', $restaurantId)
                 ->withErrors(['login_required' => 'レビューを投稿するにはログインしてください']);
         }
 
@@ -23,6 +23,6 @@ class ReviewController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('detail', $restaurantId)->with('success', 'レビューを投稿しました');
+        return redirect()->route('restaurants.show', $restaurantId);
     }
 }

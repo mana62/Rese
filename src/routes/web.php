@@ -12,11 +12,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
-//ゲストユーザールート
-//ログインしていないユーザー（会員登録、ログイン）
+//ゲスト
 Route::middleware(['guest'])->group(function () {
     //会員登録
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('auth.register');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
     //ログイン
@@ -24,7 +23,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 });
 
-// メール認証ルート
+//メール認証
 Route::middleware(['auth'])->group(function () {
     Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
@@ -58,7 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         //QRコード表示
         Route::get('/qr/{id}', 'showQrCode')->name('qr');
         //予約変更
-        Route::post('/reservations/{id}/update', 'update')->name('reservations.update');
+        Route::patch('/reservations/{id}/update', 'update')->name('reservations.update');
     });
 });
 
@@ -67,7 +66,7 @@ Route::controller(RestaurantController::class)->group(function () {
     //レストラン一覧
     Route::get('/restaurants', 'index')->name('restaurants.index');
     //レストラン詳細
-    Route::get('/restaurants/{id}', 'show')->name('detail');
+    Route::get('/restaurants/{id}', 'show')->name('restaurants.show');
     //画像アップロード
     Route::post('/restaurants/{id}/upload-image', [ImageController::class, 'saveImage'])->name('restaurants.uploadImage');
 });
@@ -85,42 +84,54 @@ Route::controller(CheckoutController::class)->group(function () {
     Route::get('/checkout-return', 'handleReturn')->name('checkout.return');
     //決済完了の表示
     Route::get('/checkout_done', function () {
-        return view('checkout_done'); })->name('checkout_done');
+        return view('checkout_done');
+    })->name('checkout.done');
 });
+
 
 
 //管理者
-// 管理者用ルート
-//管理者ログインページ
-Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin_login_form');
-//管理者ログイン処理
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin_login');
-//管理者ログアウト
-Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin_logout');
+Route::prefix('admin')->name('admin.')->group(function () {
+    //管理者ログイン
+    Route::get('/login', [AdminController::class, 'showLoginForm'])->name('login');
+    //管理者ログイン処理
+    Route::post('/login', [AdminController::class, 'login'])->name('login.post');
+    //管理者ログアウト
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
-Route::middleware('admin')->group(function () {
-    //管理者ページ
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    //店舗代表者作成
-    Route::post('/admin/create', [AdminController::class, 'createStoreOwner'])->name('admin.createStoreOwner');
-    //ユーザーを店舗代表者に設定
-    Route::post('/admin/user-to-store-owner/{id}', [AdminController::class, 'userToStoreOwner'])->name('admin.userToStoreOwner');
-    //店舗代表者削除
-    Route::post('/admin/owner/{id}/delete', [AdminController::class, 'deleteStoreOwner'])->name('admin.deleteStoreOwner');
-    //通知送信
-    Route::post('/admin/send-notification', [AdminController::class, 'sendNotification'])->name('mail.notice');
+    //管理者専用ページ
+    Route::middleware('admin')->group(function () {
+        //ダッシュボード
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        //店舗代表者作成
+        Route::post('/store-owner/create', [AdminController::class, 'createStoreOwner'])->name('store_owner.create');
+        //店舗代表者削除
+        Route::delete('/store-owner/{id}', [AdminController::class, 'deleteStoreOwner'])->name('store_owner.delete');
+        //お知らせ送信
+        Route::post('/notification/send', [AdminController::class, 'sendNotification'])->name('notification.send');
+    });
 });
 
-//店舗代表者用ルート
-Route::middleware(['auth', 'role:store-owner'])->controller(StoreOwnerController::class)->group(function () {
-    //店舗代表者ページ
-    Route::get('/owner', 'index')->name('store_owner');
-    //店舗作成フォーム
-    Route::get('/owner/create', 'create')->name('owner.create');
-    //店舗作成処理
-    Route::post('/owner/store', 'createStore')->name('owner.createStore');
-    //店舗情報更新
-    Route::post('/owner/update', 'updateStore')->name('owner.updateStore');
-    //店舗検索
-    Route::get('/owner/search', 'searchStore')->name('owner.searchStore');
+//Owner
+Route::prefix('owner')->name('owner.')->group(function () {
+    //ログイン画面
+    Route::get('/login', [StoreOwnerController::class, 'showLoginForm'])->name('login');
+    //ログイン処理
+    Route::post('/login', [StoreOwnerController::class, 'login'])->name('login.post');
+    //ログアウト
+    Route::post('/logout', [StoreOwnerController::class, 'logout'])->name('logout');
+
+    //Ownerダッシュボード
+    Route::middleware(['auth', 'role:store-owner'])->group(function () {
+        //ダッシュボード
+        Route::get('/dashboard', [StoreOwnerController::class, 'index'])->name('dashboard');
+        //店舗作成フォーム
+        Route::get('/create', [StoreOwnerController::class, 'create'])->name('create');
+        //店舗作成処理
+        Route::post('/store', [StoreOwnerController::class, 'createStore'])->name('store');
+        //店舗情報更新
+        Route::post('/update', [StoreOwnerController::class, 'updateStore'])->name('update');
+        //店舗検索
+        Route::get('/search', [StoreOwnerController::class, 'searchStore'])->name('search');
+    });
 });

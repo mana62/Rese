@@ -22,11 +22,10 @@
     <a href="{{ route('mypage') }}" class="back-arrow">&lt;</a>
     <h1 class="ttl">Checkout</h1>
     <div class="message" id="payment-result"></div>
-    <input type="hidden" id="reservation-id" value="{{ $reservation->id }}">
     <form class="payment-form-content" id="payment-form">
         @csrf
         <input type="hidden" id="reservation-id" value="{{ $reservation->id }}">
-        <input type="text" id="amount" class="payment-input" placeholder="金額を入力 (円)" required>
+        <input type="number" id="amount" class="payment-input" placeholder="金額を入力 (円)" required min="1" step="1">
         <div class="card-element-form" id="card-element"></div>
         <div class="payment-button">
             <button class="payment-button-submit" type="submit">支払う</button>

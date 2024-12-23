@@ -88,7 +88,7 @@ class CheckoutController extends Controller
                 //成功の場合checkout_doneに飛ぶ
                 return response()->json([
                     'success' => true,
-                    'redirect_url' => route('checkout_done'),
+                    'redirect_url' => route('checkout.done'),
                 ]);
 
             }
@@ -128,4 +128,3 @@ class CheckoutController extends Controller
         }
     }
 }
-

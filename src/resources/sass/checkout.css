@@ -1,0 +1,111 @@
+.back-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 110px;
+  margin-left: 60px;
+  padding-bottom: 10px;
+  padding-right: 2px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #1758f0;
+  background: #1758f0;
+  border-radius: 5px;
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: bold;
+}
+.back-arrow:hover {
+  background: #6565eb;
+}
+
+@media (max-width: 768px) {
+  .back-arrow {
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  .card-element-form {
+    width: 90%;
+  }
+  .payment-input {
+    width: 90%;
+  }
+}
+.ttl {
+  margin-top: 100px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  text-align: center;
+}
+
+.message {
+  margin: 0 auto;
+  text-align: center;
+  color: red;
+  padding: 30px;
+  font-size: 18px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+.payment-form-content {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.payment-input {
+  display: block;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.card-element {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 18px;
+}
+
+.card-element-form {
+  display: block;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.payment-button {
+  text-align: center;
+}
+.payment-button .payment-button-submit {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #1758f0;
+  background: #1758f0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 40px;
+}
+.payment-button .payment-button-submit:hover {
+  background: #6565eb;
+}
+/*# sourceMappingURL=checkout.css.map */

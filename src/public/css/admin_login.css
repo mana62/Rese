@@ -55,6 +55,7 @@
     font-family: "Zen Kaku Gothic New", sans-serif;
     text-align: center;
 }
+
 .login__icon {
     width: 60px;
     height: 60px;
@@ -121,4 +122,3 @@
         padding: 8px 16px;
     }
 }
-/*# sourceMappingURL=login.css.map */

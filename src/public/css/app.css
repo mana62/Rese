@@ -121,9 +121,11 @@
     list-style: none;
     padding-top: 20%;
 }
+
 .nav__menu ul li {
     margin: 0;
 }
+
 .nav__menu ul a {
     text-decoration: none;
     color: #1758f0;
@@ -140,7 +142,6 @@
 .nav__menu {
     display: none;
 }
-/*# sourceMappingURL=app.css.map */
 
 @media (max-width: 768px) {
     .header {

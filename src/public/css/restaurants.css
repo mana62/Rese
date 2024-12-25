@@ -64,19 +64,6 @@
     background: #6565eb;
 }
 
-@media (max-width: 768px) {
-    .nav-search {
-        flex-direction: column;
-        margin: 10px;
-        margin-left: 20px;
-        align-items: center;
-    }
-    .nav-search__area,
-    .nav-search__genre {
-        border: none;
-    }
-}
-
 .all-shop {
     max-width: 1320px;
     margin: 0 auto;
@@ -85,13 +72,6 @@
     gap: 30px;
     margin-top: 90px;
     padding: 20px 50px;
-}
-
-@media (max-width: 768px) {
-    .all-shop {
-        margin-top: 260px;
-        flex-direction: column;
-    }
 }
 
 .all-shop .card {
@@ -104,6 +84,7 @@
     border-radius: 7px;
     text-align: left;
 }
+
 .all-shop .card:hover {
     transform: translateY(-5px);
 }
@@ -125,6 +106,7 @@
     margin-bottom: 5px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
+
 .all-shop .card .text-box .area,
 .all-shop .card .text-box .genre {
     font-size: 14px;
@@ -140,6 +122,7 @@
     align-items: center;
     padding-top: 5px;
 }
+
 .all-shop .card .text-box .link a {
     color: #fff;
     text-decoration: none;
@@ -152,9 +135,11 @@
     font-family: "Zen Kaku Gothic New", sans-serif;
     transition: background 0.2s ease;
 }
+
 .all-shop .card .text-box .link a:hover {
     background: #6565eb;
 }
+
 .all-shop .card .text-box .link .favorite-btn {
     background: none;
     border: none;
@@ -163,9 +148,30 @@
     color: #ccc;
     padding: 5px;
 }
+
 .all-shop .card .text-box .link .favorite-btn:hover {
     color: #e388b6;
 }
+
 .all-shop .card .text-box .link .favorite-btn.favorited {
     color: #e3342f;
+}
+
+@media (max-width: 768px) {
+    .nav-search {
+        flex-direction: column;
+        margin: 10px;
+        margin-left: 20px;
+        align-items: center;
+    }
+
+    .nav-search__area,
+    .nav-search__genre {
+        border: none;
+    }
+
+    .all-shop {
+        margin-top: 260px;
+        flex-direction: column;
+    }
 }

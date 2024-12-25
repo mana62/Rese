@@ -17,7 +17,6 @@
     <li><a href="/mypage">MYPAGE</a></li>
 @endsection
 
-
 @section('content')
     <a href="{{ route('mypage') }}" class="back-arrow">&lt;</a>
     <h1 class="ttl">Checkout</h1>

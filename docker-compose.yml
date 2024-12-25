@@ -23,6 +23,7 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile
     container_name: rese_php
+    command: supervisord -c /etc/supervisor/conf.d/supervisord.conf
     volumes:
       - ./src:/var/www/
       - ./logs/php:/var/log/php-fpm

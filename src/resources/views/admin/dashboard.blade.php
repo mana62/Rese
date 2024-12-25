@@ -5,7 +5,6 @@
 @endsection
 
 @section('nav-js')
-    <li><a href="/restaurants">HOME</a></li>
     <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         {{ __('LOGOUT') }}
     </a>
@@ -24,8 +23,6 @@
             </div>
         @endif
     </div>
-
-    <!-- 店舗代表者作成フォーム -->
     <div class="store-owner">
         <div class="store-owner__container">
             <h2 class="sub-ttl">店舗代表者作成フォーム</h2>
@@ -57,9 +54,6 @@
                 </div>
             </form>
         </div>
-
-
-        <!-- 店舗代表者一覧と削除 -->
         <div class="store-owner__container">
             <h2>店舗代表者一覧</h2>
             @foreach ($storeOwners as $owner)
@@ -74,13 +68,10 @@
                             @method('DELETE')
                             <button class="owner-submit" type="submit">削除</button>
                         </form>
-
                     </div>
                 @endif
             @endforeach
         </div>
-
-        <!-- お知らせメール送信 -->
         <div class="store-owner__container">
             <h2>お知らせメール</h2>
             <form class="store-owner__form" action="{{ route('admin.notification.send') }}" method="POST">
@@ -96,7 +87,6 @@
                     <option value="user">USER</option>
                     <option value="store-owner">SHOP-OWNER</option>
                 </select>
-
                 <div class="submit-container">
                     <button type="submit">お知らせを送信</button>
                 </div>

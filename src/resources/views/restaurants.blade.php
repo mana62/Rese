@@ -6,9 +6,7 @@
 
 @section('nav')
     <div class="nav">
-        <!-- 検索フォーム -->
         <form action="{{ route('restaurants.index') }}" method="GET" class="nav-search">
-            <!-- エリア選択 -->
             <div class="nav-search__area">
                 <select class="nav-search__area-select" name="area" onchange="this.form.submit()">
                     <option class="nav-search__area-option" value="">All area</option>
@@ -20,8 +18,6 @@
                     @endforeach
                 </select>
             </div>
-
-            <!-- ジャンル選択 -->
             <div class="nav-search__genre">
                 <select class="nav-search__genre-select" name="genre" onchange="this.form.submit()">
                     <option class="nav-search__genre-option" value="">All genre</option>
@@ -33,8 +29,6 @@
                     @endforeach
                 </select>
             </div>
-
-            <!-- キーワード検索 -->
             <div class="search">
                 <img class="search__icon" src="{{ asset('img/icon/search_icon.png') }}" alt="search icon">
                 <input class="search__input" type="text" name="input" placeholder="search..."
@@ -45,14 +39,12 @@
     </div>
 @endsection
 
-
 @section('nav-js')
     @guest
         <li><a href="/restaurants">HOME</a></li>
         <li><a href="/register">REGISTRATION</a></li>
         <li><a href="/login">LOGIN</a></li>
     @endguest
-
     @auth
         <li><a href="/restaurants">HOME</a></li>
         <li>
@@ -68,7 +60,6 @@
 @endsection
 
 @section('content')
-    <!--レストラン一覧-->
     <div class="all-shop">
         @foreach ($restaurants ?? [] as $restaurant)
             <article class="card">
@@ -81,13 +72,12 @@
                     <p class="genre">#{{ $restaurant->genre->genre_name }}</p>
                     <div class="link">
                         <a href="{{ route('restaurants.show', $restaurant->id) }}">詳しくみる</a>
-
                         @auth
-                        <button id="favorite-btn-{{ $restaurant->id }}" 
-                            class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}" 
-                            onclick="toggleFavorite(this, {{ $restaurant->id }})">
-                            &hearts;
-                        </button>
+                            <button id="favorite-btn-{{ $restaurant->id }}"
+                                class="favorite-btn {{ in_array($restaurant->id, $favoriteIds) ? 'favorited' : '' }}"
+                                onclick="toggleFavorite(this, {{ $restaurant->id }})">
+                                &hearts;
+                            </button>
                         @endauth
                     </div>
                 </div>

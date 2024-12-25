@@ -42,12 +42,11 @@ class SendReminders extends Command
      */
     public function handle()
     {
-        //今日の予約を取得
         $reservations = Reservation::whereDate('date', today())->get();
         $this->info('今日の予約数: ' . $reservations->count());
 
         foreach ($reservations as $reservation) {
-            //ユーザーに通知
+
             if (!$reservation->user) {
                 $this->error('ユーザー情報が見つかりません: 予約ID ' . $reservation->id);
                 continue;
@@ -62,22 +61,23 @@ class SendReminders extends Command
                 ]);
             }
 
-            //店舗オーナーに通知
-    $ownerId = $reservation->restaurant?->owner_id;
-    $storeOwner = $ownerId ? User::find($ownerId) : null;
+            $ownerId = $reservation->restaurant?->owner_id;
+            $storeOwner = $ownerId ? User::find($ownerId) : null;
 
-    if ($storeOwner) {
-        $this->info('送信中: ' . $storeOwner->email);
-        try {
-            $storeOwner->notify(new ReminderEmail($reservation));
-        } catch (\Exception $e) {
-            Log::error('店舗オーナーへメール送信中にエラーが発生しました', [
-                'error_message' => $e->getMessage(),
-                'owner_email' => $storeOwner->email,
-                'reservation_id' => $reservation->id,
-            ]);
+            if ($storeOwner) {
+                $this->info('送信中: ' . $storeOwner->email);
+                try {
+                    $storeOwner->notify(new ReminderEmail($reservation));
+                } catch (\Exception $e) {
+                    Log::error('店舗オーナーへメール送信中にエラーが発生しました', [
+                        'error_message' => $e->getMessage(),
+                        'owner_email' => $storeOwner->email,
+                        'reservation_id' => $reservation->id,
+                    ]);
+                }
+            } else {
+                $this->error('店舗オーナーが見つかりません: 予約ID ' . $reservation->id);
+            }
         }
-    } else {
-        $this->error('店舗オーナーが見つかりません: 予約ID ' . $reservation->id);
     }
-}}}
+}

@@ -5,7 +5,6 @@
 @endsection
 
 @section('nav-js')
-    <li><a href="/restaurants">HOME</a></li>
     <li>
         <a href="{{ route('owner.logout') }}"
             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -28,7 +27,6 @@
             </form>
         </div>
     </div>
-
     <div class="message">
         @if (session('message'))
             <div class="message-session">
@@ -36,9 +34,7 @@
             </div>
         @endif
     </div>
-
     <div class="store-management">
-        <!-- 店舗情報作成 -->
         <div class="store-form">
             <h2>店舗情報を作成</h2>
             <form action="{{ route('owner.store') }}" method="POST" enctype="multipart/form-data">
@@ -48,13 +44,11 @@
                     <div class="store-form__error">{{ $message }}</div>
                 @enderror
                 <input type="text" id="name" name="name" value="{{ old('name') }}">
-
                 <label for="address">住所</label>
                 @error('address')
                     <div class="store-form__error">{{ $message }}</div>
                 @enderror
                 <input type="text" id="address" name="address" value="{{ old('address') }}">
-
                 <label for="area">エリア</label>
                 @error('area_id')
                     <div class="store-info__error">{{ $message }}</div>
@@ -67,7 +61,6 @@
                         </option>
                     @endforeach
                 </select>
-
                 <label for="genre">ジャンル</label>
                 @error('genre_id')
                     <div class="store-info__error">{{ $message }}</div>
@@ -80,21 +73,16 @@
                         </option>
                     @endforeach
                 </select>
-
                 <label for="description">店舗説明</label>
                 @error('description')
                     <div class="store-form__error">{{ $message }}</div>
                 @enderror
                 <textarea id="description" name="description">{{ old('description') }}</textarea>
-
                 <label for="image">画像</label>
                 <input type="file" id="image" name="image">
                 <button type="submit">作成</button>
             </form>
         </div>
-
-
-        <!-- 店舗情報更新 -->
         <div class="store-info">
             <h2>店舗情報の更新</h2>
             @if ($restaurant)
@@ -118,7 +106,6 @@
                             </option>
                         @endforeach
                     </select>
-
                     <label for="genre">ジャンル</label>
                     @error('genre_id')
                         <div class="store-info__error">{{ $message }}</div>
@@ -132,7 +119,6 @@
                             </option>
                         @endforeach
                     </select>
-
                     <label for="description">店舗説明</label>
                     @error('description')
                         <div class="store-form__error">{{ $message }}</div>
@@ -146,8 +132,6 @@
                 <p>店舗情報がありません</p>
             @endif
         </div>
-
-        <!-- 予約確認 -->
         <div class="reservations">
             <h2>予約一覧</h2>
             @if ($reservations->isEmpty())

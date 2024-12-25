@@ -10,7 +10,6 @@ class ReservationController extends Controller
 {
     public function __construct()
     {
-        //予約処理にログインを必須
         $this->middleware('auth')->only(['store', 'update']);
     }
 
@@ -32,7 +31,6 @@ class ReservationController extends Controller
         ]);
 
         try {
-            //QRコード生成
             $qrData = json_encode([
                 'reservation_id' => $reservation->id,
                 'user_id' => $reservation->user_id,
@@ -42,12 +40,10 @@ class ReservationController extends Controller
 
             $qrCodePath = "qrcodes/{$reservation->id}.png";
 
-            //QRコードをストレージに保存
             QrCode::format('png')
                 ->size(300)
                 ->generate($qrData, storage_path("app/public/{$qrCodePath}"));
 
-            //QRコードのパスを保存
             $reservation->update(['qr_code' => $qrCodePath]);
         } catch (\Exception $e) {
             return redirect()->route('booked')->with('error', 'QRコードの生成に失敗しました');

@@ -17,11 +17,9 @@
     <li><a href="/mypage">MYPAGE</a></li>
 @endsection
 
-
 @section('content')
     <div class="message">
         <p class="message-name">{{ $user->name }}さん</p>
-
         @if (session('message'))
             <div class="message-session">
                 {{ session('message') }}
@@ -29,7 +27,6 @@
         @endif
     </div>
     <div class="mypage">
-        <!--予約状況-->
         <div class="reservation-info">
             <h1>予約状況</h1>
             @foreach ($reservations as $reservation)
@@ -47,13 +44,9 @@
                         <p><strong class="strong">Date</strong> {{ $reservation->date }}</p>
                         <p><strong class="strong">Time</strong>{{ $reservation->formatted_time }}</p>
                         <p><strong class="strong">Number</strong> {{ $reservation->guests }}人</p>
-
-                        <!--QR-->
                         <div class="qr-link">
                             <a href="{{ route('qr', $reservation->id) }}">QRコードを確認する</a>
                         </div>
-
-                        <!--stripe-->
                         @php
                             $checkout = $checkouts[$reservation->id] ?? null;
                         @endphp
@@ -69,8 +62,6 @@
                                 </a>
                             @endif
                         </div>
-
-                        <!--予約変更-->
                         <div class="button">
                             <button class="change-book__button"
                                 onclick="document.getElementById('editReservationForm-{{ $reservation->id }}').style.display='block'">
@@ -104,8 +95,6 @@
                 </div>
             @endforeach
         </div>
-
-        <!--お気に入り店舗一覧-->
         <div class="favorite-info">
             <h2>お気に入り店舗</h2>
             <div class="favorite-shops">

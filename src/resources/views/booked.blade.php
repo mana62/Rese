@@ -17,7 +17,6 @@
     <li><a href="/mypage">MYPAGE</a></li>
 @endsection
 
-
 @section('content')
     <div class="done">
         <p class="done__message">

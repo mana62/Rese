@@ -4,20 +4,24 @@
     padding: 70px;
     margin-top: 30px;
 }
+
 .restaurant-details .left,
 .restaurant-details .right {
     width: 45%;
 }
+
 .restaurant-details .left img {
     max-width: 100%;
     border-radius: 8px;
 }
+
 .restaurant-details .left h1 {
     font-size: 30px;
     position: relative;
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: bold;
 }
+
 .restaurant-details .left h1 .back-arrow {
     display: inline-flex;
     justify-content: center;
@@ -33,6 +37,7 @@
     width: 40px;
     height: 40px;
 }
+
 .restaurant-details .left h1 .back-arrow:hover {
     background: #6565eb;
 }
@@ -76,6 +81,7 @@
     font-size: 13px;
     font-family: "Zen Kaku Gothic New", sans-serif;
 }
+
 .tag {
     margin: 20px 0 30px 0;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -214,6 +220,7 @@
     background: #1758f0;
     margin-top: 30px;
 }
+
 .restaurant-details .right h2 {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-size: 25px;
@@ -222,6 +229,7 @@
     padding: 20px;
     margin-bottom: 10px;
 }
+
 .restaurant-details .right form {
     display: flex;
     flex-direction: column;
@@ -231,11 +239,13 @@
     border: none;
     border-radius: 8px;
 }
+
 .restaurant-details .right form div {
     margin: 10px;
     font-family: "Zen Kaku Gothic New", sans-serif;
     border: none;
 }
+
 .restaurant-details .right form div label {
     display: block;
     font-weight: bold;
@@ -245,6 +255,7 @@
 
     border: none;
 }
+
 .restaurant-details .right form div input {
     padding: 10px;
     border: 1px solid #dee2e6;
@@ -278,9 +289,11 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
 .restaurant-details .right form button:hover {
     background-color: #114ae7;
 }
+
 .restaurant-details .confirm {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -359,4 +372,3 @@
         font-size: 16px;
     }
 }
-/*# sourceMappingURL=shop-detail.css.map */

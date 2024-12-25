@@ -26,7 +26,6 @@
 @endsection
 
 @section('content')
-
     <div class="login_required">
         @if ($errors->has('login_required'))
             <div class="alert alert-danger">
@@ -34,29 +33,22 @@
             </div>
         @endif
     </div>
-
     <div class="restaurant-details">
-
-        <!--レストラン詳細-->
         <div class="left">
             <div class="header-flex">
                 <h1>
                     <a href="{{ route('restaurants.index') }}" class="back-arrow">&lt;</a>
                     {{ $restaurant->name }}
                 </h1>
-
-                <!--ストレージ-->
                 <form class="form-storage" action="{{ route('restaurants.uploadImage', ['id' => $restaurant->id]) }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="storage">
-
                         <div class="message-img">
                             @if (session('message'))
                                 <div class="message-img__session">{{ session('message') }}</div>
                             @endif
                         </div>
-
                         <img id=imgMark src="{{ asset('img/icon/icon_download.png') }}" alt="Download Icon"
                             class="icon_download">
                         <input type="hidden" name="restaurantId" value="{{ $restaurant->id }}">
@@ -64,15 +56,12 @@
                     </div>
             </div>
             </form>
-
             <img src="{{ asset('img/' . $restaurant->image) }}" alt="{{ $restaurant->name }}">
             <p class="tag"><strong>#</strong> {{ $restaurant->area->area_name }}</p>
             <p class="tag"><strong>#</strong> {{ $restaurant->genre->genre_name }}</p>
             <p class="description">{{ $restaurant->description }}</p>
         </div>
-
         <div class="right">
-            <!--予約-->
             <h2>予約</h2>
             <form id="reservationForm" action="{{ route('booked.store') }}" method="POST">
                 @csrf
@@ -97,7 +86,6 @@
                         <div class="book__error">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="confirm">
                     <p class="confirm-p"><strong class="strong">SHOP</strong> <span
                             class="restaurant-name">{{ $restaurant->name }}</span></p>
@@ -115,8 +103,6 @@
             </form>
         </div>
     </div>
-
-    <!--レビュー投稿-->
     <div class="reviews">
         <div class="review-show">
             <h3 class="sub-ttl">レビュー一覧</h3>
@@ -132,7 +118,6 @@
                 </div>
             @endforeach
         </div>
-
         <div>
             @if (auth()->check())
                 <h3 class="sub-ttl">レビューを投稿</h3>

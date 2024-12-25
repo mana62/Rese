@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\Restaurant;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Review;
+use App\Models\Reservation;
 
 class DatabaseSeeder extends Seeder
 {
@@ -205,5 +207,10 @@ class DatabaseSeeder extends Seeder
         foreach ($restaurants as $restaurant) {
             Restaurant::create($restaurant);
         }
+
+        Review::factory()->count(30)->create();
+        Reservation::factory()->count(20)->create();
+
     }
+
 }

@@ -23,7 +23,6 @@
             @error('name')
                 <div class="register__error">{{ $message }}</div>
             @enderror
-
             <div class="registration__field">
                 <img src="img/icon/icon_email.png" alt="Email Icon" class="registration__icon">
                 <input type="email" name="email" class="registration__input" placeholder="Email"
@@ -32,7 +31,6 @@
             @error('email')
                 <div class="register__error">{{ $message }}</div>
             @enderror
-
             <div class="registration__field">
                 <img src="img/icon/icon_password.png" alt="Password Icon" class="registration__icon">
                 <input type="password" name="password" class="registration__input" placeholder="Password"
@@ -41,7 +39,6 @@
             @error('password')
                 <div class="register__error">{{ $message }}</div>
             @enderror
-
             <div class="registration__field">
                 <img src="img/icon/icon_password.png" alt="Confirm Password Icon" class="registration__icon">
                 <input type="password" name="password_confirmation" class="registration__input"
@@ -50,7 +47,6 @@
             @error('password_confirmation')
                 <div class="register__error">{{ $message }}</div>
             @enderror
-
             <div class="registration__button">
                 <button type="submit" class="registration__button-submit">登録</button>
             </div>

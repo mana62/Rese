@@ -7,11 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasFactory;
 
     protected $fillable = ['name', 'email', 'password', 'role', 'status'];
 
@@ -33,11 +34,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function restaurant()
     {
         return $this->hasOne(Restaurant::class, 'owner_id');
-    }
-
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
     }
 
     public function isStoreOwner()

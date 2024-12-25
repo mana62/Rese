@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-    // ログイン処理
+    //ログイン処理
     public function store(Request $request)
     {
         $credentials = $request->only('email', 'password');

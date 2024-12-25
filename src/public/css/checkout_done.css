@@ -8,6 +8,7 @@
     border-radius: 5px;
     text-align: center;
 }
+
 .checkout-done__message {
     padding: 20px;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -33,6 +34,7 @@
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .mypage__link a:hover {
     background: #6565eb;
 }
@@ -42,4 +44,3 @@
         max-width: 80%;
     }
 }
-/*# sourceMappingURL=thanks.css.map */

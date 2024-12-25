@@ -22,22 +22,6 @@
     background: #6565eb;
 }
 
-@media (max-width: 768px) {
-    .back-arrow {
-        margin-left: 20px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .card-element-form {
-        width: 90%;
-    }
-
-    .payment-input {
-        width: 90%;
-    }
-}
-
 .ttl {
     margin-top: 100px;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -113,4 +97,20 @@
 
 .payment-button-submit:hover {
     background: #6565eb;
+}
+
+@media (max-width: 768px) {
+    .back-arrow {
+        margin-left: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-element-form {
+        width: 90%;
+    }
+
+    .payment-input {
+        width: 90%;
+    }
 }

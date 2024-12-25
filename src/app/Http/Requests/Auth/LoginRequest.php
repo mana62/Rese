@@ -39,14 +39,12 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        //メールアドレスが存在するか確認
         if (!Auth::validate(['email' => $this->input('email')])) {
             throw ValidationException::withMessages([
                 'email' => 'メールアドレスが違います',
             ]);
         }
 
-        //パスワードが正しいか確認
         if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 

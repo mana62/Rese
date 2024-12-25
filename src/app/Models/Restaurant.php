@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Restaurant extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -36,7 +34,7 @@ class Restaurant extends Model
         return $this->hasMany(Reservation::class);
     }
 
-    public function favoritedBy(): BelongsToMany
+    public function favorite(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'favorites', 'restaurant_id', 'user_id');
     }

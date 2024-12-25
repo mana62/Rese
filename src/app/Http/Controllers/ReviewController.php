@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    //レビューを取得
     public function storeReview(ReviewRequest $request, $restaurantId)
     {
         if (!Auth::check()) {

@@ -23,7 +23,6 @@
             @error('email')
                 <div class="login__error">{{ $message }}</div>
             @enderror
-
             <div class="login__field">
                 <img src="../img/icon/icon_password.png" alt="Password Icon" class="login__icon">
                 <input type="password" name="password" class="login__input" placeholder="Password"
@@ -32,7 +31,6 @@
             @error('password')
                 <div class="login__error">{{ $message }}</div>
             @enderror
-
             <div class="login__button">
                 <button type="submit" class="login__button-submit">ログイン</button>
             </div>

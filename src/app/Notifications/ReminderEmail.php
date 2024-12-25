@@ -23,13 +23,11 @@ class ReminderEmail extends Notification
     {
         $reservation = $this->reservation;
 
-        //ログ
         Log::info('ReminderEmail デバッグ', [
             'reservation_id' => $reservation->id,
             'notifiable_email' => $notifiable->email,
         ]);
 
-        //メール内容
         return (new MailMessage)
             ->line('ご予約日当日です。')
             ->line('日時: ' . $reservation->date ?? '不明')

@@ -29,25 +29,21 @@
                 <span></span>
                 <span></span>
             </div>
-
             <a class="header__logo" href="{{ route('restaurants.index') }}">
                 Rese
             </a>
         </div>
         @yield('nav')
     </header>
-
     <nav class="nav__menu" id="menu">
         <span class="close-btn" id="closeMenu">&times;</span>
         <ul>
             @yield('nav-js')
         </ul>
     </nav>
-
     <main class="main">
         @yield('content')
     </main>
-
     <script src="{{ asset('js/menu.js') }}"></script>
     @yield('js')
 </body>

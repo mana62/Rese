@@ -8,6 +8,7 @@
     border-radius: 5px;
     text-align: center;
 }
+
 .done__message {
     padding: 20px;
     font-family: "Zen Kaku Gothic New", sans-serif;
@@ -19,6 +20,7 @@
     text-align: center;
     margin-top: 20px;
 }
+
 .back__link a {
     background: #1758f0;
     text-decoration: none;
@@ -32,6 +34,7 @@
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .back__link a:hover {
     background: #6565eb;
 }
@@ -41,4 +44,3 @@
         max-width: 80%;
     }
 }
-/*# sourceMappingURL=done-book.css.map */

@@ -21,7 +21,6 @@
 @section('content')
     <h1 class="qr-ttl">QRコード</h1>
     <p class="qr-message">以下のQRコードを店舗で提示してください</p>
-
     <section id="qr-code-section" class="qr-img">
         @if ($reservation->qr_code)
             <div class="qr-img">
@@ -31,7 +30,6 @@
             <p>QRコードが生成されていません</p>
         @endif
     </section>
-
     <div class="qr-link">
         <a class="qr-link-root" href="{{ route('mypage') }}" class="btn btn-secondary">マイページに戻る</a>
     </div>

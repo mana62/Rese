@@ -14,7 +14,6 @@ use App\Models\Checkout;
 
 class RegisteredUserController extends Controller
 {
-    //会員登録ページを表示
     public function create()
     {
         return view('auth.register');
@@ -35,31 +34,25 @@ class RegisteredUserController extends Controller
         return redirect()->route('thanks');
     }
 
-    //サンクスページを表示
     public function index()
     {
         return view('thanks');
     }
 
-    //マイページ
     public function mypage()
     {
         $user = auth()->user();
 
-        //現在日時以降の予約を取得(日付が過ぎたものは表示されない)
         $reservations = Reservation::where('user_id', $user->id)
             ->whereDate('date', '>=', now()->toDateString())
             ->with('restaurant')
             ->orderBy('date', 'asc')
             ->get();
 
-        //Checkoutの情報を取得
         $checkouts = Checkout::whereIn('reservation_id', $reservations->pluck('id'))
             ->get()
-            ->keyBy('reservation_id'); //reservation_id をキーにした配列を作成
+            ->keyBy('reservation_id');
 
-
-        //ユーザーのお気に入りを取得
         $favorites = $user->favorites()->with('area', 'genre')->get();
         $favoriteIds = $favorites->pluck('restaurant_id')->toArray();
 
@@ -80,8 +73,6 @@ class RegisteredUserController extends Controller
     public function cancelReservation($id)
     {
         $reservation = Reservation::findOrFail($id);
-
-        //予約のステータスをcancelに変更
         $reservation->update(['status' => Reservation::STATUS_CANCELED]);
         $reservation->delete();
 

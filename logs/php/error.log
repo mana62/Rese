@@ -8,3 +8,15 @@
 [14-Dec-2024 02:22:53 UTC] PHP Warning:  Module "imagick" is already loaded in Unknown on line 0
 [14-Dec-2024 03:40:09 UTC] PHP Warning:  Module "imagick" is already loaded in Unknown on line 0
 [14-Dec-2024 09:54:13 UTC] PHP Warning:  Module "imagick" is already loaded in Unknown on line 0
+[23-Dec-2024 23:54:27 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 327680 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 149
+[23-Dec-2024 23:54:27 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65536 bytes) in /var/www/vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php on line 404
+[23-Dec-2024 23:55:50 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 152
+[23-Dec-2024 23:55:50 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php on line 100
+[23-Dec-2024 23:57:10 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 152
+[23-Dec-2024 23:57:10 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php on line 100
+[24-Dec-2024 00:07:12 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 327680 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 149
+[24-Dec-2024 00:07:12 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65536 bytes) in /var/www/vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php on line 373
+[24-Dec-2024 00:33:31 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 152
+[24-Dec-2024 00:33:31 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32768 bytes) in /var/www/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php on line 1
+[24-Dec-2024 00:35:32 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/vendor/fakerphp/faker/src/Faker/Provider/Text.php on line 152
+[24-Dec-2024 00:35:32 Asia/Tokyo] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32768 bytes) in /var/www/vendor/symfony/error-handler/Error/FatalError.php on line 1

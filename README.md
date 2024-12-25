@@ -9,7 +9,7 @@
 # アプリケーションURL
 <開発環境><br>
 - phpmyadmin: [http://localhost:8080](http://localhost:8080)<br>
-- アプリURL: [http://localhost/](http://localhost/)
+- アプリURL: [http://localhost/register](http://localhost/)
 <br>
 
 # 他のリポジトリ
